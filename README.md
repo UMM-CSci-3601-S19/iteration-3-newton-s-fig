@@ -1,5 +1,5 @@
 # CSCI 3601 Lab #4 - Mongo, Spark and Angular
-[![Build Status](https://travis-ci.org/UMM-CSci-3601-S19/iteration-1-the-mechanical-keyboards.svg?branch=master)](https://travis-ci.org/UMM-CSci-3601-S19/iteration-1-the-mechanical-keyboards)
+[![Build Status](https://travis-ci.org/UMM-CSci-3601-S19/iteration-2-fig-newtons.svg?branch=master)](https://travis-ci.org/UMM-CSci-3601-S19/iteration-2-fig-newtons)
 
 ## Setup
 
