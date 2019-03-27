@@ -81,18 +81,17 @@ public class UserController {
       .collect(Collectors.joining(", ", "[", "]"));
   }
 
-  public String addNewUser(String name, String vehicle, List<String> phone, String email) {
+  public String addNewUser(String name, List<String> phone, String email) {
 
     Document newUser = new Document();
     newUser.append("name", name);
-    newUser.append("vehicle", vehicle);
     newUser.append("phone", phone);
     newUser.append("email", email);
 
     try {
       userCollection.insertOne(newUser);
       ObjectId id = newUser.getObjectId("_id");
-      System.err.println("Successfully added new user [_id=" + id + ", name=" + name + ", vehicle=" + vehicle + " phone=" + phone + " email=" + email + ']');
+      System.err.println("Successfully added new user [_id=" + id + ", name=" + name + " phone=" + phone + " email=" + email + ']');
       return id.toHexString();
     } catch (MongoException me) {
       me.printStackTrace();

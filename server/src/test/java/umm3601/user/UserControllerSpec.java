@@ -127,11 +127,11 @@ public class UserControllerSpec {
   @Test
   public void addUserTest() {
     List<String> phoneNumbers = Arrays.asList("(808) 404 5005", "(735) 101 1337");
-    String newId = userController.addNewUser("Brian", "Brian's Vehicle", phoneNumbers, "brian@yahoo.com");
+    String newId = userController.addNewUser("Brian", phoneNumbers, "brian@yahoo.com");
 
     assertNotNull("Add new user should return true when user is added,", newId);
     Map<String, String[]> argMap = new HashMap<>();
-    argMap.put("vehicle", new String[]{"Brian's Vehicle"});
+    argMap.put("email", new String[]{"brian@yahoo.com"});
     String jsonResult = userController.getUsers(argMap);
     BsonArray docs = parseJsonArray(jsonResult);
 

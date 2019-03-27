@@ -56,10 +56,9 @@ public class UserRequestHandler {
 //    }
 
     String name = newUser.getString("name");
-    String vehicle = newUser.getString("vehicle");
     String email = newUser.getString("email");
 
-    System.err.println("Adding new user [name=" + name + ", vehicle=" + vehicle + " phone=" + phoneNumbers + " email=" + email + ']');
-    return userController.addNewUser(name, vehicle, phoneNumbers, email);
+    System.err.println("Adding new user [name=" + name + " phone=" + phoneNumbers + " email=" + email + ']');
+    return userController.addNewUser(name, phoneNumbers, email);
   }
 }
