@@ -3,7 +3,6 @@ import {UserListService} from './user-list.service';
 import {User} from './user';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
-import {AddUserComponent} from './add-user.component';
 
 @Component({
   selector: 'user-list-component',
@@ -50,29 +49,6 @@ export class UserListComponent implements OnInit {
     return user._id['$oid'] === this.highlightedID;
   }
 
-  openDialog(): void {
-    const newUser: User = {_id: '', name: '', age: -1, company: '', email: ''};
-    const dialogRef = this.dialog.open(AddUserComponent, {
-      width: '500px',
-      data: {user: newUser}
-    });
-
-    dialogRef.afterClosed().subscribe(newUser => {
-      if (newUser != null) {
-        this.userListService.addNewUser(newUser).subscribe(
-          result => {
-            this.highlightedID = result;
-            this.refreshUsers();
-          },
-          err => {
-            // This should probably be turned into some sort of meaningful response.
-            console.log('There was an error adding the user.');
-            console.log('The newUser or dialogResult was ' + newUser);
-            console.log('The error was ' + JSON.stringify(err));
-          });
-      }
-    });
-  }
 
   public filterUsers(searchName: string, searchAge: number): User[] {
 
