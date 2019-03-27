@@ -32,24 +32,24 @@ public class UserControllerSpec {
     testUsers.add(Document.parse("{\n" +
       "                    name: \"Chris\",\n" +
       "                    vehicle: \"Honda Civic\",\n" +
-      "                    phone: [\"(123) 456 7890\",\n\"(234) 567 8901\"],\n" +
+      "                    phone: \"(123) 456 7890\",\n" +
       "                    email: \"chris@this.that\"\n" +
       "                }"));
     testUsers.add(Document.parse("{\n" +
       "                    name: \"Pat\",\n" +
       "                    vehicle: \"Honda Accord\",\n" +
-      "                    phone: [\"(345) 678 9012\",\n\"(456) 789 0123\"],\n" +
+      "                    phone: \"(345) 678 9012\",\n" +
       "                    email: \"chris@this.that\"\n" +
       "                }"));
     testUsers.add(Document.parse("{\n" +
       "                    name: \"Jamie\",\n" +
       "                    vehicle: \"Honda Odyssey\",\n" +
-      "                    phone: [\"(456) 789 7890\",\n\"(567) 890 1234\"],\n" +
+      "                    phone: \"(456) 789 7890\",\n" +
       "                    email: \"chris@this.that\"\n" +
       "                }"));
 
     samsId = new ObjectId();
-    List<String> samPhone = Arrays.asList("(789) 012 3456", "(890) 123 4567");
+    List<String> samPhone = Arrays.asList("(789) 012 3456");
     BasicDBObject sam = new BasicDBObject("_id", samsId);
     sam = sam.append("name", "Sam")
       .append("vehicle", "Honda Civic")
@@ -126,8 +126,7 @@ public class UserControllerSpec {
 
   @Test
   public void addUserTest() {
-    List<String> phoneNumbers = Arrays.asList("(808) 404 5005", "(735) 101 1337");
-    String newId = userController.addNewUser("Brian", phoneNumbers, "brian@yahoo.com");
+    String newId = userController.addNewUser("Brian", "(808) 404 5005", "brian@yahoo.com");
 
     assertNotNull("Add new user should return true when user is added,", newId);
     Map<String, String[]> argMap = new HashMap<>();

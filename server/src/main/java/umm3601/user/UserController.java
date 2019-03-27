@@ -81,7 +81,7 @@ public class UserController {
       .collect(Collectors.joining(", ", "[", "]"));
   }
 
-  public String addNewUser(String name, List<String> phone, String email) {
+  public String addNewUser(String name, String phone, String email) {
 
     Document newUser = new Document();
     newUser.append("name", name);

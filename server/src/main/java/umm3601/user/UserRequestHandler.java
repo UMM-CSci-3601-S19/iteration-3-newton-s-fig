@@ -44,7 +44,7 @@ public class UserRequestHandler {
     res.type("application/json");
 
     Document newUser = Document.parse(req.body());
-    List<String> phoneNumbers = newUser.getList("phone", String.class);
+    String phoneNumber = newUser.getString("phone");
 
     // Currently obsolete could be useful
 //    String[] phone = new String[3];
@@ -58,7 +58,7 @@ public class UserRequestHandler {
     String name = newUser.getString("name");
     String email = newUser.getString("email");
 
-    System.err.println("Adding new user [name=" + name + " phone=" + phoneNumbers + " email=" + email + ']');
-    return userController.addNewUser(name, phoneNumbers, email);
+    System.err.println("Adding new user [name=" + name + " phone=" + phoneNumber + " email=" + email + ']');
+    return userController.addNewUser(name, phoneNumber, email);
   }
 }
