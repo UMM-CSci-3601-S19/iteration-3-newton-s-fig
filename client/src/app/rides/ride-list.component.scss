@@ -2,6 +2,20 @@
 .mat-card-title, .mat-card-subtitle {
   padding-left: 8px;
 }
+/* Don't display time stamp when small screen */
+@media only screen and (max-width: 955px) {
+  .time {
+    display: none;
+    background: none;
+  }
+}
+/* Time div */
+.time {
+  position: absolute;
+  top: 5%;
+  left: 2%;
+  max-width: 15%;
+}
 
 /* Ride card */
 .rides {  margin-bottom: 15px;  }

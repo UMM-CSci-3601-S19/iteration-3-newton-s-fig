@@ -14,6 +14,8 @@ export class RideListComponent implements OnInit {
   // public so that tests can reference them (.spec.ts)
   public rides: Ride[];
   public filteredRides: Ride[];
+  public time: Date;
+  public timeString: String;
   // Inject the RideListService into this component.
   constructor(public rideListService: RideListService) {
  //   rideListService.addListener(this);
@@ -23,6 +25,17 @@ export class RideListComponent implements OnInit {
    * Starts an asynchronous operation to update the rides list
    *
    */
+  public getTime(date?: Date): String {
+    if (!date) {
+      this.time = new Date();
+      this.timeString = new String((this.time.getMonth() + 1) + "/" + this.time.getDate() + "/" +
+                                   this.time.getFullYear());
+      return this.timeString;
+    } else {
+
+    }
+
+  }
 
   public filterRides(searchDate: string): Ride[] {
 

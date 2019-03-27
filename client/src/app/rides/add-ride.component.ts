@@ -27,6 +27,7 @@ export class AddRideComponent implements OnInit {
   public rideDestination: string;
   public rideDepartureDate: string;
   public rideDepartureTime: string;
+  public date: Date;
 
   // Inject the RideListService into this component.
   constructor(public rideListService: RideListService, private fb: FormBuilder) {
@@ -65,8 +66,10 @@ export class AddRideComponent implements OnInit {
       departureDate: this.rideDepartureDate,
       departureTime: this.rideDepartureTime};
 
-    console.log(newRide);
 
+    console.log(newRide);
+    this.date = new Date(2016, 3, 27);
+    console.log(this.date.getTime());
     if (newRide != null) {
       this.rideListService.addNewRide(newRide).subscribe(
         result => {

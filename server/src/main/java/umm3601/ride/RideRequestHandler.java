@@ -105,7 +105,6 @@ public class RideRequestHandler {
   }
 
   private String parseDate(String rawDate) {
-
     if (rawDate != null) {
       //Date from the datepicker is by default in ISO time, like "2019-03-13T05:00:00.000Z". departureDateISO retrieves that.
       //departureDateYYYYMMDD breaks off the irrelevant end data from the "T" and on. From there, month and day are broken off.
