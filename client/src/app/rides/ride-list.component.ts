@@ -13,7 +13,7 @@ import {Observable} from 'rxjs/Observable';
 export class RideListComponent implements OnInit {
   // public so that tests can reference them (.spec.ts)
   public rides: Ride[];
-
+  public filteredRides: Ride[];
   // Inject the RideListService into this component.
   constructor(public rideListService: RideListService) {
  //   rideListService.addListener(this);
@@ -23,6 +23,20 @@ export class RideListComponent implements OnInit {
    * Starts an asynchronous operation to update the rides list
    *
    */
+
+  public filterRides(searchDate: string): Ride[] {
+
+    this.filteredRides = this.rides;
+
+    // Filter by destination
+    if (searchDate != null) {
+      this.filteredRides = this.filteredRides.filter(ride => {
+        return !searchDate || ride.departureDate == searchDate;
+      });
+    }
+    return this.filteredRides;
+  }
+
   refreshRides(): Observable<Ride[]> {
     // Get Rides returns an Observable, basically a "promise" that
     // we will get the data from the server.

@@ -114,7 +114,9 @@ export class AddRideComponent implements OnInit {
         Validators.required
       ])),
 
-      departureDate: new FormControl('departureDate'),
+      departureDate: new FormControl('departureDate', Validators.compose([
+        Validators.required
+      ])),
 
       departureTime: new FormControl('departureTime'),
 
