@@ -41,4 +41,9 @@ public class ChatController {
       return null;
     }
   }
+
+  public String getMessages(String id) {
+    Document chat = Document.parse(getChat(id));
+    return chat.get("messages").toString();
+  }
 }
