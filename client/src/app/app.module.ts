@@ -21,6 +21,7 @@ import {AddRideComponent} from './rides/add-ride.component';
 
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {LoginComponent} from "./login/login.component";
 
 
 
@@ -42,6 +43,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     UserComponent,
 
     AddRideComponent,
+    LoginComponent
 
   ],
   providers: [
@@ -49,7 +51,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
     {provide: APP_BASE_HREF, useValue: '/'},
   ],
   entryComponents: [
-    AddRideComponent
+    AddRideComponent,
+    LoginComponent
   ],
   bootstrap: [AppComponent]
 })
