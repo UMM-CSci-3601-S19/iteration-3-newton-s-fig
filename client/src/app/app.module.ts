@@ -22,6 +22,7 @@ import {AddRideComponent} from './rides/add-ride.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {LoginComponent} from "./login/login.component";
+import {SignupComponent} from "./signup/signup.component";
 
 
 
@@ -43,7 +44,8 @@ import {LoginComponent} from "./login/login.component";
     UserComponent,
 
     AddRideComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
 
   ],
   providers: [
@@ -52,7 +54,8 @@ import {LoginComponent} from "./login/login.component";
   ],
   entryComponents: [
     AddRideComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
   ],
   bootstrap: [AppComponent]
 })
