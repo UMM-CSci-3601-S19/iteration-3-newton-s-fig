@@ -36,9 +36,8 @@ import { NgReact } from 'ngreact';
     CustomModule,
     MatCardModule,
     MatDatepickerModule,
-    StreamChat,
-    React,
-    NgReact
+    // React,
+    // NgReact
   ],
   declarations: [
     AppComponent,
