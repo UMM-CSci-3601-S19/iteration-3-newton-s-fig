@@ -29,7 +29,7 @@
 
         <mat-form-field>
           <input name="phoneField" matInput #input id="PhoneField" placeholder="Phone"
-                 required [(ngModel)]="phone" formControlName="phone">
+                 [(ngModel)]="phone" formControlName="phone">
           <mat-error *ngFor="let validation of signup_validation_messages.email">
             <mat-error class="error-message"
                        *ngIf="signupForm.get('phone').hasError(validation.type) &&

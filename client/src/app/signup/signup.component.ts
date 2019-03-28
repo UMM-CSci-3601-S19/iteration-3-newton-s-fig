@@ -24,7 +24,10 @@ export class SignupComponent implements OnInit {
   }
 
   signup_validation_messages = {
-    'email': [{type: 'email', message: 'Email must be formatted properly'}],
+    'email': [
+      {type: 'email', message: 'Email must be formatted properly'},
+      {type: 'required', message: 'Name is required'}
+    ],
     'name': [
       {type: 'required', message: 'Name is required'},
       {type: 'minlength', message: 'Name must be at least 2 characters long'},
@@ -42,7 +45,10 @@ export class SignupComponent implements OnInit {
 
   createForm() {
     this.signupForm = this.fb.group({
-      email: new FormControl('email', Validators.email),
+      email: new FormControl('email', Validators.compose([
+        Validators.email,
+        Validators.required
+      ])),
       phone: new FormControl('phone'),
       name: new FormControl('name', Validators.compose([
         Validators.minLength(2),
