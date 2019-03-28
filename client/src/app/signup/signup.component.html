@@ -20,7 +20,7 @@
                  required [(ngModel)]="name" formControlName="name">
           <mat-error *ngFor="let validation of signup_validation_messages.email">
             <mat-error class="error-message"
-                       *ngIf="loginForm.get('name').hasError(validation.type) &&
+                       *ngIf="signupForm.get('name').hasError(validation.type) &&
                        (signupForm.get('name').dirty || signupForm.get('name').touched)">
               {{validation.message}}
             </mat-error>

@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
 
   }
 
-  login_validation_messages = {
+  signup_validation_messages = {
     'email': [{type: 'email', message: 'Email must be formatted properly'}],
     'name': [
       {type: 'required', message: 'Name is required'},
