@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {RideListService} from './ride-list.service';
 import {Ride} from './ride';
 import {Observable} from 'rxjs/Observable';
+import {ChatComponent} from "../chat/chat.component";
+import {MatDialog} from '@angular/material';
+
 
 @Component({
   selector: 'ride-list-component',
@@ -15,8 +18,14 @@ export class RideListComponent implements OnInit {
   public rides: Ride[];
 
   // Inject the RideListService into this component.
-  constructor(public rideListService: RideListService) {
+  constructor(public rideListService: RideListService, public dialog: MatDialog) {
  //   rideListService.addListener(this);
+  }
+
+  openChat(): void {
+    const dialogRef = this.dialog.open(ChatComponent, {
+      width: '500px'
+    });
   }
 
   /**

@@ -13,6 +13,7 @@
       Create a Ride
     </button>
     <mat-divider></mat-divider>
+
     <div *ngIf="rides; else ridesError">
       <mat-card #elem class="rides" [id]="ride.driver" *ngFor="let ride of this.rides">
         <mat-card-header class="ride-title">
@@ -26,6 +27,7 @@
               <small>{{ride.seatsAvailable}} SEATS LEFT</small>
             </div>
           </mat-card-title>
+          <button mat-button class="open-chat-button" (click)="openChat()"><mat-icon>chat</mat-icon></button>
         </mat-card-header>
 
         <mat-card-content>
