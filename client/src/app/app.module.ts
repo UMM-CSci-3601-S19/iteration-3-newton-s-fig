@@ -25,6 +25,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ChatComponent } from './chat/chat.component';
 import { MessageComponent } from './message/message.component';
 
+import { StreamChat } from 'stream-chat';
+import {Chat} from "./chat/chat";
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -50,7 +53,7 @@ import { MessageComponent } from './message/message.component';
     {provide: APP_BASE_HREF, useValue: '/'},
   ],
   entryComponents: [
-    AddUserComponent, AddRideComponent
+    AddUserComponent, AddRideComponent, ChatComponent
   ],
   bootstrap: [AppComponent]
 })
