@@ -4,7 +4,7 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
+import org.bson.*;
 import org.bson.types.ObjectId;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,8 +12,10 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
+import static umm3601.DatabaseHelper.*;
 
 public class ChatControllerSpec {
   private ChatController chatController;
@@ -59,11 +61,26 @@ public class ChatControllerSpec {
     chatController = new ChatController(db);
   }
 
+  private static String getMessageSender(BsonValue val) {
+    BsonDocument message = val.asDocument();
+    return ((BsonString) message.get("sender")).getValue();
+  }
+
   @Test
   public void getChatById() {
-    String jsonResult = chatController.getChat(testChatId.toHexString());
-    Document testChat = Document.parse(jsonResult);
+    String jsonChat = chatController.getChat(testChatId.toHexString());
+    Document testChat = Document.parse(jsonChat);
 
     assertEquals("Total messages should be correct", 3, testChat.get("total_messages"));
+
+    String jsonMessages = chatController.getMessages(testChatId.toHexString());
+    BsonArray docs = parseJsonArray(jsonMessages);
+
+    List<String> messageSenders = docs
+      .stream()
+      .map(ChatControllerSpec::getMessageSender)
+      .sorted()
+      .collect(Collectors.toList());
+    assertEquals("First driver's name should be Andy Weller", "Andy Weller", messageSenders.get(0));
   }
 }
