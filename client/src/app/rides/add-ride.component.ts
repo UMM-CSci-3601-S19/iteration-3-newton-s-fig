@@ -65,7 +65,8 @@ export class AddRideComponent implements OnInit {
       destination: this.rideDestination,
       departureDate: this.rideDepartureDate,
       departureTime: this.rideDepartureTime,
-      dateObject: this.rideDateObject};
+      dateObject: this.rideDateObject
+    };
 
 
     console.log(newRide);

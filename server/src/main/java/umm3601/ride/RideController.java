@@ -61,6 +61,7 @@ public class RideController {
     // server-side filtering will happen here if we sell that in future stories.
     // Right now, this method simply returns all existing rides.
     Document filterDoc = new Document();
+    // Need to convert each rides ISO to an Epoch, and then
 
     FindIterable<Document> matchingRides = rideCollection.find(filterDoc);
 

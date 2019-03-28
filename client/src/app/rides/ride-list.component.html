@@ -1,7 +1,15 @@
 <title>MoRide - Upcoming Rides</title>
+<mat-card class="filter" style="max-width: 300px;">
+  <mat-expansion-panel id="filter">
+    <mat-expansion-panel-header>Filter</mat-expansion-panel-header>
+    <mat-form-field>
+      <input matInput id="departureDate" #input type="text" placeholder="Filter by Departure Date"
+             (input)="rideDateObject = $event.target.value">
+    </mat-form-field>
+  </mat-expansion-panel>
+</mat-card>
 <div layout-gt-sm="row">
-
-  <div class="time">Page loaded on: {{getTime()}}</div>
+  <div class="time">Page loaded on : {{getTime()}}</div>
   <div flex-gt-sm="50" flex-offset-gt-sm="25">
     <h1 id="ride-list-title">Upcoming Rides</h1>
     <button mat-raised-button

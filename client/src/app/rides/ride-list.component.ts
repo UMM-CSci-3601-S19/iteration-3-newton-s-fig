@@ -15,7 +15,10 @@ export class RideListComponent implements OnInit {
   public rides: Ride[];
   public filteredRides: Ride[];
   public time: Date;
-  public timeString: String;
+  public timeString: string;
+
+  // Variables used for filtering
+  public rideDateObject: string;
   // Inject the RideListService into this component.
   constructor(public rideListService: RideListService) {
  //   rideListService.addListener(this);
@@ -25,7 +28,7 @@ export class RideListComponent implements OnInit {
    * Starts an asynchronous operation to update the rides list
    *
    */
-  public getTime(date?: Date): String {
+  public getTime(date?: Date): string {
       this.time = new Date();
       this.timeString = (this.time.getMonth() + 1) + "/" + this.time.getDate() + "/" +
                                    this.time.getFullYear() + " at " + this.time.getHours() + ":" +
@@ -35,13 +38,14 @@ export class RideListComponent implements OnInit {
 
 
   public filterRides(searchDate: string): Ride[] {
-
     this.filteredRides = this.rides;
-
+    var date = new Date(searchDate);
     // Filter by destination
     if (searchDate != null) {
       this.filteredRides = this.filteredRides.filter(ride => {
-        return !searchDate || ride.departureDate == searchDate;
+        return !searchDate || (new Date(ride.dateObject).getFullYear() == date.getFullYear() &&
+                               new Date(ride.dateObject).getMonth() == date.getMonth() &&
+                               new Date(ride.dateObject).getDate() == date.getDate());
       });
     }
     return this.filteredRides;
@@ -57,6 +61,7 @@ export class RideListComponent implements OnInit {
     rides.subscribe(
       rides => {
         this.rides = rides;
+        this.filterRides(this.rideDateObject);
       },
       err => {
         console.log(err);

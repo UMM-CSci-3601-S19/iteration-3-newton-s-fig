@@ -2,6 +2,14 @@
 .mat-card-title, .mat-card-subtitle {
   padding-left: 8px;
 }
+
+/* Filter box */
+.filter {
+  position: absolute;
+  top: 5%;
+  right: 2%;
+  max-width: 20%;
+}
 /* Don't display time stamp when small screen */
 @media only screen and (max-width: 955px) {
   .time {
