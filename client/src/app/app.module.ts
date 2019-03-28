@@ -25,8 +25,6 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ChatComponent } from './chat/chat.component';
 import { MessageComponent } from './message/message.component';
 
-
-
 @NgModule({
   imports: [
     BrowserModule,
