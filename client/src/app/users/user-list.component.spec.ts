@@ -26,22 +26,19 @@ describe('User list', () => {
         {
           _id: 'chris_id',
           name: 'Chris',
-          age: 25,
-          company: 'UMM',
+          phone: "612-555-1234",
           email: 'chris@this.that'
         },
         {
           _id: 'pat_id',
           name: 'Pat',
-          age: 37,
-          company: 'IBM',
+          phone: "320-555-1234",
           email: 'pat@something.com'
         },
         {
           _id: 'jamie_id',
           name: 'Jamie',
-          age: 37,
-          company: 'Frogs, Inc.',
+          phone: "763-555-1234",
           email: 'jamie@frogs.com'
         }
       ])
@@ -80,32 +77,11 @@ describe('User list', () => {
     expect(userList.users.some((user: User) => user.name === 'Santa')).toBe(false);
   });
 
-  it('has two users that are 37 years old', () => {
-    expect(userList.users.filter((user: User) => user.age === 37).length).toBe(2);
-  });
-
   it('user list filters by name', () => {
     expect(userList.filteredUsers.length).toBe(3);
     userList.userName = 'a';
     userList.refreshUsers().subscribe(() => {
       expect(userList.filteredUsers.length).toBe(2);
-    });
-  });
-
-  it('user list filters by age', () => {
-    expect(userList.filteredUsers.length).toBe(3);
-    userList.userAge = 37;
-    userList.refreshUsers().subscribe(() => {
-      expect(userList.filteredUsers.length).toBe(2);
-    });
-  });
-
-  it('user list filters by name and age', () => {
-    expect(userList.filteredUsers.length).toBe(3);
-    userList.userAge = 37;
-    userList.userName = 'i';
-    userList.refreshUsers().subscribe(() => {
-      expect(userList.filteredUsers.length).toBe(1);
     });
   });
 

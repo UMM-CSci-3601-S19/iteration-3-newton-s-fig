@@ -11,27 +11,24 @@ describe('User list service: ', () => {
     {
       _id: 'chris_id',
       name: 'Chris',
-      age: 25,
-      company: 'UMM',
+      phone: "763-555-1234",
       email: 'chris@this.that'
     },
     {
       _id: 'pat_id',
       name: 'Pat',
-      age: 37,
-      company: 'IBM',
+      phone: "763-555-2345",
       email: 'pat@something.com'
     },
     {
       _id: 'jamie_id',
       name: 'Jamie',
-      age: 37,
-      company: 'Frogs, Inc.',
+      phone: "763-555-3456",
       email: 'jamie@frogs.com'
     }
   ];
   const mUsers: User[] = testUsers.filter(user =>
-    user.company.toLowerCase().indexOf('m') !== -1
+    user.name.toLowerCase().indexOf('m') !== -1
   );
 
   // We will need some url information from the userListService to meaningfully test company filtering;
@@ -102,8 +99,7 @@ describe('User list service: ', () => {
     const newUser: User = {
       _id: '',
       name: 'Jesse',
-      age: 72,
-      company: 'Smithsonian',
+      phone: "320-555-1234",
       email: 'jesse@stuff.com'
     };
 

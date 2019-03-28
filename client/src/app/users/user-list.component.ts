@@ -18,8 +18,8 @@ export class UserListComponent implements OnInit {
   // These are the target values used in searching.
   // We should rename them to make that clearer.
   public userName: string;
-  public userAge: number;
-  public userCompany: string;
+  public userEmail: string;
+  public userPhone: string;
 
   // The ID of the
   private highlightedID: string = '';
@@ -50,7 +50,7 @@ export class UserListComponent implements OnInit {
   }
 
 
-  public filterUsers(searchName: string, searchAge: number): User[] {
+  public filterUsers(searchName: string): User[] {
 
     this.filteredUsers = this.users;
 
@@ -63,12 +63,6 @@ export class UserListComponent implements OnInit {
       });
     }
 
-    // Filter by age
-    if (searchAge != null) {
-      this.filteredUsers = this.filteredUsers.filter(user => {
-        return !searchAge || user.age == searchAge;
-      });
-    }
 
     return this.filteredUsers;
   }
@@ -88,7 +82,7 @@ export class UserListComponent implements OnInit {
     users.subscribe(
       users => {
         this.users = users;
-        this.filterUsers(this.userName, this.userAge);
+        this.filterUsers(this.userName);
       },
       err => {
         console.log(err);
@@ -97,7 +91,7 @@ export class UserListComponent implements OnInit {
   }
 
   loadService(): void {
-    this.userListService.getUsers(this.userCompany).subscribe(
+    this.userListService.getUsers().subscribe(
       users => {
         this.users = users;
         this.filteredUsers = this.users;
