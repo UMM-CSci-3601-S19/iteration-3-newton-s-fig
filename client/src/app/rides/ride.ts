@@ -1,3 +1,5 @@
+import {Chat} from "../chat/chat";
+
 export interface Ride {
   _id: string;
   driver: string;
@@ -7,4 +9,5 @@ export interface Ride {
   destination: string;
   departureDate: string;
   departureTime: string;
+  chat: Chat;
 }
