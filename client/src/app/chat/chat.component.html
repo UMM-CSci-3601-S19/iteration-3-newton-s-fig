@@ -1,7 +1,14 @@
-<h2 mat-dialog-title>Ride Chat</h2>
+<h2 mat-dialog-title="">Ride Chat</h2>
 <mat-dialog-content>
-  <p>This is where the chat will go.</p>
+  Chat goes here
+  <form [formGroup]="sendMessageForm">
+    <mat-form-field class="send-message">
+      <textarea matInput placeholder="Type your message here..." matTextareaAutosize matAutosizeMinRows="2"
+                matAutosizeMaxRows="5" [(ngModel)]="messageToSend"></textarea>
+    </mat-form-field>
+    <button mat-icon-button="" (click)="sendMessage()"><mat-icon>send</mat-icon></button>
+  </form>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-dialog-close="">Close Chat</button>
+  <button mat-button mat-dialog-close="">Close Chat</button>
 </mat-dialog-actions>
