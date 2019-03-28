@@ -96,7 +96,11 @@ public class RideRequestHandler {
     String origin = newRide.getString("origin");
     String destination = newRide.getString("destination");
     date = newRide.getString("departureDate");
-    time = newRide.getString("departureTime");
+    if (newRide.getString("departureTime") != null) {
+      time = newRide.getString("departureTime");
+    } else {
+      time = "00:00";
+    }
     String dateObject = date.substring(0,11)+time+":00.000Z";
     String departureDate = parseDate(date);
     String departureTime = parseTime(time);
