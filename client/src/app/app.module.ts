@@ -22,6 +22,8 @@ import {AddRideComponent} from './rides/add-ride.component';
 
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { ChatComponent } from './chat/chat.component';
+import { MessageComponent } from './message/message.component';
 
 
 
@@ -42,7 +44,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 
     UserComponent,
 
-    AddUserComponent, AddRideComponent,
+    AddUserComponent, AddRideComponent, ChatComponent, MessageComponent,
 
   ],
   providers: [
