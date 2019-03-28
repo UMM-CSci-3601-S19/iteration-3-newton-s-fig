@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators, FormGroup, FormBuilder} from "@angular/forms";
+import {User} from "../users/user";
+import {UserListService} from "../users/user-list.service";
 
 @Component({
   selector: 'signup.component',
@@ -19,7 +21,7 @@ export class SignupComponent implements OnInit {
 
   public signupForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private userListService: UserListService, private fb: FormBuilder) {
 
   }
 
@@ -37,11 +39,40 @@ export class SignupComponent implements OnInit {
   };
 
   signup(): void {
+    const newUser: User = {
+      _id: '',
+      email: this.email,
+      phone: this.phone,
+      name: this.name
+    };
 
-    //add a post request to add this user
-    document.cookie = "email=" + this.email;
+    console.log(newUser);
 
-  };
+
+    if (newUser != null) {
+      this.userListService.addNewUser(newUser).subscribe(
+        result => {
+          this.highlightedID = result;
+
+        },
+        err => {
+          // This should probably be turned into some sort of meaningful response.
+          console.log('There was an error adding the user.');
+          console.log('The newUser or dialogResult was ' + newUser);
+          console.log('The error was ' + JSON.stringify(err));
+        });
+
+      document.cookie = "email=" + this.email;
+
+    }
+    ;
+  }
+
+
+  //we need to check if email is not already in the database
+
+
+
 
   createForm() {
     this.signupForm = this.fb.group({
