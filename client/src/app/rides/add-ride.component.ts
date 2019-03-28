@@ -68,8 +68,6 @@ export class AddRideComponent implements OnInit {
 
 
     console.log(newRide);
-    this.date = new Date(2016, 3, 27);
-    console.log(this.date.getTime());
     if (newRide != null) {
       this.rideListService.addNewRide(newRide).subscribe(
         result => {

@@ -7,4 +7,5 @@ export interface Ride {
   destination: string;
   departureDate: string;
   departureTime: string;
+  dateObject: string;
 }

@@ -26,16 +26,13 @@ export class RideListComponent implements OnInit {
    *
    */
   public getTime(date?: Date): String {
-    if (!date) {
       this.time = new Date();
-      this.timeString = new String((this.time.getMonth() + 1) + "/" + this.time.getDate() + "/" +
-                                   this.time.getFullYear());
+      this.timeString = (this.time.getMonth() + 1) + "/" + this.time.getDate() + "/" +
+                                   this.time.getFullYear() + " at " + this.time.getHours() + ":" +
+                          this.time.getMinutes();
       return this.timeString;
-    } else {
-
-    }
-
   }
+
 
   public filterRides(searchDate: string): Ride[] {
 
