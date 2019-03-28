@@ -1,13 +1,16 @@
 <title>MoRide - Upcoming Rides</title>
+
 <mat-card class="filter" style="max-width: 300px;">
   <mat-expansion-panel id="filter">
     <mat-expansion-panel-header>Filter</mat-expansion-panel-header>
     <mat-form-field>
-      <input matInput id="departureDate" #input type="text" placeholder="Filter by Departure Date"
-             (input)="rideDateObject = $event.target.value">
+      <input matInput [matDatepicker]="picker" placeholder="Filter by Departure Date" [(ngModel)]="rideDateObject">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
   </mat-expansion-panel>
 </mat-card>
+
 <div layout-gt-sm="row">
   <div class="time">Page loaded on : {{getTime()}}</div>
   <div flex-gt-sm="50" flex-offset-gt-sm="25">

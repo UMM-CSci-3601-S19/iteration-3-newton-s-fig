@@ -14,6 +14,7 @@ public class RideRequestHandler {
   private String departureDateDay;
   private String date;
   private String time;
+
   public RideRequestHandler(RideController rideController) {
     this.rideController = rideController;
   }
