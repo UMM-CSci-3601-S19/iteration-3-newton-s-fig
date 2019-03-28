@@ -9,7 +9,7 @@
   <mat-error *ngFor="let validation of login_validation_messages.email">
     <mat-error class="error-message"
                *ngIf="loginForm.get('email').hasError(validation.type) &&
-                       (loginForm.get('email').dirty || addRideForm.get('email').touched)">
+                       (loginForm.get('email').dirty || loginForm.get('email').touched)">
       {{validation.message}}
     </mat-error>
   </mat-error>
