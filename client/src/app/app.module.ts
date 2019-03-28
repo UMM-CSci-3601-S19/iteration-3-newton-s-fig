@@ -25,6 +25,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ChatComponent } from './chat/chat.component';
 import { MessageComponent } from './message/message.component';
 import { StreamChat } from 'stream-chat';
+import { React } from 'react';
+import { NgReact } from 'ngreact';
 
 @NgModule({
   imports: [
@@ -34,7 +36,9 @@ import { StreamChat } from 'stream-chat';
     CustomModule,
     MatCardModule,
     MatDatepickerModule,
-    StreamChat
+    StreamChat,
+    React,
+    NgReact
   ],
   declarations: [
     AppComponent,
