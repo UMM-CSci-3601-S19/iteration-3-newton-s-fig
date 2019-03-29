@@ -29,7 +29,6 @@
     "@covalent/core": "^1.0.1",
     "@types/core-js": "^2.5.0",
     "core-js": "^2.6.5",
-    "crypto": "^1.0.1",
     "getstream": "^4.2.1",
     "hammerjs": "^2.0.8",
     "ngreact": "^0.5.2",
