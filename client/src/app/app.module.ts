@@ -25,8 +25,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { ChatComponent } from './chat/chat.component';
 import { MessageComponent } from './message/message.component';
 import { StreamChat } from 'stream-chat';
-import { React } from 'react';
-import { NgReact } from 'ngreact';
+
+import { ChatService } from './chat/chat-service';
 
 @NgModule({
   imports: [
@@ -36,8 +36,6 @@ import { NgReact } from 'ngreact';
     CustomModule,
     MatCardModule,
     MatDatepickerModule,
-    // React,
-    // NgReact
   ],
   declarations: [
     AppComponent,
@@ -51,7 +49,7 @@ import { NgReact } from 'ngreact';
 
   ],
   providers: [
-    UserListService,RideListService,
+    UserListService, RideListService, ChatService,
     {provide: APP_BASE_HREF, useValue: '/'},
   ],
   entryComponents: [
