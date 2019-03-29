@@ -19,6 +19,8 @@ export class RideListComponent implements OnInit {
 
   // Variables used for filtering
   public rideDateObject: string;
+  // '2014-11-03T19:38:34.203Z'
+  public date: Date;
   // Inject the RideListService into this component.
   constructor(public rideListService: RideListService) {
  //   rideListService.addListener(this);
@@ -39,15 +41,25 @@ export class RideListComponent implements OnInit {
 
   public filterRides(searchDate: string): Ride[] {
     this.filteredRides = this.rides;
-    var date = new Date(searchDate);
+    this.date = new Date(searchDate);
+    console.log(searchDate);
+    // this.date = new Date(searchDate);
+    // console.log(this.date);
+    console.log(this.date.getFullYear());
+    // var rideYear = new Date();
+    // var rideMonth = new Date();
+    // var rideDay = new Date();
+
     // Filter by destination
+    console.log(this.filteredRides);
     if (searchDate != null) {
       this.filteredRides = this.filteredRides.filter(ride => {
-        return !searchDate || (new Date(ride.dateObject).getFullYear() == date.getFullYear() &&
-                               new Date(ride.dateObject).getMonth() == date.getMonth() &&
-                               new Date(ride.dateObject).getDate() == date.getDate());
+        return !searchDate || (new Date(ride.dateObject).getFullYear() == this.date.getFullYear() &&
+                               new Date(ride.dateObject).getMonth() == this.date.getMonth() &&
+                               new Date(ride.dateObject).getDate() == this.date.getDate());
       });
     }
+    console.log(this.filteredRides);
     return this.filteredRides;
   }
 
@@ -61,7 +73,8 @@ export class RideListComponent implements OnInit {
     rides.subscribe(
       rides => {
         this.rides = rides;
-        this.filterRides(this.rideDateObject);
+        this.filteredRides = this.filterRides(this.rideDateObject);
+        console.log(this.filteredRides);
       },
       err => {
         console.log(err);
@@ -82,7 +95,7 @@ export class RideListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.refreshRides();
     this.loadService();
+    this.refreshRides();
   }
 }

@@ -8,8 +8,11 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+    <button mat-button class="filterButton" (click)="refreshRides()">Filter</button>
   </mat-expansion-panel>
 </mat-card>
+
+<div>The date picked is: {{rideDateObject}}</div>
 
 <div layout-gt-sm="row">
   <div class="time">Page loaded on : {{getTime()}}</div>
@@ -25,8 +28,8 @@
       Create a Ride
     </button>
     <mat-divider></mat-divider>
-    <div *ngIf="rides; else ridesError">
-      <mat-card #elem class="rides" [id]="ride.driver" *ngFor="let ride of this.rides">
+    <div *ngIf="filteredRides; else ridesError">
+      <mat-card #elem class="rides" [id]="ride.driver" *ngFor="let ride of this.filteredRides">
         <mat-card-header class="ride-title">
           <mat-card-title>
             <div class="departure-time">
