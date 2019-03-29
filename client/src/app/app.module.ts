@@ -24,6 +24,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {LoginComponent} from "./login/login.component";
 import {SignupComponent} from "./signup/signup.component";
 
+import {AuthService} from "./auth/auth.service";
+import {AuthGuardService} from "./auth/auth-guard.service";
 
 
 @NgModule({
@@ -49,7 +51,7 @@ import {SignupComponent} from "./signup/signup.component";
 
   ],
   providers: [
-    UserListService,RideListService,
+    UserListService,RideListService,AuthGuardService,AuthService,
     {provide: APP_BASE_HREF, useValue: '/'},
   ],
   entryComponents: [

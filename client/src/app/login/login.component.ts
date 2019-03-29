@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
 
   login(): void {
     document.cookie = "email=" + this.email;
+    localStorage.email = this.email;
 
   };
 
