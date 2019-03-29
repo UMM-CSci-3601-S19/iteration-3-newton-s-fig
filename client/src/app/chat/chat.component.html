@@ -3,7 +3,7 @@
   Chat goes here
   <form [formGroup]="sendMessageForm">
     <mat-form-field class="send-message">
-      <textarea matInput placeholder="Type your message here..." matTextareaAutosize matAutosizeMinRows="2"
+      <textarea matInput formControlName="messageToSend" placeholder="Type your message here..." matTextareaAutosize matAutosizeMinRows="2"
                 matAutosizeMaxRows="5" [(ngModel)]="messageToSend"></textarea>
     </mat-form-field>
     <button mat-icon-button="" (click)="sendMessage()"><mat-icon>send</mat-icon></button>
