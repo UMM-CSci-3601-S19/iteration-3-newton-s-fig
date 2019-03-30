@@ -24,7 +24,7 @@ export class SignupComponent implements OnInit {
 
   public signupForm: FormGroup;
 
-  constructor(private userListService: UserListService, private fb: FormBuilder, public router: Router) {
+  constructor(private userListService: UserListService, private fb: FormBuilder, private router: Router) {
 
   }
 

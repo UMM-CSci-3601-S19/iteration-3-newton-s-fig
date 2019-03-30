@@ -4,6 +4,10 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 import {LoginComponent} from "./login.component";
 import {CustomModule} from '../custom.module';
+import {Router} from "@angular/router";
+import {UserListService} from "../users/user-list.service";
+import {Observable} from "rxjs/Observable";
+import {User} from "../users/user";
 
 describe('Login component', () => {
 
@@ -13,20 +17,19 @@ describe('Login component', () => {
   let errors;
   let email;
 
-  const mockMatDialogRef = {
-    close() {
-      calledClose = true;
-    }
-  };
   let fixture: ComponentFixture<LoginComponent>;
+
+  let userListServiceStub: {
+    getUsers: () => Observable<User[]>
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CustomModule],
       declarations: [LoginComponent],
       providers: [
-        {provide: MatDialogRef, useValue: mockMatDialogRef},
-        {provide: MAT_DIALOG_DATA, useValue: null}
+        {provide: UserListService, useValue: userListServiceStub},
+        {provide: Router}
       ]
     }).compileComponents().catch(error => {
       expect(error).toBeNull();
@@ -34,6 +37,30 @@ describe('Login component', () => {
   }));
 
   beforeEach(() => {
+
+    userListServiceStub = {
+      getUsers: () => Observable.of([
+        {
+          _id: 'chris_id',
+          name: 'Chris',
+          phone: "1234568521",
+          email: 'chris@this.that'
+        },
+        {
+          _id: 'pat_id',
+          name: 'Pat',
+          phone: "16548965215",
+          email: 'pat@something.com'
+        },
+        {
+          _id: 'jamie_id',
+          name: 'Jamie',
+          phone: "3652148952",
+          email: 'jamie@frogs.com'
+        }
+      ])
+    };
+
     calledClose = false;
     fixture = TestBed.createComponent(LoginComponent);
     loginComponent = fixture.componentInstance;

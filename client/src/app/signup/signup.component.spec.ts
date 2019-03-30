@@ -5,6 +5,7 @@ import {CustomModule} from '../custom.module';
 import {Observable} from "rxjs/Observable";
 import {User} from "../users/user";
 import {UserListService} from "../users/user-list.service";
+import {Router} from "@angular/router";
 
 describe('Signup component', () => {
 
@@ -29,7 +30,10 @@ describe('Signup component', () => {
     TestBed.configureTestingModule({
       imports: [CustomModule],
       declarations: [SignupComponent],
-      providers: [{provide: UserListService, useValue: userListServiceStub}]
+      providers: [
+        {provide: UserListService, useValue: userListServiceStub},
+        {provide: Router}
+        ]
 
     }).compileComponents().catch(error => {
       expect(error).toBeNull();
