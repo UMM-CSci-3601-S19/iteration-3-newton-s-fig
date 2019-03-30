@@ -17,7 +17,7 @@
 
 <mat-card-actions layout="row">
   <button class="loginButton" mat-raised-button id="loginButton"  type="button" color="primary"
-          (click)="login()" routerLink="/rides" [disabled]="!loginForm.valid">Login
+          (click)="login()" [disabled]="!loginForm.valid">Login
   </button>
   <button class="signupButton" mat-button id="signupButton" routerLink="/signup"  type="button">Sign Up</button>
 </mat-card-actions>

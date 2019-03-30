@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators, FormGroup, FormBuilder} from "@angular/forms";
+import {User} from "../users/user";
+import {UserListService} from "../users/user-list.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'login.component',
@@ -11,11 +14,17 @@ export class LoginComponent implements OnInit {
 
   public email: string;
 
+  public phone: string;
+
+  public name: string;
+
+  private user;
+
   private highlightedID: string = '';
 
   public loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private userListService: UserListService, private fb: FormBuilder, public router: Router) {
 
   }
 
@@ -24,10 +33,29 @@ export class LoginComponent implements OnInit {
   };
 
   login(): void {
-    document.cookie = "email=" + this.email;
-    localStorage.email = this.email;
+    localStorage.user = null;
+    if (this.email != null && this.email != "") {
+      this.userListService.getUserByEmail(this.email).subscribe(
+        result => {
+          this.user = result[0];
+          if(this.user){
+            localStorage.user = JSON.stringify(this.user);
+            this.router.navigate(['rides']);
+          }else {
+            this.router.navigate(['login']);
+          }
+        },
+        err => {
+          // This should probably be turned into some sort of meaningful response.
+          console.log('There was an error logging in.');
+          console.log('The email or dialogResult was ' + this.email);
+          console.log('The error was ' + JSON.stringify(err));
+        });
 
-  };
+    }
+    ;
+
+  }
 
   createForm() {
     this.loginForm = this.fb.group({
