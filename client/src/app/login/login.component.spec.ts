@@ -10,6 +10,9 @@ describe('Login component', () => {
   let loginComponent: LoginComponent;
   let calledClose: boolean;
 
+  let errors;
+  let email;
+
   const mockMatDialogRef = {
     close() {
       calledClose = true;
@@ -36,6 +39,8 @@ describe('Login component', () => {
     loginComponent = fixture.componentInstance;
     loginComponent.ngOnInit();
 
+    errors = {};
+    email = loginComponent.loginForm.controls['email'];
   });
 
   // Much of the code for validation was created with helpful resources including:
@@ -43,13 +48,10 @@ describe('Login component', () => {
 
   it('form invalid when empty', () => {
     expect(loginComponent.loginForm.valid).toBeFalsy();
+    expect(email.valid).toBeFalsy();
   });
 
   it('email field invaild when non-email input', () => {
-    let errors = {};
-    let email = loginComponent.loginForm.controls['email'];
-    expect(email.valid).toBeFalsy();
-
     email.setValue("test");
     errors = email.errors || {};
     expect(errors['required']).toBeFalsy();
@@ -57,14 +59,10 @@ describe('Login component', () => {
   });
 
   it('email field vaild when email input', () => {
-    let errors = {};
-    let email = loginComponent.loginForm.controls['email'];
-    expect(email.valid).toBeFalsy();
-
     email.setValue("test@example.com");
     errors = email.errors || {};
     expect(errors['required']).toBeFalsy();
     expect(errors['email']).toBeFalsy();
   });
-  
+
 });
