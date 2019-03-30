@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators, FormGroup, FormBuilder} from "@angular/forms";
 import {User} from "../users/user";
 import {UserListService} from "../users/user-list.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'signup.component',
@@ -17,11 +18,13 @@ export class SignupComponent implements OnInit {
 
   public phone: string;
 
+  public user;
+
   private highlightedID: string = '';
 
   public signupForm: FormGroup;
 
-  constructor(private userListService: UserListService, private fb: FormBuilder) {
+  constructor(private userListService: UserListService, private fb: FormBuilder, public router: Router) {
 
   }
 
@@ -49,11 +52,35 @@ export class SignupComponent implements OnInit {
     console.log(newUser);
 
 
+    localStorage.user = null;
+
+      this.userListService.getUserByEmail(this.email).subscribe(
+        result => {
+          this.user = result[0];
+          if(this.user){
+            this.router.navigate(['signUp']);
+            alert("The entered email is already taken.");
+          }else {
+            localStorage.user = JSON.stringify(newUser);
+            this.addUser(newUser);
+          }
+        },
+        err => {
+          // This should probably be turned into some sort of meaningful response.
+          console.log('There was an error signing up.');
+          console.log('The email or dialogResult was ' + this.email);
+          console.log('The error was ' + JSON.stringify(err));
+        });
+
+  }
+
+  addUser(newUser) {
+
     if (newUser != null) {
       this.userListService.addNewUser(newUser).subscribe(
         result => {
           this.highlightedID = result;
-
+          this.router.navigate(['rides']);
         },
         err => {
           // This should probably be turned into some sort of meaningful response.
@@ -61,8 +88,6 @@ export class SignupComponent implements OnInit {
           console.log('The newUser or dialogResult was ' + newUser);
           console.log('The error was ' + JSON.stringify(err));
         });
-
-      document.cookie = "email=" + this.email;
 
     }
     ;
