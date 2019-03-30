@@ -3,7 +3,6 @@ import {UserListService} from './user-list.service';
 import {User} from './user';
 import {Observable} from 'rxjs/Observable';
 import {MatDialog} from '@angular/material';
-import {AddUserComponent} from './add-user.component';
 
 @Component({
   selector: 'user-list-component',
@@ -19,46 +18,39 @@ export class UserListComponent implements OnInit {
   // These are the target values used in searching.
   // We should rename them to make that clearer.
   public userName: string;
-  public userAge: number;
-  public userCompany: string;
+  public userEmail: string;
+  public userPhone: string;
 
   // The ID of the
   private highlightedID: string = '';
 
+  // Static references for displaying an example profile page
+  public exampleUser: string;
+  public exampleEmail: string;
+  public exampleBio: string;
+  public exampleMakeModel: string;
+  public exampleYear: string;
+  public exampleColor: string;
+  public exampleNotes: string;
+
   // Inject the UserListService into this component.
   constructor(public userListService: UserListService, public dialog: MatDialog) {
 
+    this.exampleUser = 'Albert Einstein';
+    this.exampleEmail = 'Albert.Einstein@nointernet.yet';
+    this.exampleBio = 'I am a German-born theoretical physicist who discovered the theory of relativity! Also I never learned how to drive!';
+    this.exampleMakeModel = 'Pontiac Torpedo';
+    this.exampleYear = '1940';
+    this.exampleColor = 'Black';
+    this.exampleNotes = 'Nearly 80 years old, but it\'s still brand new.';
   }
 
   isHighlighted(user: User): boolean {
     return user._id['$oid'] === this.highlightedID;
   }
 
-  openDialog(): void {
-    const newUser: User = {_id: '', name: '', age: -1, company: '', email: ''};
-    const dialogRef = this.dialog.open(AddUserComponent, {
-      width: '500px',
-      data: {user: newUser}
-    });
 
-    dialogRef.afterClosed().subscribe(newUser => {
-      if (newUser != null) {
-        this.userListService.addNewUser(newUser).subscribe(
-          result => {
-            this.highlightedID = result;
-            this.refreshUsers();
-          },
-          err => {
-            // This should probably be turned into some sort of meaningful response.
-            console.log('There was an error adding the user.');
-            console.log('The newUser or dialogResult was ' + newUser);
-            console.log('The error was ' + JSON.stringify(err));
-          });
-      }
-    });
-  }
-
-  public filterUsers(searchName: string, searchAge: number): User[] {
+  public filterUsers(searchName: string): User[] {
 
     this.filteredUsers = this.users;
 
@@ -71,12 +63,6 @@ export class UserListComponent implements OnInit {
       });
     }
 
-    // Filter by age
-    if (searchAge != null) {
-      this.filteredUsers = this.filteredUsers.filter(user => {
-        return !searchAge || user.age == searchAge;
-      });
-    }
 
     return this.filteredUsers;
   }
@@ -96,7 +82,7 @@ export class UserListComponent implements OnInit {
     users.subscribe(
       users => {
         this.users = users;
-        this.filterUsers(this.userName, this.userAge);
+        this.filterUsers(this.userName);
       },
       err => {
         console.log(err);
@@ -105,7 +91,7 @@ export class UserListComponent implements OnInit {
   }
 
   loadService(): void {
-    this.userListService.getUsers(this.userCompany).subscribe(
+    this.userListService.getUsers().subscribe(
       users => {
         this.users = users;
         this.filteredUsers = this.users;

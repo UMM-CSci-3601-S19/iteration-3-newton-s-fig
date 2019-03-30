@@ -17,7 +17,6 @@ import {APP_BASE_HREF} from '@angular/common';
 
 import {CustomModule} from './custom.module';
 
-import {AddUserComponent} from './users/add-user.component';
 import {AddRideComponent} from './rides/add-ride.component';
 
 import {MatCardModule} from '@angular/material/card';
@@ -35,7 +34,7 @@ import { ChatService } from './chat/chat-service';
     Routing,
     CustomModule,
     MatCardModule,
-    MatDatepickerModule,
+    MatDatepickerModule
   ],
   declarations: [
     AppComponent,
@@ -45,7 +44,7 @@ import { ChatService } from './chat/chat-service';
 
     UserComponent,
 
-    AddUserComponent, AddRideComponent, ChatComponent, MessageComponent,
+    AddRideComponent, ChatComponent, MessageComponent,
 
   ],
   providers: [
@@ -53,7 +52,7 @@ import { ChatService } from './chat/chat-service';
     {provide: APP_BASE_HREF, useValue: '/'},
   ],
   entryComponents: [
-    AddUserComponent, AddRideComponent, ChatComponent
+    AddRideComponent, ChatComponent
   ],
   bootstrap: [AppComponent]
 })
