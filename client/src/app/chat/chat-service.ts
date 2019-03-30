@@ -22,20 +22,22 @@ export class ChatService {
     this.setUser();
   }
 
-  async setUser() {
+   async setUser() {
+    const token = this.chatClient.createToken('jlahey');
+
     await this.chatClient.setUser(
       {
         id: 'jlahey',
         name: 'Jim Lahey',
         image: 'https://i.imgur.com/fR9Jz14.png',
       },
-      this.chatClient.devToken('jlahey'),
+      token
     );
   }
 
   async createRideChannel(ride: Ride) {
-    const channel = this.chatClient.channel('messaging', ride._id, {
-      name: 'Chat for ride going from ' + ride.origin + ' to ' + ride.destination,
+    const channel = this.chatClient.channel('messaging', 'ride_id_here', {
+      name: 'Chat for ride going from ' + 'ride.origin' + ' to ' + 'ride.destination',
     });
 
     let state = await channel.watch();
@@ -44,5 +46,7 @@ export class ChatService {
     const response = await channel.sendMessage({
       text,
     });
+
+    console.log(response);
   }
 }
