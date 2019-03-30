@@ -8,6 +8,8 @@ import {environment} from '../../environments/environment';
 import {RideListComponent} from "./ride-list.component";
 
 
+
+
 @Injectable()
 export class RideListService {
   readonly baseUrl: string = environment.API_URL + 'rides';
