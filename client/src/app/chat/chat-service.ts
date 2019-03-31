@@ -27,6 +27,19 @@ export class ChatService {
 
     this.getToken(user).subscribe( userToken => {
       const client = stream.connect(this.API_KEY, userToken,"49831");
+
+      console.log("userToken=" + userToken);
+
+      let rideFeed = client.feed('user', '1', userToken);
+      console.log("fetched a feed");
+
+      rideFeed.get()
+        .then(function(data) {
+          console.log("get data=" + JSON.stringify(data));
+        })
+        .catch(function(reason) {
+          console.log(reason.error);
+        });
     });
   }
 
