@@ -42,8 +42,6 @@ export class ChatService {
   }
 
   getMessages(feedId: string): Promise {
-    this.connectStream();
-
     let rideFeed = this.client.feed('ride', feedId, this.userToken);
 
     return new Promise( (resolve, reject) => {
