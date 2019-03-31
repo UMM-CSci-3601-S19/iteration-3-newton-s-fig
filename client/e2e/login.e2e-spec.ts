@@ -35,7 +35,18 @@ describe('login page', () => {
     page.typeAnEmail("notanemail@email.io");
     expect(page.elementExistsWithClass("login")).toBeTruthy("We should be on login page");
     page.login();
-    //write check for alert
+
+
+    var EC = protractor.ExpectedConditions;
+// Waits for an alert pops up.
+    browser.wait(EC.alertIsPresent(), 2000);
+    var popupAlert = browser.switchTo().alert();
+    var alertText = popupAlert.getText();
+    expect(alertText).toMatch('The entered email is not associated with any user. Did you enter your email correctly?');
+
+    // Close alert
+    popupAlert.dismiss();
+
     expect(page.elementExistsWithClass("login")).toBeTruthy("We should be on login page");
     expect(page.elementExistsWithClass("route")).toBeFalsy("We shouldn't be on rides page");
   });
