@@ -42,16 +42,9 @@ export class RideListComponent implements OnInit {
   public filterRides(searchDate: string): Ride[] {
     this.filteredRides = this.rides;
     this.date = new Date(searchDate);
-    console.log(searchDate);
-    // this.date = new Date(searchDate);
-    // console.log(this.date);
-    console.log(this.date.getFullYear());
-    // var rideYear = new Date();
-    // var rideMonth = new Date();
-    // var rideDay = new Date();
-
+    console.log(this.date);
+    var d = new Date;
     // Filter by destination
-    console.log(this.filteredRides);
     if (searchDate != null) {
       this.filteredRides = this.filteredRides.filter(ride => {
         return !searchDate || (new Date(ride.dateObject).getFullYear() == this.date.getFullYear() &&
@@ -60,7 +53,8 @@ export class RideListComponent implements OnInit {
       });
     }
     console.log(this.filteredRides);
-    return this.filteredRides;
+    return this.filteredRides.sort(function(a,b) {return +new Date(a.dateObject) - +new Date(b.dateObject)
+    });
   }
 
   refreshRides(): Observable<Ride[]> {
@@ -87,6 +81,9 @@ export class RideListComponent implements OnInit {
       rides => {
         this.rides = rides;
         this.filteredRides = this.rides;
+        this.filteredRides = this.filteredRides.sort(function(a,b) {
+          return +new Date(a.dateObject) - +new Date(b.dateObject)
+        })
       },
       err => {
         console.log(err);
