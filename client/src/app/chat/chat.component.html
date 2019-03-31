@@ -1,6 +1,8 @@
 <h2 mat-dialog-title="">Ride Chat</h2>
 <mat-dialog-content>
-  Chat goes here
+  <div class="message" *ngFor="let message of messages">
+    {{message}}
+  </div>
   <form [formGroup]="sendMessageForm">
     <mat-form-field class="send-message">
       <textarea matInput formControlName="messageToSend" placeholder="Type your message here..." matTextareaAutosize matAutosizeMinRows="2"

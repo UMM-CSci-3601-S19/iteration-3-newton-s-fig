@@ -35,7 +35,6 @@ export class ChatService {
     rideFeed.addActivity(activity)
       .then(function(data) {
         console.log("Successfully posted message: " + JSON.stringify(data));
-        rideFeed.get().then(feed => { console.log("New feed state: " + JSON.stringify(feed)); });
       })
       .catch(function(reason) {
         console.log(reason.error);
