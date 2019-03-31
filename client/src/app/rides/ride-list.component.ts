@@ -22,10 +22,11 @@ export class RideListComponent implements OnInit {
  //   rideListService.addListener(this);
   }
 
-  openChat(): void {
+  openChat(rideId: string): void {
     const dialogRef = this.dialog.open(ChatComponent, {
       width: '500px'
     });
+    dialogRef.componentInstance.feedId = rideId;
   }
 
   /**

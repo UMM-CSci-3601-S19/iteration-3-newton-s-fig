@@ -14,47 +14,59 @@ import * as stream from 'getstream';
 export class ChatService {
   readonly baseUrl: string = environment.API_URL + 'chat';
   private API_KEY = (<any>Credentials).API_KEY;
+  private client;
+  private userId = 'user_id';
+  private userToken;
 
   constructor(private http: HttpClient) {
     this.connectStream();
   }
 
-  async connectStream() {
-    const user = {
-      _id: 'avery'
+  sendMessage(message: string, feedId: string) {
+    console.log("feedId=" + feedId);
+    let rideFeed = this.client.feed('ride', feedId, this.userToken);
+
+    let activity = {
+      actor: this.userId,
+      verb: "send",
+      object: message
     };
 
-    this.getToken(user).subscribe( userToken => {
-      const client = stream.connect(this.API_KEY, userToken,"49831");
+    rideFeed.addActivity(activity)
+      .then(function(data) {
+        console.log("Successfully posted message: " + JSON.stringify(data));
+        rideFeed.get().then(feed => { console.log("New feed state: " + JSON.stringify(feed)); });
+      })
+      .catch(function(reason) {
+        console.log(reason.error);
+      });
+  }
 
-      console.log("userToken=" + userToken);
+  getMessages(feedId: string): Promise {
+    this.connectStream();
 
-      let rideFeed = client.feed('user', 'avery', userToken);
-      console.log("fetched a feed");
+    let rideFeed = this.client.feed('ride', feedId, this.userToken);
 
-      let message = {
-        actor: "avery",
-        verb: "send",
-        object: "This is a test message. It actually works!"
-      };
-
-      rideFeed.addActivity(message)
-        .then(function(data) {
-          console.log("add data=" + JSON.stringify(data));
-          rideFeed.get()
-            .then(function(data) {
-              console.log("get data=" + JSON.stringify(data));
-            })
-            .catch(function(reason) {
-              console.log(reason.error);
-            });
-        })
-        .catch(function(reason) {
-          console.log("add error: " + reason.error);
-        });
-
-
+    return new Promise( (resolve, reject) => {
+      rideFeed.get().then( feedData => {
+        resolve(feedData.results);
+      }).catch(reason => {
+        console.log(reason.error);
+        reject({});
+      });
     });
+  }
+
+  connectStream() {
+    this.getToken({}).subscribe( userToken => {
+      this.userToken = userToken;
+      this.client = stream.connect(this.API_KEY, userToken,"49831");
+      return this.client;
+    });
+  }
+
+  checkStream() {
+    if (!this.client) { return this.connectStream(); }
   }
 
   /**
