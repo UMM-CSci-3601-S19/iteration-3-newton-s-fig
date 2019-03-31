@@ -3,14 +3,14 @@
   <div class="message" *ngFor="let message of messages">
     {{message}}
   </div>
-  <form [formGroup]="sendMessageForm">
-    <mat-form-field class="send-message">
-      <textarea matInput formControlName="messageToSend" placeholder="Type your message here..." matTextareaAutosize matAutosizeMinRows="2"
+</mat-dialog-content>
+<mat-dialog-actions id="chat-footer">
+  <form id="new-message-form" [formGroup]="sendMessageForm">
+    <mat-form-field id="new-message-box">
+      <textarea matInput formControlName="messageToSend" placeholder="New message" matTextareaAutosize matAutosizeMinRows="1"
                 matAutosizeMaxRows="5" [(ngModel)]="messageToSend"></textarea>
     </mat-form-field>
-    <button mat-icon-button="" (click)="sendMessage()"><mat-icon>send</mat-icon></button>
   </form>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close="">Close Chat</button>
+  <button id="send-message-btn" mat-icon-button="" (click)="sendMessage()"><mat-icon>send</mat-icon></button>
+  <button id="close-chat-btn" mat-icon-button="" mat-dialog-close=""><mat-icon>close</mat-icon></button>
 </mat-dialog-actions>

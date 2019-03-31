@@ -35,6 +35,7 @@ export class ChatComponent implements OnInit {
       for (i = 0; i < feedData.length; i++) {
         this.messages.push(feedData[i].object);
       }
+      this.messages.reverse();
     });
   }
 
