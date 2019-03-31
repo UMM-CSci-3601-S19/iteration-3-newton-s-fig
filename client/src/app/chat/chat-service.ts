@@ -30,19 +30,40 @@ export class ChatService {
 
       console.log("userToken=" + userToken);
 
-      let rideFeed = client.feed('user', '1', userToken);
+      let rideFeed = client.feed('user', 'avery', userToken);
       console.log("fetched a feed");
 
-      rideFeed.get()
+      let message = {
+        actor: "avery",
+        verb: "send",
+        object: "This is a test message. It actually works!"
+      };
+
+      rideFeed.addActivity(message)
         .then(function(data) {
-          console.log("get data=" + JSON.stringify(data));
+          console.log("add data=" + JSON.stringify(data));
+          rideFeed.get()
+            .then(function(data) {
+              console.log("get data=" + JSON.stringify(data));
+            })
+            .catch(function(reason) {
+              console.log(reason.error);
+            });
         })
         .catch(function(reason) {
-          console.log(reason.error);
+          console.log("add error: " + reason.error);
         });
+
+
     });
   }
 
+  /**
+   * Obtains a token from the server, currently an all-access token that gives this user
+   * the ability to create, read, update, and delete any GetStream resource.
+   * @param {Object} user
+   * @returns {Observable<string>}
+   */
   getToken(user: Object): Observable<string> {
     const httpOptions = {
       headers: new HttpHeaders({
