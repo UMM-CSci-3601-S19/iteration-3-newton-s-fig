@@ -14,7 +14,6 @@ import * as stream from 'getstream';
 export class ChatService {
   readonly baseUrl: string = environment.API_URL + 'chat';
   private API_KEY = (<any>Credentials).API_KEY;
-  private API_KEY_SECRET = (<any>Credentials).API_KEY_SECRET;
 
   constructor(private http: HttpClient) {
     this.connectStream();
