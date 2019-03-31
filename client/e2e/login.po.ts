@@ -44,6 +44,10 @@ export class LoginPage {
     return element(by.css(cssOfElement)).isPresent();
   }
 
+  elementExistsWithClass(classOfElement: string): promise.Promise<boolean> {
+    return element(by.className(classOfElement)).isPresent();
+  }
+
   login(){
     this.click("loginButton");
   }
@@ -57,8 +61,8 @@ export class LoginPage {
     return element(by.id(idOfButton)).click();
   }
 
-  emailField() {
-    return element(by.id("EmailField"));
+  field(idOfField: string) {
+    return element(by.id(idOfField));
   }
 
   button(idOfButton: string) {
