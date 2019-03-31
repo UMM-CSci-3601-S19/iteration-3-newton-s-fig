@@ -85,7 +85,7 @@ public class Server {
 
     // CHAT ENDPOINTS
     get("api/chat/:id", chatRequestHandler::getChatJSON);
-    get("api/chat/authenticate", chatRequestHandler::authenticateChatUser);
+    post("api/chat/authenticate", chatRequestHandler::authenticateChatUser);
 
     // An example of throwing an unhandled exception so you can see how the
     // Java Spark debugger displays errors like this.
