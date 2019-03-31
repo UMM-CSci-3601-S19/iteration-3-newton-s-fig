@@ -23,6 +23,10 @@ export class UserListService {
     return this.http.get<User>(this.userUrl + '/' + id);
   }
 
+  getUserByEmail(email: string): Observable<User> {
+    return this.http.get<User>(this.userUrl + '?email=' + email);
+  }
+
 
   private parameterPresent(searchParam: string) {
     return this.userUrl.indexOf(searchParam) !== -1;

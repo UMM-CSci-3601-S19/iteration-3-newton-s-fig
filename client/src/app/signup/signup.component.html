@@ -1,0 +1,50 @@
+<div layout-gt-sm="row">
+  <div flex-gt-sm="40" flex-offset-gt-sm="30">
+    <form [formGroup]="signupForm">
+      <mat-card class="signup">
+
+        <mat-form-field>
+          <input name="emailField" matInput #input id="EmailField" placeholder="Email"
+                 required [(ngModel)]="email" formControlName="email">
+          <mat-error *ngFor="let validation of signup_validation_messages.email">
+            <mat-error class="error-message"
+                       *ngIf="signupForm.get('email').hasError(validation.type) &&
+                       (signupForm.get('email').dirty || signupForm.get('email').touched)">
+              {{validation.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input name="nameField" matInput #input id="NameField" placeholder="Name"
+                 required [(ngModel)]="name" formControlName="name">
+          <mat-error *ngFor="let validation of signup_validation_messages.email">
+            <mat-error class="error-message"
+                       *ngIf="signupForm.get('name').hasError(validation.type) &&
+                       (signupForm.get('name').dirty || signupForm.get('name').touched)">
+              {{validation.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input name="phoneField" matInput #input id="PhoneField" placeholder="Phone"
+                 [(ngModel)]="phone" formControlName="phone">
+          <mat-error *ngFor="let validation of signup_validation_messages.email">
+            <mat-error class="error-message"
+                       *ngIf="signupForm.get('phone').hasError(validation.type) &&
+                       (signupForm.get('phone').dirty || signupForm.get('phone').touched)">
+              {{validation.message}}
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-card-actions layout="row">
+          <button class="signupButton" mat-raised-button id="signupButton" type="button" color="primary"
+                  (click)="signup()" routerLink="/rides"  [disabled]="!signupForm.valid">Sign Up</button>
+        </mat-card-actions>
+
+      </mat-card>
+    </form>
+  </div>
+</div>

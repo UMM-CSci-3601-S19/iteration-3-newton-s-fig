@@ -61,13 +61,10 @@ public class UserController {
 //      filterDoc = filterDoc.append("phone", contentRegQuery);
 //    }
 //
-//    if (queryParams.containsKey("email")) {
-//      String targetContent = (queryParams.get("email")[0]);
-//      Document contentRegQuery = new Document();
-//      contentRegQuery.append("$regex", targetContent);
-//      contentRegQuery.append("$options", "i");
-//      filterDoc = filterDoc.append("email", contentRegQuery);
-//    }
+    if (queryParams.containsKey("email")) {
+      String targetContent = (queryParams.get("email")[0]);
+      filterDoc = filterDoc.append("email", targetContent);
+    }
 
     //FindIterable comes from mongo, Document comes from Gson
     FindIterable<Document> matchingUsers = userCollection.find(filterDoc);
