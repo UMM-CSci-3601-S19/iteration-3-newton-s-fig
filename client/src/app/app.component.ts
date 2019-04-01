@@ -29,7 +29,7 @@ export class AppComponent {
       else{
         this.text = "Not logged in.";
       }
-      console.log(this.text);
+      
     //}, 1000);
 
 
