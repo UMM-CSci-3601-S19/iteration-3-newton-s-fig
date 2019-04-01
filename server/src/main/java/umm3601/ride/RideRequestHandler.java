@@ -7,6 +7,7 @@ import spark.Response;
 import java.text.DateFormatSymbols;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class RideRequestHandler {
 
@@ -100,7 +101,7 @@ public class RideRequestHandler {
     if (newRide.getString("departureTime") != null) {
       time = newRide.getString("departureTime");
     } else {
-      time = "00:00";
+      time = "12:00";
     }
     String dateObject = date.substring(0,11)+time+":00.000Z";
     String departureDate = parseDate(date);

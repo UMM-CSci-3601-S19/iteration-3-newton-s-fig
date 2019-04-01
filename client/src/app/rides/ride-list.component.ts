@@ -21,6 +21,7 @@ export class RideListComponent implements OnInit {
   public rideDateObject: string;
   // '2014-11-03T19:38:34.203Z'
   public date: Date;
+  public utcDate: Date;
   // Inject the RideListService into this component.
   constructor(public rideListService: RideListService) {
  //   rideListService.addListener(this);
@@ -43,13 +44,17 @@ export class RideListComponent implements OnInit {
     this.filteredRides = this.rides;
     this.date = new Date(searchDate);
     console.log(this.date);
-    var d = new Date;
+    console.log(this.date.getHours());
+    // this.utcDate = new Date(Date.UTC(this.date.getUTCFullYear(), this.date.getUTCMonth(), this.date.getUTCDate(),
+    //   this.date.getUTCHours(), this.date.getUTCMinutes(), this.date.getUTCSeconds()));
+    // console.log(this.utcDate);
     // Filter by destination
     if (searchDate != null) {
       this.filteredRides = this.filteredRides.filter(ride => {
-        return !searchDate || (new Date(ride.dateObject).getFullYear() == this.date.getFullYear() &&
-                               new Date(ride.dateObject).getMonth() == this.date.getMonth() &&
-                               new Date(ride.dateObject).getDate() == this.date.getDate());
+        return !searchDate || (new Date(ride.dateObject).getUTCFullYear() == this.date.getUTCFullYear() &&
+                               new Date(ride.dateObject).getUTCMonth() == this.date.getUTCMonth() &&
+                               new Date(ride.dateObject).getUTCDate() == this.date.getUTCDate()
+                               );
       });
     }
     console.log(this.filteredRides);
