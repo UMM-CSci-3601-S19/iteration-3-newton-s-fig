@@ -33,11 +33,18 @@ export class UserListComponent implements OnInit {
   public exampleColor: string;
   public exampleNotes: string;
 
+
+  private user: User;
+
   // Inject the UserListService into this component.
   constructor(public userListService: UserListService, public dialog: MatDialog) {
 
+    this.user = JSON.parse(localStorage.getItem('user'));
+
     this.exampleUser = 'Albert Einstein';
+    this.exampleUser = this.user.name;
     this.exampleEmail = 'Albert.Einstein@nointernet.yet';
+    this.exampleEmail = this.user.email;
     this.exampleBio = 'I am a German-born theoretical physicist who discovered the theory of relativity! Also I never learned how to drive!';
     this.exampleMakeModel = 'Pontiac Torpedo';
     this.exampleYear = '1940';
