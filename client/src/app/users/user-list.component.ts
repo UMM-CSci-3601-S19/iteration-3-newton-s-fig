@@ -39,17 +39,21 @@ export class UserListComponent implements OnInit {
   // Inject the UserListService into this component.
   constructor(public userListService: UserListService, public dialog: MatDialog) {
 
-    this.user = JSON.parse(localStorage.getItem('user'));
+
 
     this.exampleUser = 'Albert Einstein';
-    this.exampleUser = this.user.name;
     this.exampleEmail = 'Albert.Einstein@nointernet.yet';
-    this.exampleEmail = this.user.email;
     this.exampleBio = 'I am a German-born theoretical physicist who discovered the theory of relativity! Also I never learned how to drive!';
     this.exampleMakeModel = 'Pontiac Torpedo';
     this.exampleYear = '1940';
     this.exampleColor = 'Black';
     this.exampleNotes = 'Nearly 80 years old, but it\'s still brand new.';
+
+    if(localStorage.getItem('user')){
+      this.user = JSON.parse(localStorage.getItem('user'));
+      this.exampleUser = this.user.email;
+      this.exampleEmail = this.user.email;
+    }
   }
 
   isHighlighted(user: User): boolean {
