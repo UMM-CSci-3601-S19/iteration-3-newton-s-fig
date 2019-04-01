@@ -51,16 +51,19 @@ export class SignupComponent implements OnInit {
 
     console.log(newUser);
 
+    if(localStorage.user){
+      alert("You are already logged in.");
 
-    localStorage.user = null;
+    }else {
+      localStorage.user = null;
 
       this.userListService.getUserByEmail(this.email).subscribe(
         result => {
           this.user = result[0];
-          if(this.user){
+          if (this.user) {
             this.router.navigate(['signUp']);
             alert("The entered email is already taken.");
-          }else {
+          } else {
             localStorage.user = JSON.stringify(newUser);
             this.addUser(newUser);
           }
@@ -71,6 +74,7 @@ export class SignupComponent implements OnInit {
           console.log('The email or dialogResult was ' + this.email);
           console.log('The error was ' + JSON.stringify(err));
         });
+    }
 
   }
 
