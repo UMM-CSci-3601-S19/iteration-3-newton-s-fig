@@ -20,6 +20,12 @@ export class RidePage {
     return browser.executeScript(setStyle, element(byObject).getWebElement(), 'color: red; background-color: yellow;');
   }
 
+  typeInto(field: string, value: string) {
+    const input = element(by.id(field));
+    input.click();
+    input.sendKeys(value);
+  }
+
   getRideTitle() {
     const title = element(by.id('ride-list-title')).getText();
     this.highlightElement(by.id('ride-list-title'));
