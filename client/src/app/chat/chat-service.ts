@@ -41,7 +41,7 @@ export class ChatService {
       });
   }
 
-  getMessages(feedId: string): Promise {
+  getMessages(feedId: string): Promise<any> {
     let rideFeed = this.client.feed('ride', feedId, this.userToken);
 
     return new Promise( (resolve, reject) => {
