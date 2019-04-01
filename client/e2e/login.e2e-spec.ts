@@ -28,6 +28,7 @@ describe('login page', () => {
 
   beforeEach(() => {
     page = new LoginPage();
+    browser.executeScript('window.localStorage.clear();');
   });
 
 
