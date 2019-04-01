@@ -33,28 +33,34 @@ export class LoginComponent implements OnInit {
   };
 
   login(): void {
-    localStorage.user = null;
-    if (this.email != null && this.email != "") {
-      this.userListService.getUserByEmail(this.email).subscribe(
-        result => {
-          this.user = result[0];
-          if(this.user){
-            localStorage.user = JSON.stringify(this.user);
-            this.router.navigate(['rides']);
-          }else {
-            this.router.navigate(['login']);
-            alert("The entered email is not associated with any user. Did you enter your email correctly?");
-          }
-        },
-        err => {
-          // This should probably be turned into some sort of meaningful response.
-          console.log('There was an error logging in.');
-          console.log('The email or dialogResult was ' + this.email);
-          console.log('The error was ' + JSON.stringify(err));
-        });
 
+    if(localStorage.user){
+      alert("You are already logged in.");
+
+    }else {
+      localStorage.user = null;
+      if (this.email != null && this.email != "") {
+        this.userListService.getUserByEmail(this.email).subscribe(
+          result => {
+            this.user = result[0];
+            if (this.user) {
+              localStorage.user = JSON.stringify(this.user);
+              this.router.navigate(['rides']);
+            } else {
+              this.router.navigate(['login']);
+              alert("The entered email is not associated with any user. Did you enter your email correctly?");
+            }
+          },
+          err => {
+            // This should probably be turned into some sort of meaningful response.
+            console.log('There was an error logging in.');
+            console.log('The email or dialogResult was ' + this.email);
+            console.log('The error was ' + JSON.stringify(err));
+          });
+
+      }
+      ;
     }
-    ;
 
   }
 
