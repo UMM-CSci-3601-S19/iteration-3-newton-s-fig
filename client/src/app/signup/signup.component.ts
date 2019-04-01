@@ -81,6 +81,7 @@ export class SignupComponent implements OnInit {
         result => {
           this.highlightedID = result;
           this.router.navigate(['rides']);
+          location.reload();
         },
         err => {
           // This should probably be turned into some sort of meaningful response.

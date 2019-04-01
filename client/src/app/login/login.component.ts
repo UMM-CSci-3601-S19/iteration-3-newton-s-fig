@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
             if (this.user) {
               localStorage.user = JSON.stringify(this.user);
               this.router.navigate(['rides']);
+              location.reload();
             } else {
               this.router.navigate(['login']);
               alert("The entered email is not associated with any user. Did you enter your email correctly?");
