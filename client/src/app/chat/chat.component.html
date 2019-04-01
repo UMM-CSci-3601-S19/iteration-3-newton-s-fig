@@ -8,9 +8,9 @@
   <form id="new-message-form" [formGroup]="sendMessageForm">
     <mat-form-field id="new-message-box">
       <textarea matInput formControlName="messageToSend" placeholder="New message" matTextareaAutosize matAutosizeMinRows="1"
-                matAutosizeMaxRows="5" [(ngModel)]="messageToSend"></textarea>
+                matAutosizeMaxRows="5" [(ngModel)]="messageToSend" (keyup.enter)="sendMessage()"></textarea>
     </mat-form-field>
   </form>
-  <button id="send-message-btn" mat-icon-button="" (click)="sendMessage()"><mat-icon>send</mat-icon></button>
+  <button id="send-message-btn" mat-icon-button="" (click)="sendMessage()" [disabled]="messageToSend"><mat-icon>send</mat-icon></button>
   <button id="close-chat-btn" mat-icon-button="" mat-dialog-close=""><mat-icon>close</mat-icon></button>
 </mat-dialog-actions>

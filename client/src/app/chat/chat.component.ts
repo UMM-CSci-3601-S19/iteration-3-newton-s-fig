@@ -24,8 +24,12 @@ export class ChatComponent implements OnInit {
   constructor(public chatService: ChatService) { }
 
   public sendMessage() {
-    this.chatService.sendMessage(this.messageToSend, this.feedId);
-    this.getMessages();
+    if (this.messageToSend.length > 2) {
+      this.chatService.sendMessage(this.messageToSend, this.feedId);
+      this.messageToSend = "";
+      this.getMessages();
+      this.getMessages();
+    }
   }
 
   public getMessages() {
