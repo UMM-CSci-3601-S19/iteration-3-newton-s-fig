@@ -7,28 +7,35 @@
   padding-right: 14px;
 }
 
-.mat-card-subtitle {
-  padding-left: 8px !important;
+img {
+  border: 2px solid gold;
+  max-width: 100%;
+  height: auto;
+  float:left;
 }
 
-.mat-card-title {
-  padding-left: 8px !important;
+.cardInner {
+  display: grid;
+  grid-template-areas: "name picture" "contactInfo picture" "vehicle vehiclePicture";
+  grid-template-rows: auto auto auto;
+  grid-template-columns: 55% 45%;
+  grid-row-gap: 8px;
+  grid-column-gap: 8px;
 }
 
-.cardlist  {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: stretch;
+.boxes {
+  word-wrap: break-word;
+  max-width: 100%;
 }
 
-.users {
-  flex-basis: 100%;
+.picBoxes {
+  max-width: 100%;
 }
 
-@media screen and (min-width: 960px) {
-  .users {
-    flex: 0 1 calc(50% - 32px); /*Suguru Inatomi @ https://blog.angularindepth.com/angular-flex-layout-flexbox-and-grid-layout-for-angular-component-6e7c24457b63*/
-  }
+.mat-card .mat-card-title {
+  font-family: "Arial Black";
 }
 
+.mat-card {
+  font-family: Verdana;
+}
