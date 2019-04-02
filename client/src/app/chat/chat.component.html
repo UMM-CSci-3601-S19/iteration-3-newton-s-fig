@@ -1,16 +1,17 @@
 <h2 mat-dialog-title="">Ride Chat</h2>
+<a (click)="deleteChat()">Delete all messages</a>
 <mat-dialog-content>
-  <div class="message" *ngFor="let message of messages">
-    {{message}}
-  </div>
+  <app-message *ngFor="let m of messages"
+               [message]="m">
+  </app-message>
 </mat-dialog-content>
 <mat-dialog-actions id="chat-footer">
   <form id="new-message-form" [formGroup]="sendMessageForm">
     <mat-form-field id="new-message-box">
       <textarea matInput formControlName="messageToSend" placeholder="New message" matTextareaAutosize matAutosizeMinRows="1"
-                matAutosizeMaxRows="5" [(ngModel)]="messageToSend" (keyup.enter)="sendMessage()"></textarea>
+                matAutosizeMaxRows="5" [(ngModel)]="messageToSend.body" (keyup.enter)="sendMessage()"></textarea>
     </mat-form-field>
   </form>
-  <button id="send-message-btn" mat-icon-button="" (click)="sendMessage()" [disabled]="messageToSend"><mat-icon>send</mat-icon></button>
+  <button id="send-message-btn" mat-icon-button="" (click)="sendMessage()" [disabled]="messageToSend.body"><mat-icon>send</mat-icon></button>
   <button id="close-chat-btn" mat-icon-button="" mat-dialog-close=""><mat-icon>close</mat-icon></button>
 </mat-dialog-actions>

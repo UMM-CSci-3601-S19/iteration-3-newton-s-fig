@@ -1,8 +1,7 @@
 import {User} from "../users/user";
 
 export interface Message {
-  _id: string;
-  sender: User;
+  from: User;
   body: string;
   sent: Date;
 }

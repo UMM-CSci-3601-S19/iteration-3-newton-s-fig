@@ -9,27 +9,28 @@ import {environment} from '../../environments/environment';
 import {Ride} from "../rides/ride";
 import {User} from "../users/user";
 import * as stream from 'getstream';
+import {Message} from "../message/message";
 
 @Injectable()
 export class ChatService {
   readonly baseUrl: string = environment.API_URL + 'chat';
   private API_KEY = (<any>Credentials).API_KEY;
   private client;
-  private userId = 'user_id';
+  private loggedInUser = JSON.parse(localStorage.user);
   private userToken;
 
   constructor(private http: HttpClient) {
     this.connectStream();
   }
 
-  sendMessage(message: string, feedId: string) {
-    console.log("feedId=" + feedId);
+  sendMessage(message: Message, feedId: string) {
     let rideFeed = this.client.feed('ride', feedId, this.userToken);
 
     let activity = {
-      actor: this.userId,
+      actor: message.from._id,
       verb: "send",
-      object: message
+      object: message,
+      foreign_id: feedId
     };
 
     rideFeed.addActivity(activity)
@@ -49,13 +50,27 @@ export class ChatService {
         resolve(feedData.results);
       }).catch(reason => {
         console.log(reason.error);
-        reject({});
+        reject([]);
       });
     });
   }
 
+  deleteChat(feedId: string) {
+    let rideFeed = this.client.feed('ride', feedId, this.userToken);
+
+    console.log("Deleting messages in chat: " + feedId);
+    rideFeed.removeActivity({ foreignId: feedId })
+      .then( data => {
+        console.log("Successful deleted messages in chat: " + JSON.stringify(data));
+      })
+      .catch ( reason => {
+        console.log("Failed to delete messages in chat: " + JSON.stringify(reason.error));
+      });
+  }
+
   connectStream() {
-    this.getToken({}).subscribe( userToken => {
+    console.log("localStorage.user=" + JSON.stringify(localStorage.user));
+    this.getToken(this.loggedInUser).subscribe( userToken => {
       this.userToken = userToken;
       this.client = stream.connect(this.API_KEY, userToken,"49831");
       return this.client;
@@ -72,7 +87,7 @@ export class ChatService {
    * @param {Object} user
    * @returns {Observable<string>}
    */
-  getToken(user: Object): Observable<string> {
+  getToken(user: User): Observable<string> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
