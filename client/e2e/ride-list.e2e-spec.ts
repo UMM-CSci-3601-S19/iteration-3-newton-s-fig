@@ -75,6 +75,7 @@ describe('Add Ride', () => {
 
 
     page.click('confirmAddRideButton');
+    page.navigateTo();
     expect(page.getRideTitle()).toEqual('Upcoming Rides');
     expect(page.getUniqueRide('John Doe')).toMatch('Likes to play music. Climate control. Gregarious.');
     expect(page.getUniqueRide('John Doe')).toMatch('2');
@@ -91,7 +92,7 @@ describe('Add Ride', () => {
     page.field('seatsAvailableField').sendKeys('4');
     page.field('originField').sendKeys('Washington, D.C.');
     page.field('destinationField').sendKeys('Morris, MN');
-    page.click('confirmAddRideButton')
+    page.click('confirmAddRideButton');
 
     expect(page.getUniqueRide('Jefferson Macaroni')).toMatch('Washington, D.C.');
     expect(page.getUniqueRide('Jefferson Macaroni')).toMatch('Morris, MN');

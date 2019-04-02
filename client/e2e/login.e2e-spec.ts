@@ -29,10 +29,12 @@ describe('login page', () => {
   beforeEach(() => {
     page = new LoginPage();
     browser.executeScript('window.localStorage.clear();');
+    page.navigateTo();
   });
 
 
   it("shouldn't login when given a incorrect email",()=>{
+    page.navigateTo();
     page.typeAnEmail("notanemail@email.io");
     expect(page.elementExistsWithClass("login")).toBeTruthy("We should be on login page");
     page.login();
@@ -53,6 +55,7 @@ describe('login page', () => {
   });
 
   it("should login when given a correct email",()=>{
+    page.navigateTo();
     page.typeAnEmail("lakeishavaughan@email.io");
     expect(page.elementExistsWithClass("login")).toBeTruthy("We should be on login page");
     page.login();
@@ -61,12 +64,33 @@ describe('login page', () => {
   });
 
   it("signup button should bring us to signup page",()=>{
-    browser.executeScript('location.assign("http://"+location.host+"/rides");');
+    page.navigateTo();
 
     expect(page.elementExistsWithClass("login")).toBeTruthy("We should be on login page");
     page.signup();
     expect(page.elementExistsWithClass("login")).toBeFalsy("We shouldn't be on login page");
     expect(page.elementExistsWithClass("signup")).toBeTruthy("We should be on signup page");
+  });
+
+  it("alert should popup if already logged in",()=>{
+    page.navigateTo();
+    browser.executeScript("localStorage.user=\'{\"_id\":{\"$oid\":\"5c8182212f608130b228e558\"},\"name\":\"Sofia Sharp\",\"vehicle\":\"5c81820b80f223f8a09a54da\",\"phone\":\"(875) 571-3867\",\"email\":\"sofiasharp@email.co.uk\"}\';");
+
+    page.typeAnEmail("lakeishavaughan@email.io");
+    page.login();
+
+    var EC = protractor.ExpectedConditions;
+// Waits for an alert pops up.
+    browser.wait(EC.alertIsPresent(), 2000);
+    var popupAlert = browser.switchTo().alert();
+    var alertText = popupAlert.getText();
+    expect(alertText).toMatch('You are already logged in.');
+
+    // Close alert
+    popupAlert.dismiss();
+
+    expect(page.elementExistsWithClass("login")).toBeTruthy("We should still be on login page");
+    expect(page.elementExistsWithClass("route")).toBeFalsy("We shouldn't be on rides page");
   });
 
 });
