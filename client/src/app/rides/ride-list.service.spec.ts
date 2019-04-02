@@ -15,8 +15,9 @@ describe('Ride list service: ', () => {
       seatsAvailable: 3,
       origin: 'UMM',
       destination: 'Willie\'s',
-      departureDate: '3/6/2019',
-      departureTime: '10:00:00'
+      departureDate: 'April 4th, 2019',
+      departureTime: '4:00 AM',
+      dateObject: "2019-04-04T04:00:00.000Z"
     },
     {
       _id: 'dennis_id',
@@ -25,8 +26,9 @@ describe('Ride list service: ', () => {
       seatsAvailable: 3,
       origin: 'Caribou Coffee',
       destination: 'Minneapolis, MN',
-      departureDate: '8/15/2018',
-      departureTime: '11:30:00'
+      departureDate: 'August 15th, 2019',
+      departureTime: '11:30 PM',
+      dateObject: "2019-08-15T23:30:00.000Z"
     },
     {
       _id: 'agatha_id',
@@ -35,8 +37,9 @@ describe('Ride list service: ', () => {
       seatsAvailable: 6,
       origin: 'UMM',
       destination: 'Fergus Falls, MN',
-      departureDate: '3/30/2019',
-      departureTime: '16:30:00'
+      departureDate: 'March 30th, 2018',
+      departureTime: '16:30',
+      dateObject: "2018-03-30T16:30:00.000Z"
     }
   ];
 
@@ -96,7 +99,8 @@ describe('Ride list service: ', () => {
       destination: 'Alexandria',
       departureDate: '',
       departureTime: '',
-      notes: ''
+      notes: '',
+      dateObject:''
     };
 
     rideListService.addNewRide(newRide).subscribe(

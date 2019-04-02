@@ -14,6 +14,8 @@ export class RideListComponent implements OnInit {
   // public so that tests can reference them (.spec.ts)
   public rides: Ride[];
   public filteredRides: Ride[];
+  public unfilteredRides: Ride[];
+  public array:Ride[];
   public time: Date;
   public timeString: string;
 
@@ -42,22 +44,46 @@ export class RideListComponent implements OnInit {
 
   public filterRides(searchDate: string): Ride[] {
     this.filteredRides = this.rides;
+    this.unfilteredRides = <Ride[]>{};
     this.date = new Date(searchDate);
     console.log(this.date);
     console.log(this.date.getHours());
+    var nowDate = new Date();
+    nowDate.setHours(nowDate.getHours() - 8);
     // this.utcDate = new Date(Date.UTC(this.date.getUTCFullYear(), this.date.getUTCMonth(), this.date.getUTCDate(),
     //   this.date.getUTCHours(), this.date.getUTCMinutes(), this.date.getUTCSeconds()));
     // console.log(this.utcDate);
     // Filter by destination
     if (searchDate != null) {
+      this.array = this.rides;
       this.filteredRides = this.filteredRides.filter(ride => {
         return !searchDate || (new Date(ride.dateObject).getUTCFullYear() == this.date.getUTCFullYear() &&
                                new Date(ride.dateObject).getUTCMonth() == this.date.getUTCMonth() &&
                                new Date(ride.dateObject).getUTCDate() == this.date.getUTCDate()
                                );
       });
+      this.unfilteredRides = this.rides.filter(ride => {
+        return !searchDate || !(new Date(ride.dateObject).getUTCFullYear() == this.date.getUTCFullYear() &&
+          new Date(ride.dateObject).getUTCMonth() == this.date.getUTCMonth() &&
+          new Date(ride.dateObject).getUTCDate() == this.date.getUTCDate()
+        );
+      });
+      console.log(this.unfilteredRides);
+      this.unfilteredRides = this.unfilteredRides.filter(ride => {
+        return (new Date(ride.dateObject).getTime() >= nowDate.getTime());
+      });
+
+      this.unfilteredRides = this.unfilteredRides.sort(function(a,b) {return +new Date(a.dateObject) - +new Date(b.dateObject)
+      });
     }
-    console.log(this.filteredRides);
+
+
+
+    this.filteredRides = this.filteredRides.filter(ride => {
+      return (new Date(ride.dateObject).getTime() >= nowDate.getTime());
+    });
+
+
     return this.filteredRides.sort(function(a,b) {return +new Date(a.dateObject) - +new Date(b.dateObject)
     });
   }
