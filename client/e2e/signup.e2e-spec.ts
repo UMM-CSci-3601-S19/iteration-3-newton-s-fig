@@ -35,7 +35,7 @@ describe('signup page', () => {
   it("shouldn't signup when given a incorrect email",()=>{
     page.typeAnEmail("nonexistingemail@email.io");
     expect(page.elementExistsWithClass("signup")).toBeTruthy("We should be on signup page");
-    page.login();
+    page.signup();
 
     expect(page.elementExistsWithClass("signup")).toBeFalsy("We shouldn't be on signup page");
     expect(page.elementExistsWithClass("route")).toBeTruthy("We should be on rides page");
@@ -44,7 +44,7 @@ describe('signup page', () => {
   it("shouldn't login when given a existign email",()=>{
     page.typeAnEmail("lakeishavaughan@email.io");
     expect(page.elementExistsWithClass("signup")).toBeTruthy("We should be on signup page");
-    page.login();
+    page.signup();
 
     var EC = protractor.ExpectedConditions;
 // Waits for an alert pops up.

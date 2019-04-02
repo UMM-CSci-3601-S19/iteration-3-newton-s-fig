@@ -49,7 +49,6 @@ export class SignupComponent implements OnInit {
       name: this.name
     };
 
-    console.log(newUser);
 
     if(localStorage.user){
       alert("You are already logged in.");
@@ -94,7 +93,6 @@ export class SignupComponent implements OnInit {
         });
 
     }
-    ;
   }
 
 

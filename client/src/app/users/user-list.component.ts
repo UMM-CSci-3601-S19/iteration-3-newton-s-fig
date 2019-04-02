@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {UserListService} from './user-list.service';
 import {User} from './user';
 import {Observable} from 'rxjs/Observable';
-import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'user-list-component',
@@ -37,9 +36,7 @@ export class UserListComponent implements OnInit {
   private user: User;
 
   // Inject the UserListService into this component.
-  constructor(public userListService: UserListService, public dialog: MatDialog) {
-
-
+  constructor(public userListService: UserListService) {
 
     this.exampleUser = 'Albert Einstein';
     this.exampleEmail = 'Albert.Einstein@nointernet.yet';

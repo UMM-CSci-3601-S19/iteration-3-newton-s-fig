@@ -64,7 +64,7 @@ describe('login page', () => {
     browser.executeScript('location.assign("http://"+location.host+"/rides");');
 
     expect(page.elementExistsWithClass("login")).toBeTruthy("We should be on login page");
-    page.login();
+    page.signup();
     expect(page.elementExistsWithClass("login")).toBeFalsy("We shouldn't be on login page");
     expect(page.elementExistsWithClass("signup")).toBeTruthy("We should be on signup page");
   });
