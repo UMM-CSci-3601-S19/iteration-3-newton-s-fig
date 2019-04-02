@@ -3,6 +3,7 @@ import {ChatService} from "./chat-service";
 
 import {FormControl, FormGroup} from "@angular/forms";
 import {Message} from "../message/message";
+import {User} from "../users/user";
 
 @Component({
   selector: 'app-chat',
@@ -16,6 +17,8 @@ export class ChatComponent implements OnInit {
   public feedId: string;
   public messages: Message[];
 
+  public loggedInUser: User = JSON.parse(localStorage.user);
+
   public messageToSend: Message;
   public sendMessageForm = new FormGroup({
     messageToSend: new FormControl()
@@ -23,7 +26,7 @@ export class ChatComponent implements OnInit {
 
   constructor(public chatService: ChatService) {
     this.messageToSend = {
-      from: localStorage.user,
+      from: this.loggedInUser,
       body: "",
       sent: ChatComponent.currentDate(),
     };

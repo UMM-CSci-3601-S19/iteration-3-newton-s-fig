@@ -1,1 +1,7 @@
-<div class="message">{{message.body}}</div>
+<div class="message-container"
+     [class.rhs-message]="fromLoggedInUser"
+     [class.lhs-message]="!fromLoggedInUser">
+  <div class="message-body">
+    {{message.body}}
+  </div>
+</div>
