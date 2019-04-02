@@ -27,6 +27,12 @@ export class SignupPage {
     input.sendKeys(email);
   }
 
+  typeName(name: string) {
+    const input = element(by.id('NameField'));
+    input.click();
+    input.sendKeys(name);
+  }
+
 
   backspace() {
     browser.actions().sendKeys(Key.BACK_SPACE).perform();
