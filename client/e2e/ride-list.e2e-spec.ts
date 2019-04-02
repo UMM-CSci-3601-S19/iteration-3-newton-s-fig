@@ -28,8 +28,7 @@ describe('Ride list', () => {
 
   beforeEach(() => {
     page = new RidePage();
-    page.typeInto("email","lakeishavaughan@email.io");
-    page.click("login");
+    browser.executeScript("localStorage.user=\'{\"_id\":{\"$oid\":\"5c8182212f608130b228e558\"},\"name\":\"Sofia Sharp\",\"vehicle\":\"5c81820b80f223f8a09a54da\",\"phone\":\"(875) 571-3867\",\"email\":\"sofiasharp@email.co.uk\"}\';");
   });
 
   it('should get and highlight Rides title attribute ', () => {

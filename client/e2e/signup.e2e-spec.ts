@@ -1,6 +1,7 @@
 import {LoginPage} from './login.po';
 import {browser, protractor, element, by} from 'protractor';
 import {Key} from 'selenium-webdriver';
+import {SignupPage} from "./signup.po";
 
 // This line (combined with the function that follows) is here for us
 // to be able to see what happens (part of slowing things down)
@@ -24,10 +25,10 @@ browser.driver.controlFlow().execute = function () {
 
 
 describe('signup page', () => {
-  let page: LoginPage;
+  let page: SignupPage;
 
   beforeEach(() => {
-    page = new LoginPage();
+    page = new SignupPage();
     browser.executeScript('window.localStorage.clear();');
   });
 
@@ -41,7 +42,7 @@ describe('signup page', () => {
     expect(page.elementExistsWithClass("route")).toBeTruthy("We should be on rides page");
   });
 
-  it("shouldn't login when given a existign email",()=>{
+  it("shouldn't login when given a existing email",()=>{
     page.typeAnEmail("lakeishavaughan@email.io");
     expect(page.elementExistsWithClass("signup")).toBeTruthy("We should be on signup page");
     page.signup();

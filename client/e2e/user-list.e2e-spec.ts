@@ -32,7 +32,7 @@ describe('User list', () => {
 
   it('should get and highlight Users title attribute ', () => {
     page.navigateTo();
-    expect(page.getUserTitle()).toEqual('Albert Einstein\'s Profile');
+    expect(page.getUserTitle()).toEqual('Sofia Sharp\'s Profile');
   });
 
 });

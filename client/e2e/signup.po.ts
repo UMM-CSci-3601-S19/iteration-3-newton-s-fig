@@ -1,7 +1,7 @@
 import {browser, element, by, promise, ElementFinder} from 'protractor';
 import {Key} from 'selenium-webdriver';
 
-export class LoginPage {
+export class SignupPage {
   navigateTo(): promise.Promise<any> {
     return browser.get('/signup');
   }
