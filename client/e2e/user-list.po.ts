@@ -3,7 +3,7 @@ import {Key} from 'selenium-webdriver';
 
 export class UserPage {
   navigateTo(): promise.Promise<any> {
-    return browser.get('/users');
+    return browser.get('/user');
   }
 
   // http://www.assertselenium.com/protractor/highlight-elements-during-your-protractor-test-run/

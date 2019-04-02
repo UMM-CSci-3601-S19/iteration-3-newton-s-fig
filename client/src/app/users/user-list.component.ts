@@ -48,7 +48,7 @@ export class UserListComponent implements OnInit {
 
     if(localStorage.getItem('user')){
       this.user = JSON.parse(localStorage.getItem('user'));
-      this.exampleUser = this.user.email;
+      this.exampleUser = this.user.name;
       this.exampleEmail = this.user.email;
     }
   }
