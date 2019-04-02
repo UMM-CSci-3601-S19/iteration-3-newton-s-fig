@@ -27,6 +27,13 @@ export class UserPage {
     return title;
   }
 
+  getContactInfo() {
+    const text = element(by.id('contactInfoBox')).getText();
+    this.highlightElement(by.id('contactInfoBox'));
+
+    return text;
+  }
+
   typeInto(field: string, value: string) {
     const input = element(by.id(field));
     input.click();

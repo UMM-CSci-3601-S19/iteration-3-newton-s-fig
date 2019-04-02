@@ -35,5 +35,10 @@ describe('User list', () => {
     expect(page.getUserTitle()).toEqual('Sofia Sharp\'s Profile');
   });
 
+  it('should get and highlight contact info ', () => {
+    page.navigateTo();
+    expect(page.getContactInfo()).toContain('sofiasharp@email.co.uk');
+  });
+
 });
 
