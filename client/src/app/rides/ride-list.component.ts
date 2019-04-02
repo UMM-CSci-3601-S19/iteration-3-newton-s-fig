@@ -56,12 +56,14 @@ export class RideListComponent implements OnInit {
     // Filter by destination
     if (searchDate != null) {
       this.array = this.rides;
+      console.log(this.filteredRides);
       this.filteredRides = this.filteredRides.filter(ride => {
         return !searchDate || (new Date(ride.dateObject).getUTCFullYear() == this.date.getUTCFullYear() &&
                                new Date(ride.dateObject).getUTCMonth() == this.date.getUTCMonth() &&
                                new Date(ride.dateObject).getUTCDate() == this.date.getUTCDate()
                                );
       });
+      console.log(this.filteredRides);
       this.unfilteredRides = this.rides.filter(ride => {
         return !searchDate || !(new Date(ride.dateObject).getUTCFullYear() == this.date.getUTCFullYear() &&
           new Date(ride.dateObject).getUTCMonth() == this.date.getUTCMonth() &&
@@ -75,9 +77,8 @@ export class RideListComponent implements OnInit {
 
       this.unfilteredRides = this.unfilteredRides.sort(function(a,b) {return +new Date(a.dateObject) - +new Date(b.dateObject)
       });
+      console.log(this.unfilteredRides);
     }
-
-
 
     this.filteredRides = this.filteredRides.filter(ride => {
       return (new Date(ride.dateObject).getTime() >= nowDate.getTime());

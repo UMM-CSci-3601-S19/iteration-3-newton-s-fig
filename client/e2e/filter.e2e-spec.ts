@@ -27,17 +27,28 @@ describe('rides page', () => {
   let page: RidesPage;
 
   beforeEach(() => {
+    var baseTime = new Date(2019, 3, 26);
+    jasmine.clock().mockDate(baseTime);
     page = new RidesPage();
     browser.executeScript("localStorage.user=\'{\"_id\":{\"$oid\":\"5c8182212f608130b228e558\"},\"name\":\"Sofia Sharp\"" +
       ",\"vehicle\":\"5c81820b80f223f8a09a54da\",\"phone\":\"(875) 571-3867\",\"email\":\"sofiasharp@email.co.uk\"}\';");
     page.navigateTo();
   });
 
+
+/* This test works when seeded with the correct ride information, but not for the reason that it should.
+   Figuring out the clock function would be my next step for sure. But this single test does test most
+   of the filter's functionality. Because there are rides well before the given date that don't show up,
+   and there are dates afterwards that do. To be complete there would need to be one ride on the given
+   date, and the test would show that.
+ */
+
   it("shouldn't find a date when given a date to filter by sooner than 3 hours before the current time," +
      "but should still find the dates in the 'unfilteredRides' div",()=>{
+
     page.navigateTo();
     page.click("filter");
-    page.pickAFilter("4/1/2019");
+    page.pickAFilter("3/26/2019");
     page.filter();
     expect(page.elementExistsWithClass("unfilteredRides")).toBeTruthy("There should be some rides" +
                                                                       "in the unfilteredRides div");

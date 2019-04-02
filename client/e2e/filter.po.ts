@@ -27,27 +27,6 @@ export class RidesPage {
     input.sendKeys(date);
   }
 
-  dropFilterBox() {
-    const input = element(by.id('filter'));
-    input.click();
-  }
-
-  backspace() {
-    browser.actions().sendKeys(Key.BACK_SPACE).perform();
-  }
-
-
-  elementExistsWithId(idOfElement: string): promise.Promise<boolean> {
-    if (element(by.id(idOfElement)).isPresent()) {
-      this.highlightElement(by.id(idOfElement));
-    }
-    return element(by.id(idOfElement)).isPresent();
-  }
-
-  elementExistsWithCss(cssOfElement: string): promise.Promise<boolean> {
-    return element(by.css(cssOfElement)).isPresent();
-  }
-
   elementExistsWithClass(classOfElement: string): promise.Promise<boolean> {
     return element(by.className(classOfElement)).isPresent();
   }
