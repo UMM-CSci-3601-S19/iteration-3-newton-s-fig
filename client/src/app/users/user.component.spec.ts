@@ -21,22 +21,19 @@ describe('User component', () => {
         {
           _id: 'chris_id',
           name: 'Chris',
-          age: 25,
-          company: 'UMM',
+          phone: "612-555-1234",
           email: 'chris@this.that'
         },
         {
           _id: 'pat_id',
           name: 'Pat',
-          age: 37,
-          company: 'IBM',
+          phone: "612-555-2345",
           email: 'pat@something.com'
         },
         {
           _id: 'jamie_id',
           name: 'Jamie',
-          age: 37,
-          company: 'Frogs, Inc.',
+          phone: "612-555-3456",
           email: 'jamie@frogs.com'
         }
       ].find(user => user._id === userId))

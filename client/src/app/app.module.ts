@@ -17,12 +17,15 @@ import {APP_BASE_HREF} from '@angular/common';
 
 import {CustomModule} from './custom.module';
 
-import {AddUserComponent} from './users/add-user.component';
 import {AddRideComponent} from './rides/add-ride.component';
 
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {LoginComponent} from "./login/login.component";
+import {SignupComponent} from "./signup/signup.component";
 
+import {AuthService} from "./auth/auth.service";
+import {AuthGuardService} from "./auth/auth-guard.service";
 
 
 @NgModule({
@@ -42,15 +45,19 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 
     UserComponent,
 
-    AddUserComponent, AddRideComponent,
+    AddRideComponent,
+    LoginComponent,
+    SignupComponent
 
   ],
   providers: [
-    UserListService,RideListService,
+    UserListService,RideListService,AuthGuardService,AuthService,
     {provide: APP_BASE_HREF, useValue: '/'},
   ],
   entryComponents: [
-    AddUserComponent, AddRideComponent
+    AddRideComponent,
+    LoginComponent,
+    SignupComponent
   ],
   bootstrap: [AppComponent]
 })
