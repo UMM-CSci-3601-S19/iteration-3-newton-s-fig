@@ -3,7 +3,7 @@ import {Key} from 'selenium-webdriver';
 
 export class LoginPage {
   navigateTo(): promise.Promise<any> {
-    return browser.get('/signup');
+    return browser.get('/login');
   }
 
   // http://www.assertselenium.com/protractor/highlight-elements-during-your-protractor-test-run/
