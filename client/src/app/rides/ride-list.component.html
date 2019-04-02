@@ -1,20 +1,20 @@
 <title>MoRide - Upcoming Rides</title>
 
-<mat-card class="filter" style="max-width: 300px;">
+<mat-card class="filter"  style="max-width: 300px;">
   <mat-expansion-panel id="filter">
     <mat-expansion-panel-header>Filter</mat-expansion-panel-header>
     <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Filter by Departure Date" [(ngModel)]="rideDateObject">
+      <input id="datePickerField" matInput [matDatepicker]="picker" placeholder="Filter by Departure Date" [(ngModel)]="rideDateObject">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <button mat-button class="filterButton" (click)="refreshRides()">Filter</button>
+    <button mat-button id="filterButton" class="filterButton" (click)="refreshRides()">Filter</button>
   </mat-expansion-panel>
 </mat-card>
 
 <div>The date picked is: {{rideDateObject}}</div>
 
-<div layout-gt-sm="row">
+<div id="ridesThing" layout-gt-sm="row">
   <div class="time">Page loaded on : {{getTime()}}</div>
   <div flex-gt-sm="50" flex-offset-gt-sm="25">
     <h1 id="ride-list-title">Rides</h1>
@@ -68,7 +68,7 @@
     <div class="wrapper">
       <div *ngIf="array;">
         <h2>Here are some rides close to the date you entered:</h2>
-        <mat-card #elem class="rides" [id]="ride.driver" *ngFor="let ride of this.unfilteredRides">
+        <mat-card #elem class="unfilteredRides" [id]="ride.driver" *ngFor="let ride of this.unfilteredRides">
           <mat-card-header class="ride-title">
             <mat-card-title>
               <div class="departure-time">

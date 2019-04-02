@@ -6,9 +6,9 @@
 /* Filter box */
 .filter {
   position: absolute;
-  top: 5%;
-  right: 2%;
-  max-width: 15%;
+  top: 3%;
+  right: 42.5%;
+  max-width: 15% !important;
 }
 
 /* Filter Button */
@@ -30,8 +30,17 @@
   max-width: 15%;
 }
 
+/* Ride Box */
+
+#ridesThing {
+  position: relative;
+  top: 30% !important;
+}
 /* Ride card */
-.rides {  margin-bottom: 15px;  }
+.rides, .unfilteredRides {
+  margin-bottom: 15px;
+
+}
 
 /* Ride card title */
 .ride-title {
@@ -94,4 +103,7 @@
 }
 
 /* Title */
-h1,h2 {  text-align: center;  }
+h1,h2 {
+  position: relative;
+  top:15%;
+  text-align: center;  }
