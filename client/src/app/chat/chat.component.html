@@ -16,6 +16,8 @@
                 matAutosizeMaxRows="5" [(ngModel)]="messageToSend.body" (keyup.enter)="sendMessage()"></textarea>
     </mat-form-field>
   </form>
-  <button id="send-message-btn" mat-icon-button="" (click)="sendMessage()" [disabled]="messageToSend.body"><mat-icon>send</mat-icon></button>
-  <button id="close-chat-btn" mat-icon-button="" mat-dialog-close=""><mat-icon>close</mat-icon></button>
+  <div>
+    <button id="send-message-btn" mat-icon-button="" (click)="sendMessage()" [disabled]="messageToSend.body"><mat-icon>send</mat-icon></button>
+    <button id="close-chat-btn" mat-icon-button="" mat-dialog-close=""><mat-icon>close</mat-icon></button>
+  </div>
 </mat-dialog-actions>
