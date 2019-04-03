@@ -14,7 +14,7 @@ export class AppComponent {
   private email: string;
 
   public clearStorage(){
-    localStorage.setItem('user','');
+    localStorage.removeItem('user');
     location.reload();
   }
 
@@ -22,7 +22,7 @@ export class AppComponent {
 
       if(localStorage.getItem('user')){
         if(localStorage.getItem('user')=="null"){
-          localStorage.clear();
+          localStorage.removeItem('user');
           this.text = "Not logged in.";
         }else {
           this.email = JSON.parse(localStorage.getItem('user')).email;
