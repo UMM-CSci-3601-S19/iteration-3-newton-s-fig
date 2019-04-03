@@ -2,15 +2,20 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  margin-bottom: 6px;
 }
 
-.lhs-message {
-  justify-content: flex-start;
+.lhs-message {  justify-content: flex-start;  }
+.rhs-message {  justify-content: flex-end;  }
+
+.message-content-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-.rhs-message {
-  justify-content: flex-end;
-}
+.lhs-message .message-content-block { align-items: flex-start; }
+.rhs-message .message-content-block { align-items: flex-end; }
 
 .message-body {
   width: fit-content;
@@ -18,6 +23,7 @@
   padding: 6px 10px;
   margin-top: 4px;
   margin-bottom: 4px;
+  max-width: 300px;
 }
 
 .lhs-message .message-body {
@@ -26,6 +32,13 @@
 }
 
 .rhs-message .message-body {
+  text-align: right;
   background: #3498db;
   color: #fff;
+}
+
+.message-from {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.8rem;
 }

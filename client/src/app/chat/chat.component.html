@@ -1,5 +1,9 @@
-<h2 mat-dialog-title="">Ride Chat</h2>
-<a (click)="deleteChat()">Delete all messages</a>
+<h2 mat-dialog-title="">
+  Ride Chat
+  <button mat-icon-button="" (click)="deleteChat()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</h2>
 <mat-dialog-content class="chat-container">
   <app-message *ngFor="let m of messages"
                [message]="m">

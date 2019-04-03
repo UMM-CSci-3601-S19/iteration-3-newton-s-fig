@@ -1,7 +1,8 @@
 <div class="message-container"
      [class.rhs-message]="fromLoggedInUser"
      [class.lhs-message]="!fromLoggedInUser">
-  <div class="message-body">
-    {{message.body}}
+  <div class="message-content-block">
+    <div class="message-from">{{message.from.name}}</div>
+    <div class="message-body">{{message.body}}</div>
   </div>
 </div>
