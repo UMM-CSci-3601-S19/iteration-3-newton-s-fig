@@ -1,9 +1,8 @@
 .msg-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 6px;
+  align-items: flex-start;
+  margin-bottom: 10px;
 }
 
 .rhs-msg {
@@ -13,58 +12,45 @@
 .msg-profile-pic {
   border: solid 1px #ddd;
   border-radius: 3px;
-  width: 45px;
-  height: 45px;
   margin: 0 4px;
-}
-
-.msg-content-block {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
 }
 
 .lhs-msg .msg-content-block { align-items: flex-start; }
 .rhs-msg .msg-content-block { align-items: flex-end; }
 
-.msg-body-time-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.rhs-msg .msg-body-time-container {
-  flex-direction: row-reverse;
-}
-
-.msg-body {
-  width: fit-content;
+.msg-bubble {
   border-radius: 5px;
-  padding: 6px 10px;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  padding: 6px 8px 7px 8px;
   max-width: 300px;
+  width: fit-content;
 }
 
-.lhs-msg .msg-body {
+.msg-text {
+  font-size: 0.8rem;
+}
+
+.lhs-msg .msg-bubble {
   background: #ddd;
-  color: #111;
+  color: #000;
 }
 
-.rhs-msg .msg-body {
+.rhs-msg .msg-bubble {
   text-align: right;
   background: #3498db;
   color: #fff;
 }
 
 .msg-sent {
-  font-size: 0.8rem;
-  margin: 0 4px;
-  color: #aaa;
+  margin: 0;
+  padding: 0 0 1px 0;
+  color: #333;
+  font-size: 0.6rem;
 }
 
 .msg-from {
+  margin: 0;
+  padding: 0;
   font-weight: bold;
-  text-transform: uppercase;
   font-size: 0.8rem;
+  color: #000;
 }
