@@ -26,7 +26,7 @@ import {SignupComponent} from "./signup/signup.component";
 
 import {AuthService} from "./auth/auth.service";
 import {AuthGuardService} from "./auth/auth-guard.service";
-
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   imports: [
@@ -35,7 +35,8 @@ import {AuthGuardService} from "./auth/auth-guard.service";
     Routing,
     CustomModule,
     MatCardModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatChipsModule
   ],
   declarations: [
     AppComponent,

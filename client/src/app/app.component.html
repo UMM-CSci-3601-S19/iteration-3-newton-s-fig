@@ -7,24 +7,21 @@
         </a>
       <a mat-list-item [routerLink]="['/user']" (click)="layout.close()" routerLinkActive="nav-active">
         <mat-icon>account_box</mat-icon>
-        Profile
+        My Profile
       </a>
       <a mat-list-item (click)="clearStorage();" routerLinkActive="nav-active">
         <mat-icon>account_box</mat-icon>
         Log Out
       </a>
-      <div>
-        {{ this.text }}
-      </div>
     </mat-nav-list>
   </td-navigation-drawer>
   <td-layout-nav toolbarTitle="MoRide" navigationRoute="/">
     <button mat-icon-button td-menu-button tdLayoutToggle>
       <mat-icon>menu</mat-icon>
     </button>
-    <div>
-      {{ this.text }}
-    </div>
+    <mat-chip-list>
+      <mat-chip class="loginChip">{{ this.text }}</mat-chip>
+    </mat-chip-list>
     <router-outlet></router-outlet>
   </td-layout-nav>
 </td-layout>
