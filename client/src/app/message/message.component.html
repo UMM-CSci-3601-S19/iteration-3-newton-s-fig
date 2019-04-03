@@ -1,12 +1,10 @@
 <div class="msg-container"
      [class.rhs-msg]="fromLoggedInUser"
      [class.lhs-msg]="!fromLoggedInUser">
-  <img class="msg-profile-pic" src="http://www.identicon.org/?t={{message.from._id.$oid}}&s=64" />
-  <div class="msg-content-block">
+  <img class="msg-profile-pic" src="http://www.identicon.org/?t={{message.from._id.$oid}}&s=45"/>
+  <div class="msg-bubble">
     <div class="msg-from">{{message.from.name}}</div>
-    <div class="msg-body-time-container">
-      <div class="msg-body">{{message.body}}</div>
-      <div class="msg-sent">{{prettyDate}}</div>
-    </div>
+    <div class="msg-sent">{{prettyDate}}</div>
+    <div class="msg-text">{{message.body}}</div>
   </div>
 </div>
