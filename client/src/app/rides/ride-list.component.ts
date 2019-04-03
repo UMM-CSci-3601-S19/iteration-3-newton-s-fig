@@ -89,6 +89,15 @@ export class RideListComponent implements OnInit {
     });
   }
 
+  public noRidesFound(): string {
+    var ridesText = "Sorry, we didn't find any rides on that day!";
+    if (this.filteredRides.length > 0) {
+      ridesText = null;
+    }
+    return ridesText;
+}
+
+
   refreshRides(): Observable<Ride[]> {
     // Get Rides returns an Observable, basically a "promise" that
     // we will get the data from the server.
