@@ -69,7 +69,6 @@ export class ChatService {
   }
 
   connectStream() {
-    console.log("localStorage.user=" + JSON.stringify(localStorage.user));
     this.getToken(this.loggedInUser).subscribe( userToken => {
       this.userToken = userToken;
       this.client = stream.connect(this.API_KEY, userToken,"49831");
