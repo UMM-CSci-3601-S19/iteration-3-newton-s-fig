@@ -20,17 +20,18 @@ export class AppComponent {
 
   constructor() {
 
-
-    //setInterval(function() {
       if(localStorage.getItem('user')){
-        this.email=JSON.parse(localStorage.getItem('user')).email;
-        this.text = "User: '" + this.email + "', is logged in.";
+        if(localStorage.getItem('user')=="null"){
+          localStorage.clear();
+          this.text = "Not logged in.";
+        }else {
+          this.email = JSON.parse(localStorage.getItem('user')).email;
+          this.text = "User: '" + this.email + "', is logged in.";
+        }
       }
       else{
         this.text = "Not logged in.";
       }
-      
-    //}, 1000);
 
 
   }
