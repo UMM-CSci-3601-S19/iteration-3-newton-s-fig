@@ -60,6 +60,7 @@ export class ChatComponent implements OnInit {
   deleteChat() {
     this.chatService.deleteChat(this.feedId);
     this.getMessages();
+    this.getMessages();
   }
 
   ngOnInit() {

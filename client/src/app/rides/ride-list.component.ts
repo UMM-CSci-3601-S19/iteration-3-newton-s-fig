@@ -4,6 +4,7 @@ import {Ride} from './ride';
 import {Observable} from 'rxjs/Observable';
 import {ChatComponent} from "../chat/chat.component";
 import {MatDialog} from '@angular/material';
+import {ChatService} from "../chat/chat-service";
 
 
 @Component({
@@ -18,8 +19,10 @@ export class RideListComponent implements OnInit {
   public rides: Ride[];
 
   // Inject the RideListService into this component.
-  constructor(public rideListService: RideListService, public dialog: MatDialog) {
- //   rideListService.addListener(this);
+  constructor(public rideListService: RideListService,
+              public dialog: MatDialog,
+              public chatService: ChatService) {
+    chatService.connectStream();
   }
 
   openChat(rideId: string): void {
