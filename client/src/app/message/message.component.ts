@@ -21,8 +21,5 @@ export class MessageComponent implements OnInit {
   ngOnInit() {
     this.fromLoggedInUser = this.message.from.email == this.loggedInUser.email;
     this.prettyDate = moment(this.message.sent).fromNow();
-    console.log("logged in user: " + this.loggedInUser.email);
-    console.log("message's user: " + this.message.from.email);
-    console.log("fromLoggedInUser for message \"" + this.message.body + "\" = " + this.fromLoggedInUser);
   }
 }
