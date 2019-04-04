@@ -7,11 +7,14 @@ import spark.Response;
 import java.text.DateFormatSymbols;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class RideRequestHandler {
 
   private final RideController rideController;
   private String departureDateDay;
+  private String date;
+  private String time;
 
   public RideRequestHandler(RideController rideController) {
     this.rideController = rideController;
@@ -94,18 +97,23 @@ public class RideRequestHandler {
     int seatsAvailable = newRide.getInteger("seatsAvailable");
     String origin = newRide.getString("origin");
     String destination = newRide.getString("destination");
-    String departureDate = parseDate(newRide.getString("departureDate"));
-    String departureTime = parseTime(newRide.getString("departureTime"));
-
+    date = newRide.getString("departureDate");
+    if (newRide.getString("departureTime") != null) {
+      time = newRide.getString("departureTime");
+    } else {
+      time = "12:00";
+    }
+    String dateObject = date.substring(0,11)+time+":00.000Z";
+    String departureDate = parseDate(date);
+    String departureTime = parseTime(time);
     System.err.println("Adding new ride [driver=" + driver + ", notes=" + notes + ", seatsAvailable=" + seatsAvailable
       + ", origin=" + origin + ", destination=" + destination + ", departureTime=" + departureTime + ", departureDate="
-      + departureDate + ']');
+      + departureDate + "dateObject=" + dateObject + ']');
 
-    return rideController.addNewRide(driver, notes, seatsAvailable, origin, destination, departureTime, departureDate);
+    return rideController.addNewRide(driver, notes, seatsAvailable, origin, destination, departureTime, departureDate, dateObject);
   }
 
   private String parseDate(String rawDate) {
-
     if (rawDate != null) {
       //Date from the datepicker is by default in ISO time, like "2019-03-13T05:00:00.000Z". departureDateISO retrieves that.
       //departureDateYYYYMMDD breaks off the irrelevant end data from the "T" and on. From there, month and day are broken off.
@@ -143,6 +151,7 @@ public class RideRequestHandler {
     if (rawTime != null) {
       // Agamprett Singh (Jul 3, 2018) @ https://www.quora.com/How-can-I-convert-the-24-hour-time-format-into-the-12-hour-format-in-Java/answer/Agampreet-Singh-4
       // Converts 24 hour time to 12 hour AM/PM time
+      System.out.println(rawTime);
       return LocalTime.parse(rawTime, DateTimeFormatter.ofPattern("HH:mm"))
         .format(DateTimeFormatter.ofPattern("hh:mm a"));
     } else {

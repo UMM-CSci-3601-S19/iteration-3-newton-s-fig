@@ -29,8 +29,9 @@ describe('Ride list', () => {
           seatsAvailable: 3,
           origin: 'UMM',
           destination: 'Willie\'s',
-          departureDate: '3/6/2019',
-          departureTime: '10:00:00'
+          departureDate: 'April 4th, 2019',
+          departureTime: '4:00 AM',
+          dateObject: "2019-04-04T04:00:00.000Z"
         },
         {
           _id: 'dennis_id',
@@ -39,8 +40,9 @@ describe('Ride list', () => {
           seatsAvailable: 3,
           origin: 'Caribou Coffee',
           destination: 'Minneapolis, MN',
-          departureDate: '8/15/2018',
-          departureTime: '11:30:00'
+          departureDate: 'August 15th, 2019',
+          departureTime: '11:30 PM',
+          dateObject: "2019-08-15T23:30:00.000Z"
         },
         {
           _id: 'agatha_id',
@@ -49,8 +51,9 @@ describe('Ride list', () => {
           seatsAvailable: 6,
           origin: 'UMM',
           destination: 'Fergus Falls, MN',
-          departureDate: '3/30/2019',
-          departureTime: '16:30:00'
+          departureDate: 'March 30th, 2018',
+          departureTime: '16:30 PM',
+          dateObject: "2018-03-30T16:30:00.000Z"
         }
       ])
     };
@@ -95,12 +98,12 @@ describe('Ride list', () => {
     expect(rideList.rides.filter((ride: Ride) => ride.destination === 'Fergus Falls, MN').length).toBe(1);
   });
 
-  it('has one ride with departure time \'16:30:00\'', () => {
-    expect(rideList.rides.filter((ride: Ride) => ride.departureTime === '16:30:00').length).toBe(1);
+  it('has one ride with departure time \'16:30 PM\'', () => {
+    expect(rideList.rides.filter((ride: Ride) => ride.departureTime === '16:30 PM').length).toBe(1);
   });
 
-  it('has one ride with departure date \'3/30/2019\'', () => {
-    expect(rideList.rides.filter((ride: Ride) => ride.departureDate === '3/30/2019').length).toBe(1);
+  it('has one ride with departure date \'March 30th, 2018\'', () => {
+    expect(rideList.rides.filter((ride: Ride) => ride.departureDate === 'March 30th, 2018').length).toBe(1);
   });
 
   it('has one ride with _id \'dennis_id\'', () => {
@@ -177,6 +180,8 @@ describe('Misbehaving Ride List', () => {
     expect(rideList.rides).toBeUndefined();
   });
 });
+
+
 
 // describe('Adding a ride', () => {
 //   let rideList: AddRideComponent;
