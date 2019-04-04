@@ -6,30 +6,36 @@
       <mat-card-content>
         <div class="cardInner">
           <div class="boxes" id="nameBox" [style.grid-area]="'name'">
+            <div class="picBoxes" id="pictureBox" [style.grid-area]="'picture'">
+              <img id="profilePicture" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/220px-Albert_Einstein_Head.jpg" alt="Albert Einstein Profile Picture">
+            </div>
+            <div id="bio">
             My name is {{this.exampleUser}}
             <br/> <br/>
             {{this.exampleBio}}
             <hr>
+            </div>
           </div>
-          <div class="picBoxes" id="pictureBox" [style.grid-area]="'picture'">
-            <img id="profilePicture" src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/220px-Albert_Einstein_Head.jpg" alt="Albert Einstein Profile Picture">
-          </div>
+
           <div class="boxes" id="vehicleBox" [style.grid-area]="'vehicle'">
+            <div class="picBoxes" id="vehiclePictureBox" [style.grid-area]="'vehiclePicture'">
+              <img id="vehiclePic" src="https://www.oaklandpontiacworldwide.com/membercars/opw_1940blackpontiac_mcl.jpg" alt="Picture of {{this.exampleUser}}'s car">
+            </div>
+            <div>
             <h3>Vehicle Information:</h3>
             - {{this.exampleYear}} {{this.exampleMakeModel}}
             <br/>
             - Color: {{this.exampleColor}}
             <br/>
             - Notes: {{this.exampleNotes}}
+            </div>
           </div>
           <div class="boxes" id="contactInfoBox" [style.grid-area]="'contactInfo'">
             <h3>Contact Info:</h3>
             - Email: {{this.exampleEmail}}
             <hr>
           </div>
-          <div class="picBoxes" id="vehiclePictureBox" [style.grid-area]="'vehiclePicture'">
-            <img id="vehiclePic" src="https://www.oaklandpontiacworldwide.com/membercars/opw_1940blackpontiac_mcl.jpg" alt="Picture of {{this.exampleUser}}'s car">
-          </div>
+
         </div>
       </mat-card-content>
     </mat-card>
