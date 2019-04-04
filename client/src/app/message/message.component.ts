@@ -12,8 +12,8 @@ export class MessageComponent implements OnInit {
 
   @Input() message: Message;
   private loggedInUser: User = JSON.parse(localStorage.user);
-  private fromLoggedInUser: boolean;
-  private prettyDate;
+  public fromLoggedInUser: boolean;
+  public prettyDate;
 
   constructor() {
   }
