@@ -33,7 +33,7 @@ describe('Ride list', () => {
 
   it('should get and highlight Rides title attribute ', () => {
     page.navigateTo();
-    expect(page.getRideTitle()).toEqual('Upcoming Rides');
+    expect(page.getRideTitle()).toEqual('Rides');
   });
 
   it('should load some rides', () => {
@@ -76,7 +76,7 @@ describe('Add Ride', () => {
 
     page.click('confirmAddRideButton');
     page.navigateTo();
-    expect(page.getRideTitle()).toEqual('Upcoming Rides');
+    expect(page.getRideTitle()).toEqual('Rides');
     expect(page.getUniqueRide('John Doe')).toMatch('Likes to play music. Climate control. Gregarious.');
     expect(page.getUniqueRide('John Doe')).toMatch('2');
     expect(page.getUniqueRide('John Doe')).toMatch('Morris, MN');
