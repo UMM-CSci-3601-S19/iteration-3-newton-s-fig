@@ -33,7 +33,7 @@ describe('Ride list', () => {
 
   it('should get and highlight Rides title attribute ', () => {
     page.navigateTo();
-    expect(page.getRideTitle()).toEqual('Upcoming Rides');
+    expect(page.getRideTitle()).toEqual('Rides');
   });
 
   it('should load some rides', () => {
@@ -65,23 +65,23 @@ describe('Add Ride', () => {
     page.navigateTo();
     page.click('add-ride-button');
 
-    page.field('driverID').sendKeys('John Doe');
+    page.field('driverID').sendKeys('John');
     page.field('notesField').sendKeys('Likes to play music. Climate control. Gregarious.');
     page.field('seatsAvailableField').sendKeys('2');
     page.field('originField').sendKeys('Morris, MN');
     page.field('destinationField').sendKeys('Alexandria, MN');
-    page.field('departureDateField').sendKeys('3/13/2019');
+    page.field('departureDateField').sendKeys('5/13/2019');
     page.field('departureTimeField').sendKeys('6:00PM');
 
 
     page.click('confirmAddRideButton');
     page.navigateTo();
-    expect(page.getRideTitle()).toEqual('Upcoming Rides');
-    expect(page.getUniqueRide('John Doe')).toMatch('Likes to play music. Climate control. Gregarious.');
-    expect(page.getUniqueRide('John Doe')).toMatch('2');
-    expect(page.getUniqueRide('John Doe')).toMatch('Morris, MN');
-    expect(page.getUniqueRide('John Doe')).toMatch('Alexandria, MN');
-    expect(page.getUniqueRide('John Doe')).toMatch('March 13th at 06:00 PM');
+    expect(page.getRideTitle()).toEqual('Rides');
+    expect(page.getUniqueRide('John')).toMatch('Likes to play music. Climate control. Gregarious.');
+    expect(page.getUniqueRide('John')).toMatch('2');
+    expect(page.getUniqueRide('John')).toMatch('Morris, MN');
+    expect(page.getUniqueRide('John')).toMatch('Alexandria, MN');
+    expect(page.getUniqueRide('John')).toMatch('May 13th at 06:00 PM');
 
   });
 
@@ -92,11 +92,13 @@ describe('Add Ride', () => {
     page.field('seatsAvailableField').sendKeys('4');
     page.field('originField').sendKeys('Washington, D.C.');
     page.field('destinationField').sendKeys('Morris, MN');
+    page.field('departureDateField').sendKeys('5/27/2019');
     page.click('confirmAddRideButton');
 
     expect(page.getUniqueRide('Jefferson Macaroni')).toMatch('Washington, D.C.');
     expect(page.getUniqueRide('Jefferson Macaroni')).toMatch('Morris, MN');
     expect(page.getUniqueRide('Jefferson Macaroni')).toMatch('4');
+    expect(page.getUniqueRide('Jefferson Macaroni')).toMatch('May 27th');
 
   });
 });
