@@ -43,16 +43,28 @@ describe('rides page', () => {
    date, and the test would show that.
  */
 
-  it("shouldn't find a date when given a date to filter by sooner than 3 hours before the current time," +
-     "but should still find the dates in the 'unfilteredRides' div",()=>{
+  it("should be dates in both divs",()=>{
 
     page.navigateTo();
-    page.click("filter");
-    page.pickAFilter("3/26/2019");
-    page.filter();
+    page.click("filterButton");
+    browser.executeScript('document.getElementsByClassName("mat-input-container")[0].style.display = "block";');
+    page.field("datePickerField").sendKeys("4/27/2019");
+
     expect(page.elementExistsWithClass("unfilteredRides")).toBeTruthy("There should be some rides" +
                                                                       "in the unfilteredRides div");
-    expect(page.elementExistsWithClass("rides")).toBeFalsy("There should be no rides in the rides div");
+    expect(page.elementExistsWithClass("rides")).toBeTruthy("There should be rides in the rides div");
+  });
+
+  it("should only be dates in the unfilteredRides div",()=>{
+
+    page.navigateTo();
+    page.click("filterButton");
+    browser.executeScript('document.getElementsByClassName("mat-input-container")[0].style.display = "block";');
+    page.field("datePickerField").sendKeys("4/26/2019");
+
+    expect(page.elementExistsWithClass("unfilteredRides")).toBeTruthy("There should be some rides" +
+      "in the unfilteredRides div");
+    expect(page.elementExistsWithClass("rides")).toBeFalsy("There should be rides in the rides div");
   });
 
 });
