@@ -11,26 +11,26 @@ body {
 
 @media only screen and (min-width: 956px) {
   #filterButton, #add-ride-button {
-    transform: scale(1.8);
+    transform: scale(1.5);
+  }
+
+  #filterButton{
+    position: fixed;
+    left: 5%;
+
+    top: 15%;
+
+    z-index: 100;
+  }
+
+  #add-ride-button{
+    position: fixed;
+    left: 5%;
+    top: 25%;
+    z-index: 100;
   }
 }
 
-
-#filterButton{
-  position: fixed;
-  right: 10%;
-
-  bottom: 20%;
-
-  z-index: 100;
-}
-
-#add-ride-button{
-  position: fixed;
-  right: 10%;
-  bottom: 18%;
-  z-index: 100;
-}
 
 .plus-icon {
   transform: scale(1.1);
@@ -47,15 +47,23 @@ body {
 
   #add-ride-button {
     position: fixed;
-    right: 30%;
+    left: 4%;
 
-    bottom: 20%;
+    bottom: 13%;
 
 
     z-index: 100;
   }
+
+  #filterButton {
+    position: fixed;
+    bottom: 13%;
+    right: 4%;
+    z-index: 100;
+  }
+
   #ridesWrapper {
-  margin-bottom: 40px;
+  margin-bottom: 40%;
   }
 }
 /* Time div */

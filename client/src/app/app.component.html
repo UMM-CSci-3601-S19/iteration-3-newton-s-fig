@@ -29,12 +29,12 @@
 <button mat-button id="ridesPageButton" class="bottomButton" [routerLink]="['/rides']"
         (click)="layout.close()">
   <mat-icon class="buttonIcon">directions_car</mat-icon>
-  View Rides
+  <div>View Rides</div>
 </button>
 <button mat-button id="userPageButton" class="bottomButton" [routerLink]="['/user']"
         (click)="layout.close()">
   <mat-icon class="buttonIcon">account_box</mat-icon>
-  My Profile
+  <div>My Profile</div>
 </button>
 <button mat-button id="logoutPageButton" class="bottomButton"
         (click)="clearStorage();">
