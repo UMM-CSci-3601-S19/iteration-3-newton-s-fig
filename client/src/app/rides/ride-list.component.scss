@@ -37,6 +37,9 @@ body {
 }
 
 /* Datepicker */
+#datePickerField{
+  left: 50%;
+}
 
 /* Don't display time stamp when small screen */
 @media only screen and (max-width: 955px) {
