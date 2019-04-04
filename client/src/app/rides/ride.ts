@@ -1,3 +1,4 @@
+
 export interface Ride {
   _id: string;
   driver: string;
@@ -7,4 +8,5 @@ export interface Ride {
   destination: string;
   departureDate: string;
   departureTime: string;
+  dateObject: string;
 }

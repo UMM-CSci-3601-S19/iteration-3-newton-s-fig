@@ -97,7 +97,7 @@ public class RideControllerSpec {
   @Test
   public void addRide(){
     String newId = rideController.addNewRide("Dave Roberts", "I talk a lot about math", 2,
-      "Shopko", "UMM Science Building Parking Lot", "5PM", "5/13/19");
+      "Shopko", "UMM Science Building Parking Lot", "5PM", "5/13/19","2019-05-13T17:00:00.000Z");
 
     assertNotNull("Add new ride should return true when ride is added,", newId);
     Map<String, String[]> argMap = new HashMap<>();

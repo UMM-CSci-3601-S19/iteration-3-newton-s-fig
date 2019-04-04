@@ -3,7 +3,7 @@
     <form [formGroup]="loginForm">
       <mat-card class="login">
 
-<mat-form-field>
+<mat-form-field id="login">
   <input name="emailField" matInput #input id="EmailField" placeholder="Email"
          required [(ngModel)]="email" formControlName="email">
   <mat-error *ngFor="let validation of login_validation_messages.email">
