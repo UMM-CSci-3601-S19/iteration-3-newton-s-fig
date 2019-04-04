@@ -13,7 +13,6 @@ body {
   #filterButton, #add-ride-button {
     transform: scale(1.8);
   }
-
 }
 
 #filterButton{
@@ -43,11 +42,14 @@ body {
     background: none;
   }
 
-  #add-ride-button{
+  #add-ride-button {
     position: fixed;
-    right: 10%;
-    bottom: 14%;
+    right: 30%;
+    bottom: 5%;
     z-index: 100;
+  }
+  #ridesWrapper {
+  margin-bottom: 40px;
   }
 }
 /* Time div */
@@ -57,8 +59,6 @@ body {
   left: 2%;
   max-width: 15%;
 }
-
-
 
 
 

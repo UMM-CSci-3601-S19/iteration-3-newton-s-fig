@@ -1,7 +1,18 @@
+@media only screen and (min-width: 956px) {
+  .loginChip {
+    margin: 5px 5px 5px 10px;
 
-.loginChip {
-  margin: 5px 5px 5px 10px;
-
-  background-color: #0CA8F4;
-  box-shadow: grey;
+    background-color: #0CA8F4;
+    box-shadow: grey;
+  }
 }
+
+@media only screen and (max-width: 955px) {
+  /*#navDrawer {*/
+    /*display: none;*/
+  /*}*/
+  /*#navDrawerButton {*/
+    /*display: none;*/
+  /*}*/
+}
+
