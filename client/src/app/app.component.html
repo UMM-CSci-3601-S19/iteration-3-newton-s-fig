@@ -25,3 +25,19 @@
     <router-outlet></router-outlet>
   </td-layout-nav>
 </td-layout>
+
+<button mat-button id="ridesPageButton" class="bottomButton" [routerLink]="['/rides']"
+        (click)="layout.close()">
+  <mat-icon class="buttonIcon">directions_car</mat-icon>
+  View Rides
+</button>
+<button mat-button id="userPageButton" class="bottomButton" [routerLink]="['/user']"
+        (click)="layout.close()">
+  <mat-icon class="buttonIcon">account_box</mat-icon>
+  My Profile
+</button>
+<button mat-button id="logoutPageButton" class="bottomButton"
+        (click)="clearStorage();">
+  <mat-icon class="buttonIcon">account_box</mat-icon>
+  <div>Log Out</div>
+</button>

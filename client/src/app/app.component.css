@@ -1,18 +1,54 @@
 @media only screen and (min-width: 956px) {
-  .loginChip {
-    margin: 5px 5px 5px 10px;
 
-    background-color: #0CA8F4;
-    box-shadow: grey;
-  }
+
+}
+
+.loginChip {
+  margin: 5px 5px 5px 10px;
+
+  background-color: #0CA8F4;
+  box-shadow: grey;
 }
 
 @media only screen and (max-width: 955px) {
-  /*#navDrawer {*/
-    /*display: none;*/
-  /*}*/
-  /*#navDrawerButton {*/
-    /*display: none;*/
-  /*}*/
+  #navDrawer {
+    display: none;
+  }
+
+  #navDrawerButton {
+    display: none;
+  }
+
+  .buttonIcon {
+    margin-bottom: -10px;
+  }
+
+  .bottomButton {
+    max-width: 33%;
+    min-width: 33%;
+    min-height: 9.5%;
+    z-index: 100;
+    background-color: #0CA8F4;
+  }
+  .mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
+    border-radius: 0;
+  }
+
+  #ridesPageButton {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #0CA8F4;
+  }
+  #logoutPageButton {
+    position: fixed;
+    bottom: 0;
+    left: 33%;
+  }
+  #userPageButton {
+    position: fixed;
+    bottom: 0;
+    left: 66%;
+  }
 }
 
