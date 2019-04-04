@@ -18,14 +18,18 @@ img {
   display: grid;
   grid-template-areas: "name picture" "contactInfo picture" "vehicle vehiclePicture";
   grid-template-rows: auto auto auto;
-  grid-template-columns: 55% 45%;
+  grid-template-columns: 80% 45%;
   grid-row-gap: 8px;
   grid-column-gap: 8px;
+  text-align: center;
+
 }
 
 .boxes {
   word-wrap: break-word;
   max-width: 100%;
+  text-align: center;
+  margin: 2%;
 }
 
 .picBoxes {
@@ -38,4 +42,25 @@ img {
 
 .mat-card {
   font-family: Verdana;
+}
+#profilePicture {
+  border-radius: 50%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 10px;
+}
+#vehiclePic {
+  width: 260px;
+  border-radius: 30px;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 10px;
+
+}
+#bio {
+  width: 70%;
+  margin: 5%;
+}
+#nameBox {
+
 }
