@@ -60,7 +60,11 @@ import {MatChipsModule} from '@angular/material/chips';
 
   ],
   providers: [
-    UserListService, RideListService, ChatService,AuthGuardService,AuthService,
+    UserListService,
+    RideListService,
+    ChatService,
+    AuthGuardService,
+    AuthService,
     {provide: APP_BASE_HREF, useValue: '/'},
   ],
   entryComponents: [
