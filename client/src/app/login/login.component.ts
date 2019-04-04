@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
       alert("You are already logged in.");
 
     }else {
-      localStorage.user = null;
       if (this.email != null && this.email != "") {
         this.userListService.getUserByEmail(this.email).subscribe(
           result => {
@@ -47,7 +46,6 @@ export class LoginComponent implements OnInit {
               localStorage.user = JSON.stringify(this.user);
               location.assign("http://"+location.host+"/rides");
             } else {
-              this.router.navigate(['login']);
               alert("The entered email is not associated with any user. Did you enter your email correctly?");
             }
           },

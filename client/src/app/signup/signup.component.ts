@@ -54,13 +54,11 @@ export class SignupComponent implements OnInit {
       alert("You are already logged in.");
 
     }else {
-      localStorage.user = null;
-
       this.userListService.getUserByEmail(this.email).subscribe(
         result => {
           this.user = result[0];
+          console.log(this.user);
           if (this.user) {
-            this.router.navigate(['signUp']);
             alert("The entered email is already taken.");
           } else {
             localStorage.user = JSON.stringify(newUser);
