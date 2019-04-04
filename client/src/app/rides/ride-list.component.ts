@@ -13,7 +13,7 @@ import {Observable} from 'rxjs/Observable';
 export class RideListComponent implements OnInit {
   // public so that tests can reference them (.spec.ts)
   public rides: Ride[];
-  public filteredRides: Ride[];
+  public filteredRides: Ride[] = [];
   public unfilteredRides: Ride[];
   public array:Ride[];
   public time: Date;
