@@ -9,12 +9,22 @@
         <mat-icon>account_box</mat-icon>
         Profile
       </a>
+      <a mat-list-item (click)="clearStorage();" routerLinkActive="nav-active">
+        <mat-icon>account_box</mat-icon>
+        Log Out
+      </a>
+      <div>
+        {{ this.text }}
+      </div>
     </mat-nav-list>
   </td-navigation-drawer>
   <td-layout-nav toolbarTitle="MoRide" navigationRoute="/">
     <button mat-icon-button td-menu-button tdLayoutToggle>
       <mat-icon>menu</mat-icon>
     </button>
+    <div>
+      {{ this.text }}
+    </div>
     <router-outlet></router-outlet>
   </td-layout-nav>
 </td-layout>

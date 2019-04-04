@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {UserListService} from './user-list.service';
 import {User} from './user';
 import {Observable} from 'rxjs/Observable';
-import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'user-list-component',
@@ -33,8 +32,11 @@ export class UserListComponent implements OnInit {
   public exampleColor: string;
   public exampleNotes: string;
 
+
+  private user: User;
+
   // Inject the UserListService into this component.
-  constructor(public userListService: UserListService, public dialog: MatDialog) {
+  constructor(public userListService: UserListService) {
 
     this.exampleUser = 'Albert Einstein';
     this.exampleEmail = 'Albert.Einstein@nointernet.yet';
@@ -43,6 +45,12 @@ export class UserListComponent implements OnInit {
     this.exampleYear = '1940';
     this.exampleColor = 'Black';
     this.exampleNotes = 'Nearly 80 years old, but it\'s still brand new.';
+
+    if(localStorage.getItem('user')){
+      this.user = JSON.parse(localStorage.getItem('user'));
+      this.exampleUser = this.user.name;
+      this.exampleEmail = this.user.email;
+    }
   }
 
   isHighlighted(user: User): boolean {

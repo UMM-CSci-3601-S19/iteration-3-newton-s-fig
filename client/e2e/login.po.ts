@@ -1,9 +1,9 @@
 import {browser, element, by, promise, ElementFinder} from 'protractor';
 import {Key} from 'selenium-webdriver';
 
-export class UserPage {
+export class LoginPage {
   navigateTo(): promise.Promise<any> {
-    return browser.get('/user');
+    return browser.get('/login');
   }
 
   // http://www.assertselenium.com/protractor/highlight-elements-during-your-protractor-test-run/
@@ -20,63 +20,18 @@ export class UserPage {
     return browser.executeScript(setStyle, element(byObject).getWebElement(), 'color: red; background-color: yellow;');
   }
 
-  getUserTitle() {
-    const title = element(by.id('user-list-title')).getText();
-    this.highlightElement(by.id('user-list-title'));
 
-    return title;
-  }
-
-  getContactInfo() {
-    const text = element(by.id('contactInfoBox')).getText();
-    this.highlightElement(by.id('contactInfoBox'));
-
-    return text;
-  }
-
-  typeInto(field: string, value: string) {
-    const input = element(by.id(field));
+  typeAnEmail(email: string) {
+    const input = element(by.id('EmailField'));
     input.click();
-    input.sendKeys(value);
+    input.sendKeys(email);
   }
 
-  typeAName(name: string) {
-    const input = element(by.id('userName'));
-    input.click();
-    input.sendKeys(name);
-  }
-
-  selectUpKey() {
-    browser.actions().sendKeys(Key.ARROW_UP).perform();
-  }
 
   backspace() {
     browser.actions().sendKeys(Key.BACK_SPACE).perform();
   }
 
-  getCompany(company: string) {
-    const input = element(by.id('userCompany'));
-    input.click();
-    input.sendKeys(company);
-    this.click('submit');
-  }
-
-  getUserByAge() {
-    const input = element(by.id('userName'));
-    input.click();
-    input.sendKeys(Key.TAB);
-  }
-
-  getUniqueUser(email: string) {
-    const user = element(by.id(email)).getText();
-    this.highlightElement(by.id(email));
-
-    return user;
-  }
-
-  getUsers() {
-    return element.all(by.className('users'));
-  }
 
   elementExistsWithId(idOfElement: string): promise.Promise<boolean> {
     if (element(by.id(idOfElement)).isPresent()) {
@@ -87,6 +42,18 @@ export class UserPage {
 
   elementExistsWithCss(cssOfElement: string): promise.Promise<boolean> {
     return element(by.css(cssOfElement)).isPresent();
+  }
+
+  elementExistsWithClass(classOfElement: string): promise.Promise<boolean> {
+    return element(by.className(classOfElement)).isPresent();
+  }
+
+  login(){
+    this.click("loginButton");
+  }
+
+  signup(){
+    this.click("signupButton");
   }
 
   click(idOfButton: string): promise.Promise<void> {
@@ -103,9 +70,9 @@ export class UserPage {
     return element(by.id(idOfButton));
   }
 
-  getTextFromField(idOfField: string) {
-    this.highlightElement(by.id(idOfField));
-    return element(by.id(idOfField)).getText();
+  getTextFromEmailField() {
+    this.highlightElement(by.id("EmailField"));
+    return element(by.id("EmailField")).getText();
   }
 
 }

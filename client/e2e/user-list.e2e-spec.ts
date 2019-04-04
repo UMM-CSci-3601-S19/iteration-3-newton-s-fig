@@ -16,7 +16,7 @@ browser.driver.controlFlow().execute = function () {
     // If you're tired of it taking long you can remove this call or change the delay
     // to something smaller (even 0).
     origFn.call(browser.driver.controlFlow(), () => {
-        return protractor.promise.delayed(100);
+        return protractor.promise.delayed(1);
     });
 
     return origFn.apply(browser.driver.controlFlow(), args);
@@ -32,7 +32,12 @@ describe('User list', () => {
 
   it('should get and highlight Users title attribute ', () => {
     page.navigateTo();
-    expect(page.getUserTitle()).toEqual('Albert Einstein\'s Profile');
+    expect(page.getUserTitle()).toEqual('Sofia Sharp\'s Profile');
+  });
+
+  it('should get and highlight contact info ', () => {
+    page.navigateTo();
+    expect(page.getContactInfo()).toContain('sofiasharp@email.co.uk');
   });
 
 });

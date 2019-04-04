@@ -16,7 +16,7 @@ browser.driver.controlFlow().execute = function () {
   // If you're tired of it taking long you can remove this call or change the delay
   // to something smaller (even 0).
   origFn.call(browser.driver.controlFlow(), () => {
-    return protractor.promise.delayed(50);
+    return protractor.promise.delayed(1);
   });
 
   return origFn.apply(browser.driver.controlFlow(), args);
@@ -28,6 +28,7 @@ describe('Ride list', () => {
 
   beforeEach(() => {
     page = new RidePage();
+    browser.executeScript("localStorage.user=\'{\"_id\":{\"$oid\":\"5c8182212f608130b228e558\"},\"name\":\"Sofia Sharp\",\"vehicle\":\"5c81820b80f223f8a09a54da\",\"phone\":\"(875) 571-3867\",\"email\":\"sofiasharp@email.co.uk\"}\';");
   });
 
   it('should get and highlight Rides title attribute ', () => {
@@ -74,6 +75,7 @@ describe('Add Ride', () => {
 
 
     page.click('confirmAddRideButton');
+    page.navigateTo();
     expect(page.getRideTitle()).toEqual('Upcoming Rides');
     expect(page.getUniqueRide('John Doe')).toMatch('Likes to play music. Climate control. Gregarious.');
     expect(page.getUniqueRide('John Doe')).toMatch('2');
@@ -90,7 +92,7 @@ describe('Add Ride', () => {
     page.field('seatsAvailableField').sendKeys('4');
     page.field('originField').sendKeys('Washington, D.C.');
     page.field('destinationField').sendKeys('Morris, MN');
-    page.click('confirmAddRideButton')
+    page.click('confirmAddRideButton');
 
     expect(page.getUniqueRide('Jefferson Macaroni')).toMatch('Washington, D.C.');
     expect(page.getUniqueRide('Jefferson Macaroni')).toMatch('Morris, MN');

@@ -1,9 +1,9 @@
 import {browser, element, by, promise, ElementFinder} from 'protractor';
 import {Key} from 'selenium-webdriver';
 
-export class RidePage {
+export class SignupPage {
   navigateTo(): promise.Promise<any> {
-    return browser.get('/rides');
+    return browser.get('/signup');
   }
 
   // http://www.assertselenium.com/protractor/highlight-elements-during-your-protractor-test-run/
@@ -20,39 +20,24 @@ export class RidePage {
     return browser.executeScript(setStyle, element(byObject).getWebElement(), 'color: red; background-color: yellow;');
   }
 
-  typeInto(field: string, value: string) {
-    const input = element(by.id(field));
+
+  typeAnEmail(email: string) {
+    const input = element(by.id('EmailField'));
     input.click();
-    input.sendKeys(value);
+    input.sendKeys(email);
   }
 
-  getRideTitle() {
-    const title = element(by.id('ride-list-title')).getText();
-    this.highlightElement(by.id('ride-list-title'));
-
-    return title;
-  }
-
-  typeADriverName(name: string) {
-    const input = element(by.id('driverName'));
+  typeName(name: string) {
+    const input = element(by.id('NameField'));
     input.click();
     input.sendKeys(name);
   }
 
-  getSeatNumber(company: string) {
-    const input = element(by.id('rideSeatsAvailable'));
-    input.click();
-    input.sendKeys(company);
-    this.click('submit');
+
+  backspace() {
+    browser.actions().sendKeys(Key.BACK_SPACE).perform();
   }
 
-  getRides() {
-    return element.all(by.className('rides'));
-  }
-
-  // getClass(theClass: string) {
-  //   return element(by.className(theClass));
-  // }
 
   elementExistsWithId(idOfElement: string): promise.Promise<boolean> {
     if (element(by.id(idOfElement)).isPresent()) {
@@ -65,30 +50,17 @@ export class RidePage {
     return element(by.css(cssOfElement)).isPresent();
   }
 
-  getElementById(id: string) {
-    return element(by.id(id));
+  elementExistsWithClass(classOfElement: string): promise.Promise<boolean> {
+    return element(by.className(classOfElement)).isPresent();
   }
 
-  getElementsByCss(css: string) {
-    return element.all(by.css(css));
+  signup(){
+    this.click("signupButton");
   }
-
-  getUniqueRide(driver: string) {
-    const ride = element(by.id(driver)).getText();
-    this.highlightElement(by.id(driver));
-
-    return ride;
-  }
-
 
   click(idOfButton: string): promise.Promise<void> {
     this.highlightElement(by.id(idOfButton));
     return element(by.id(idOfButton)).click();
-  }
-
-  clickClass(classOfButton: string): promise.Promise<void> {
-    this.highlightElement(by.className(classOfButton));
-    return element(by.className(classOfButton)).click();
   }
 
   field(idOfField: string) {
@@ -103,13 +75,6 @@ export class RidePage {
   getTextFromField(idOfField: string) {
     this.highlightElement(by.id(idOfField));
     return element(by.id(idOfField)).getText();
-  }
-
-  getAddRideTitle() {
-    const title = element(by.id('ride-add-title')).getText();
-    this.highlightElement(by.id('ride-add-title'));
-
-    return title;
   }
 
 }
