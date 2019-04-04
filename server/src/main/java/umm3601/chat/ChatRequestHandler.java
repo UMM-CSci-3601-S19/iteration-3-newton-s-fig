@@ -83,8 +83,6 @@ public class ChatRequestHandler {
       .withClaim("user_id", "*")
       .sign(signature);
 
-    System.out.println("jwt=" + jwt);
-
     return new Token(jwt);
   }
 }
