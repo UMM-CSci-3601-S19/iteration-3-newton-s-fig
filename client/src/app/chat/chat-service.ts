@@ -15,7 +15,7 @@ import {Message} from "../message/message";
 export class ChatService {
   readonly baseUrl: string = environment.API_URL + 'chat';
   private API_KEY = (<any>Credentials).API_KEY;
-  private client;
+  public client;
   private loggedInUser = JSON.parse(localStorage.user);
   private userToken;
 
