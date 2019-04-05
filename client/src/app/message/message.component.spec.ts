@@ -16,6 +16,21 @@ describe('MessageComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(MessageComponent);
     component = fixture.componentInstance;
+
+    const testUser = {
+      _id: "",
+      name: "Test User",
+      phone: "000-000-0000",
+      email: "test@example.com",
+    };
+    localStorage.setItem("user", JSON.stringify(testUser));
+
+    component.message = {
+      from: testUser,
+      body: "",
+      sent: new Date("")
+    };
+
     fixture.detectChanges();
   });
 
