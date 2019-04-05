@@ -8,6 +8,9 @@ import {CustomModule} from '../custom.module';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
+import {ChatService} from "../chat/chat-service";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {HttpClient} from "@angular/common/http";
 
 describe('Ride list', () => {
 
@@ -59,7 +62,7 @@ describe('Ride list', () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [CustomModule],
+      imports: [CustomModule, HttpClientTestingModule],
       declarations: [RideListComponent],
       providers: [{provide: RideListService, useValue: rideListServiceStub}]
     });
@@ -69,6 +72,9 @@ describe('Ride list', () => {
     TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(RideListComponent);
       rideList = fixture.componentInstance;
+
+      rideList.chatService = new ChatService(TestBed.get(HttpClient));
+
       fixture.detectChanges();
     });
   }));
@@ -161,7 +167,7 @@ describe('Misbehaving Ride List', () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [FormsModule, CustomModule],
+      imports: [FormsModule, CustomModule, HttpClientTestingModule],
       declarations: [RideListComponent],
       providers: [{provide: RideListService, useValue: rideListServiceStub}]
     });
@@ -171,6 +177,9 @@ describe('Misbehaving Ride List', () => {
     TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(RideListComponent);
       rideList = fixture.componentInstance;
+
+      rideList.chatService = new ChatService(TestBed.get(HttpClient));
+
       fixture.detectChanges();
     });
   }));
