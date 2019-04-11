@@ -101,8 +101,6 @@ body {
   max-width: 15%;
 }
 
-
-
 /* Ride card */
 .rides, .unfilteredRides {
   margin-bottom: 15px;
@@ -113,8 +111,8 @@ body {
 .ride-title {
   background: #29b6f6 linear-gradient(to right bottom, #747577 ,#474a4f);
   color: #fff;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 .seats-left {

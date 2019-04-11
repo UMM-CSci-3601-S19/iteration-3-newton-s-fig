@@ -8,8 +8,6 @@
 
   background-image:
     url("images/GoogleMap2.png");
-    /*linear-gradient(rgba(71,74,79,0.1),*/
-                    /*rgba(71,74,79,0.1));*/
 }
 
 
@@ -40,7 +38,8 @@
     min-width: 34%;
     min-height: 9.5%;
     z-index: 100;
-    background-color: #0CA8F4;
+    background-color: black;
+    color: #71747A;
 
   }
   .mat-button, .mat-flat-button, .mat-icon-button, .mat-stroked-button {
@@ -51,7 +50,7 @@
     position: fixed;
     bottom: 0;
     left: 0;
-    background-color: #0CA8F4;
+    background-color: black;
     border-left: hidden !important;
   }
   #logoutPageButton {

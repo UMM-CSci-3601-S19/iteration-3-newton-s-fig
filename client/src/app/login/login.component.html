@@ -1,35 +1,35 @@
 <div>
-<div id="map-wrapper" style="height:100%;">
-  <agm-map id="map" [latitude]='latitude' [longitude]='longitude' [mapTypeId]="mapType" [zoom]="15">
-  </agm-map>
-</div>
-</div>
-
-<div layout-gt-sm="row">
-  <div flex-gt-sm="40" flex-offset-gt-sm="30">
-    <form [formGroup]="loginForm">
-      <mat-card class="login">
-
-<mat-form-field id="login">
-  <input name="emailField" matInput #input id="EmailField" placeholder="Email"
-         required [(ngModel)]="email" formControlName="email">
-  <mat-error *ngFor="let validation of login_validation_messages.email">
-    <mat-error class="error-message"
-               *ngIf="loginForm.get('email').hasError(validation.type) &&
-                       (loginForm.get('email').dirty || loginForm.get('email').touched)">
-      {{validation.message}}
-    </mat-error>
-  </mat-error>
-</mat-form-field>
-
-<mat-card-actions layout="row">
-  <button class="loginButton" mat-raised-button id="loginButton"  type="button" color="primary"
-          (click)="login()" [disabled]="!loginForm.valid">Login
-  </button>
-  <button class="signupButton" mat-button id="signupButton" routerLink="/signup"  type="button">Sign Up</button>
-</mat-card-actions>
-
-      </mat-card>
-    </form>
+  <div id="map-wrapper" style="height:100%;">
+      <agm-map id="map" [latitude]='latitude' [longitude]='longitude' [mapTypeId]="mapType" [zoom]="15">
+      </agm-map>
   </div>
-</div>
+
+  <div layout-gt-sm="row">
+    <div flex-gt-sm="40" flex-offset-gt-sm="30">
+      <form [formGroup]="loginForm">
+        <mat-card class="login">
+
+          <mat-form-field id="login">
+            <input name="emailField" matInput #input id="EmailField" placeholder="Email"
+                   required [(ngModel)]="email" formControlName="email">
+            <mat-error *ngFor="let validation of login_validation_messages.email">
+              <mat-error class="error-message"
+                         *ngIf="loginForm.get('email').hasError(validation.type) &&
+                       (loginForm.get('email').dirty || loginForm.get('email').touched)">
+                {{validation.message}}
+              </mat-error>
+            </mat-error>
+          </mat-form-field>
+
+          <mat-card-actions layout="row">
+            <button class="loginButton" mat-raised-button id="loginButton" type="button" color="primary"
+                    (click)="login()" [disabled]="!loginForm.valid">Login
+            </button>
+            <button class="signupButton" mat-button id="signupButton" routerLink="/signup" type="button">Sign Up
+            </button>
+          </mat-card-actions>
+
+        </mat-card>
+      </form>
+    </div>
+  </div>
