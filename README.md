@@ -1,5 +1,5 @@
 # CSCI 3601 Lab #4 - Mongo, Spark and Angular
-[![Build Status](https://travis-ci.org/UMM-CSci-3601-S19/iteration-2-fig-newtons.svg?branch=master)](https://travis-ci.org/UMM-CSci-3601-S19/iteration-2-fig-newtons)
+[![Build Status](https://travis-ci.org/UMM-CSci-3601-S19/iteration-3-newton-s-fig.svg?branch=master)](https://travis-ci.org/UMM-CSci-3601-S19/iteration-3-newton-s-fig)
 
 ## Setup
 
