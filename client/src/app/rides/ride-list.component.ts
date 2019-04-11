@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {RideListService} from './ride-list.service';
 import {Ride} from './ride';
 import {Observable} from 'rxjs/Observable';
+import {MapComponent} from "../google_maps/map.component";
 
 @Component({
   selector: 'ride-list-component',
@@ -20,6 +21,12 @@ export class RideListComponent implements OnInit {
   public timeString: string;
   public nowDate = new Date;
 
+  //map variables
+  public latitude: number = 45.5919;
+  public longitude: number = -95.9189;
+  public mapType: string = "roadmap";
+
+
   // Variables used for filtering
   public rideDateObject: string;
   // '2014-11-03T19:38:34.203Z'
@@ -29,6 +36,9 @@ export class RideListComponent implements OnInit {
   constructor(public rideListService: RideListService) {
  //   rideListService.addListener(this);
   }
+
+
+
 
   /**
    * Starts an asynchronous operation to update the rides list

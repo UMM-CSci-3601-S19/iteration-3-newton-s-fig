@@ -6,8 +6,8 @@ import {Component} from '@angular/core';
   styleUrls: ['./map.component.scss'],
 })
 
-export class mapComponent {
+export class MapComponent {
   latitude = 45.5919;
-  longitude = 95.9189;
-  mapType = 'satellite'
+  longitude = -95.9189;
+  mapType = 'roadmap'
 }
