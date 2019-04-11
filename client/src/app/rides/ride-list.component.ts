@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {RideListService} from './ride-list.service';
 import {Ride} from './ride';
 import {Observable} from 'rxjs/Observable';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'ride-list-component',
@@ -26,8 +27,9 @@ export class RideListComponent implements OnInit {
   public date: Date;
   public utcDate: Date;
   // Inject the RideListService into this component.
-  constructor(public rideListService: RideListService) {
+  constructor(public rideListService: RideListService, private titleService: Title) {
  //   rideListService.addListener(this);
+    titleService.setTitle("Upcoming Rides");
   }
 
   /**
