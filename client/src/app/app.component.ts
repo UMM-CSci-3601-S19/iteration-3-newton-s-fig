@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 
 @Component({
@@ -34,13 +34,5 @@ export class AppComponent {
       else{
         this.text = "Not logged in.";
       }
-
-
   }
-
-
-
-
-
-
 }

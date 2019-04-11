@@ -1,4 +1,4 @@
-.lean-menu {
+#lean-menu {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -6,6 +6,10 @@
   position: fixed;
   left: 10px;
   z-index: 100;
+}
+
+#menu-spacer {
+  height: 48px;
 }
 
 mat-sidenav {

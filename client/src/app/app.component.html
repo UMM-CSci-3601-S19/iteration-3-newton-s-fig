@@ -23,12 +23,13 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <div class="lean-menu">
+    <div id="lean-menu">
       <button mat-icon-button id="hamburger-button" (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
       <h3>{{titleService.getTitle()}}</h3>
     </div>
+    <div id="menu-spacer"></div>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
