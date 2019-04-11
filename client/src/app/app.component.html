@@ -1,4 +1,4 @@
-<td-layout #layout>
+<td-layout id="layout"#layout>
   <td-navigation-drawer id="navDrawer" flex sidenavTitle="MoRide">
     <mat-nav-list id="navList">
       <a mat-list-item [routerLink]="['/rides']" (click)="layout.close()" routerLinkActive="nav-active">
@@ -15,7 +15,7 @@
       </a>
     </mat-nav-list>
   </td-navigation-drawer>
-  <td-layout-nav toolbarTitle="MoRide" navigationRoute="/">
+  <td-layout-nav class="bgc-color-hue" toolbarTitle="MoRide" navigationRoute="/">
     <button id="navDrawerButton" mat-icon-button td-menu-button tdLayoutToggle>
       <mat-icon>menu</mat-icon>
     </button>
@@ -27,7 +27,7 @@
 </td-layout>
 
 <button mat-button id="ridesPageButton" class="bottomButton" [routerLink]="['/rides']"
-        (click)="layout.close()">
+        >
   <mat-icon class="buttonIcon">directions_car</mat-icon>
   <div>View Rides</div>
 </button>

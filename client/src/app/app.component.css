@@ -4,10 +4,20 @@
   }
 }
 
+.bgc-color-hue {
+
+  background-image:
+    url("images/GoogleMap2.png");
+    /*linear-gradient(rgba(71,74,79,0.1),*/
+                    /*rgba(71,74,79,0.1));*/
+}
+
+
+
 .loginChip {
   margin: 5px 5px 5px 10px;
-
-  background-color: #0CA8F4;
+  color: white;
+  background-color: #636669;
   box-shadow: grey;
 }
 

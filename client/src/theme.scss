@@ -3,20 +3,120 @@
 
 @include mat-core();
 
+$md-greygreen: (
+  50 : #e4e5e5,
+  100 : #bdbebf,
+  200 : #919394,
+  300 : #646769,
+  400 : #434749,
+  500 : #222629,
+  600 : #1e2224,
+  700 : #191c1f,
+  800 : #141719,
+  900 : #0c0d0f,
+  A100 : #86c232,
+  A200 : #61892f,
+  A400 : #474b4f,
+  A700 : #6b6e70,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$md-matdarkgrey: (
+  50 : #e6e9ea,
+  100 : #c1c7cc,
+  200 : #97a2aa,
+  300 : #6d7c87,
+  400 : #4e606e,
+  500 : #2f4454,
+  600 : #2a3e4d,
+  700 : #233543,
+  800 : #1d2d3a,
+  900 : #121f29,
+  A100 : #6ab9ff,
+  A200 : #37a0ff,
+  A400 : #0488ff,
+  A700 : #007bea,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$md-matlightgrey: (
+  50 : #e9e9ea,
+  100 : #c8c9ca,
+  200 : #a3a5a7,
+  300 : #7e8184,
+  400 : #636669,
+  500 : #474b4f,
+  600 : #404448,
+  700 : #373b3f,
+  800 : #2f3336,
+  900 : #202326,
+  A100 : #77c5f9,
+  A200 : #46b0f7,
+  A400 : #0b9dff,
+  A700 : #0090f1,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
-$primary: mat-palette($mat-light-blue);
-$accent: mat-palette($mat-deep-orange);
+$primary: mat-palette($md-greygreen);
+$accent: mat-palette($md-greygreen);
 
 // The warn palette is optional (defaults to red).
-$warn: mat-palette($mat-red);
-
+$warn: mat-palette($md-greygreen);
+$secondary: mat-palette($md-matlightgrey);
 // Create the theme object (a Sass map containing all of the palettes).
-$theme: mat-light-theme($primary, $accent, $warn);
+$theme-angular: mat-light-theme($secondary, $accent, $warn);
+$theme-covalent: mat-light-theme($secondary, $accent, $warn);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($theme);
-@include covalent-theme($theme);
+@include angular-material-theme($theme-angular);
+@include covalent-theme($theme-covalent);
