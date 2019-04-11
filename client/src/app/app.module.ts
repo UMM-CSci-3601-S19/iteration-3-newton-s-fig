@@ -31,6 +31,7 @@ import { MapsComponent } from './maps/maps.component';
 import {MapsSearchComponent} from './mapsSearch/mapsSearch.component';
 import {RideComponent} from "./rides/ride.component";
 import {AgmCoreModule, MapsAPILoader} from "@agm/core";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -41,6 +42,8 @@ import {AgmCoreModule, MapsAPILoader} from "@agm/core";
     MatCardModule,
     MatDatepickerModule,
     MatChipsModule,
+    FormsModule,
+    ReactiveFormsModule,
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyCSlf2Tw0r3e_oud87Phtzc_afZfFphM6Q",
       libraries: ["places"]

@@ -1,22 +1,10 @@
-<div class="pac-card" id="pac-card">
-  <div>
-    <div id="title">
-      Search rides!
-
-    </div>
+<div class="container">
+  <h1>Search for Rides!</h1>
+  <div class="form-group">
+    <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
+           #search [formControl]="searchControl">
   </div>
-  <div id="pac-container">
-    <input id="pac-input" type="text"
-           placeholder="Enter a location">
-  </div>
+  <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="true" [zoom]="zoom">
+    <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+  </agm-map>
 </div>
-<!--<div id="map"></div>-->
-<app-maps mapHeightVH="50"></app-maps>
-<div id="infowindow-content">
-  <img src="" width="16" height="16" id="place-icon">
-  <span id="place-name"  class="title"></span><br>
-  <span id="place-address"></span>
-</div>
-<!-- Replace the value of the key parameter with your own API key. -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCSlf2Tw0r3e_oud87Phtzc_afZfFphM6Q&libraries=places&callback=initMap"
-        async defer></script>
