@@ -28,6 +28,7 @@ export class AddRideComponent implements OnInit {
   public rideDepartureDate: string;
   public rideDepartureTime: string;
   public rideDateObject: string;
+  public nowDate: Date;
 
   // Inject the RideListService into this component.
   constructor(public rideListService: RideListService, private fb: FormBuilder) {
@@ -55,6 +56,12 @@ export class AddRideComponent implements OnInit {
       {type: 'required', message: 'Destination is required'}
     ]
   };
+
+
+  todaysDate(): Date {
+    this.nowDate = new Date();
+    return this.nowDate;
+  }
 
   addRide(): void {
     const newRide: Ride = {_id: '',
