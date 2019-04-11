@@ -8,6 +8,7 @@ import {CustomModule} from '../custom.module';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
+import {RideComponent} from "./ride.component";
 
 describe('Ride list', () => {
 
@@ -60,7 +61,7 @@ describe('Ride list', () => {
 
     TestBed.configureTestingModule({
       imports: [CustomModule],
-      declarations: [RideListComponent],
+      declarations: [RideListComponent,RideComponent],
       providers: [{provide: RideListService, useValue: rideListServiceStub}]
     });
   });
@@ -162,7 +163,7 @@ describe('Misbehaving Ride List', () => {
 
     TestBed.configureTestingModule({
       imports: [FormsModule, CustomModule],
-      declarations: [RideListComponent],
+      declarations: [RideListComponent, RideComponent],
       providers: [{provide: RideListService, useValue: rideListServiceStub}]
     });
   });
