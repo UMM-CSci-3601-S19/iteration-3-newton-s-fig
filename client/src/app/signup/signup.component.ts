@@ -3,6 +3,7 @@ import {FormControl, Validators, FormGroup, FormBuilder} from "@angular/forms";
 import {User} from "../users/user";
 import {UserListService} from "../users/user-list.service";
 import {Router} from "@angular/router";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'signup.component',
@@ -24,8 +25,11 @@ export class SignupComponent implements OnInit {
 
   public signupForm: FormGroup;
 
-  constructor(private userListService: UserListService, private fb: FormBuilder, private router: Router) {
-
+  constructor(private userListService: UserListService,
+              private fb: FormBuilder,
+              private router: Router,
+              private titleService: Title) {
+    titleService.setTitle("Sign Up");
   }
 
   signup_validation_messages = {

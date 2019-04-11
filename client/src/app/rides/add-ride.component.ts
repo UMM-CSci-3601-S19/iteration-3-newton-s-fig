@@ -4,6 +4,7 @@ import {FormControl, Validators, FormGroup, FormBuilder} from "@angular/forms";
 import {RideListComponent} from "./ride-list.component";
 import {RideListService} from "./ride-list.service";
 import {Observable} from "rxjs/Observable";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'add-ride.component',
@@ -31,8 +32,10 @@ export class AddRideComponent implements OnInit {
   public nowDate: Date;
 
   // Inject the RideListService into this component.
-  constructor(public rideListService: RideListService, private fb: FormBuilder) {
-
+  constructor(public rideListService: RideListService,
+              private fb: FormBuilder,
+              private titleService: Title) {
+    titleService.setTitle("Offer Ride");
   }
 
   add_ride_validation_messages = {

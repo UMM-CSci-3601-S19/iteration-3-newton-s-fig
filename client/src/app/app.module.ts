@@ -28,6 +28,7 @@ import {AuthService} from "./auth/auth.service";
 import {AuthGuardService} from "./auth/auth-guard.service";
 import {MatChipsModule} from '@angular/material/chips';
 import { MapsComponent } from './maps/maps.component';
+import {RideComponent} from "./rides/ride.component";
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import { MapsComponent } from './maps/maps.component';
     UserComponent,
 
     AddRideComponent,
+    RideComponent,
     LoginComponent,
     SignupComponent,
     MapsComponent
