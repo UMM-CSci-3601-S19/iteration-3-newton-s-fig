@@ -15,10 +15,18 @@ body {
   top: 50% !important;
 }
 
+@media only screen and (max-height: 810px) {
+  #filterButton {
+    top: 125px !important;
+  }
+  #add-ride-button {
+    top: 225px !important;
+  }
+}
+
 @media only screen and (min-width: 956px) {
   #filterButton, #add-ride-button {
     transform: scale(1.5);
-    position: relative !important;
   }
 
   #filterButton{
@@ -74,13 +82,6 @@ body {
   }
 }
 
-@media only screen and (max-height: 900px) {
-  #add-ride-button {
-    margin-top: 10px;
-    margin-bottom: 10px !important;
-  }
-
-}
 /* Time div */
 .time {
   position: absolute;
