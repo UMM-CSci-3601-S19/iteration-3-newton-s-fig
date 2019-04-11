@@ -1,6 +1,9 @@
-#hamburger-button {
+.lean-menu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
   position: fixed;
-  top: 10px;
   left: 10px;
   z-index: 100;
 }

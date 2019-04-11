@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,8 @@ export class AppComponent {
     location.reload();
   }
 
-  constructor() {
+  constructor(private titleService: Title) {
+    titleService.setTitle("MoRide");
 
       if(localStorage.getItem('user')){
         if(localStorage.getItem('user')=="null"){
