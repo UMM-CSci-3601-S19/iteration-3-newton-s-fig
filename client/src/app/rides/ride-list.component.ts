@@ -22,9 +22,9 @@ export class RideListComponent implements OnInit {
   public nowDate = new Date;
 
   //map variables
-  public latitude: number = 45.5919;
-  public longitude: number = -95.9189;
-  public mapType: string = "roadmap";
+  // public latitude: number = 45.5919;
+  // public longitude: number = -95.9189;
+  // public mapType: string = "roadmap";
 
 
   // Variables used for filtering

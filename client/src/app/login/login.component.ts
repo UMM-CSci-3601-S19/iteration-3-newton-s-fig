@@ -25,6 +25,12 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
 
+  //Map variables
+  public latitude: number = 45.5919;
+  public longitude: number = -95.9189;
+  public mapType: string = "roadmap";
+  public zoom: number = 7;
+
   constructor(private userListService: UserListService, private fb: FormBuilder, private router: Router) {
 
   }
