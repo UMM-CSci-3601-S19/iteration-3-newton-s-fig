@@ -1,6 +1,8 @@
 <title>MoRide - Add Rides</title>
+
 <div layout-gt-sm="row">
   <div flex-gt-sm="40" flex-offset-gt-sm="30">
+    <app-maps [mapHeight]="400"></app-maps>
     <form [formGroup]="addRideForm">
       <mat-card class="addARide">
 
@@ -89,5 +91,6 @@
 
       </mat-card>
     </form>
+    <app-maps [mapHeight]="400"></app-maps>
   </div>
 </div>

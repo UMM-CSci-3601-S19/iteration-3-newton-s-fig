@@ -27,6 +27,7 @@ import {SignupComponent} from "./signup/signup.component";
 import {AuthService} from "./auth/auth.service";
 import {AuthGuardService} from "./auth/auth-guard.service";
 import {MatChipsModule} from '@angular/material/chips';
+import { MapsComponent } from './maps/maps.component';
 
 @NgModule({
   imports: [
@@ -48,7 +49,8 @@ import {MatChipsModule} from '@angular/material/chips';
 
     AddRideComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    MapsComponent
 
   ],
   providers: [
