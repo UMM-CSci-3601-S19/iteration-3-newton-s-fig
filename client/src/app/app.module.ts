@@ -23,10 +23,12 @@ import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {LoginComponent} from "./login/login.component";
 import {SignupComponent} from "./signup/signup.component";
-
+import {mapComponent} from "./google_maps/map.component";
 import {AuthService} from "./auth/auth.service";
 import {AuthGuardService} from "./auth/auth-guard.service";
+
 import {MatChipsModule} from '@angular/material/chips';
+import {AgmCoreModule} from "@agm/core";
 
 @NgModule({
   imports: [
@@ -36,20 +38,18 @@ import {MatChipsModule} from '@angular/material/chips';
     CustomModule,
     MatCardModule,
     MatDatepickerModule,
-    MatChipsModule
+    MatChipsModule,
+    AgmCoreModule.forRoot({ apiKey: 'AIzaSyASOvzAZFSDKgIGUFhroPxbEkBE6a9LiXc' })
   ],
   declarations: [
     AppComponent,
     HomeComponent,
-
     UserListComponent, RideListComponent,
-
     UserComponent,
-
     AddRideComponent,
     LoginComponent,
-    SignupComponent
-
+    SignupComponent,
+    mapComponent
   ],
   providers: [
     UserListService,RideListService,AuthGuardService,AuthService,
