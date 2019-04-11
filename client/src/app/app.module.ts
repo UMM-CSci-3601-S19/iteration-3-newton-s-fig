@@ -28,6 +28,7 @@ import {AuthService} from "./auth/auth.service";
 import {AuthGuardService} from "./auth/auth-guard.service";
 import {MatChipsModule} from '@angular/material/chips';
 import { MapsComponent } from './maps/maps.component';
+import {MapsSearchComponent} from './mapsSearch/mapsSearch.component';
 import {RideComponent} from "./rides/ride.component";
 import {AgmCoreModule, MapsAPILoader} from "@agm/core";
 
@@ -41,7 +42,8 @@ import {AgmCoreModule, MapsAPILoader} from "@agm/core";
     MatDatepickerModule,
     MatChipsModule,
     AgmCoreModule.forRoot({
-      apiKey: "AIzaSyCSlf2Tw0r3e_oud87Phtzc_afZfFphM6Q"
+      apiKey: "AIzaSyCSlf2Tw0r3e_oud87Phtzc_afZfFphM6Q",
+      libraries: ["places"]
     })
   ],
   declarations: [
@@ -56,7 +58,8 @@ import {AgmCoreModule, MapsAPILoader} from "@agm/core";
     RideComponent,
     LoginComponent,
     SignupComponent,
-    MapsComponent
+    MapsComponent,
+    MapsSearchComponent
 
   ],
   providers: [
