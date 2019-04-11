@@ -26,7 +26,7 @@ body {
   top: 50% !important;
 }
 
-@media only screen and (max-height: 810px) {
+@media only screen and (min-width: 957px) {
   #filterButton {
     top: 125px !important;
   }
