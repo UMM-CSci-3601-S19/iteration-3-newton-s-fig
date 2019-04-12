@@ -2,7 +2,7 @@ import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core'
 import { FormControl } from "@angular/forms";
 import { MapsAPILoader } from '@agm/core';
 
-declare var google: any;
+declare var google;
 
 @Component({
   selector: 'app-mapsSearch',
@@ -26,8 +26,8 @@ export class MapsSearchComponent {
   ngOnInit() {
     //set google maps defaults
     this.zoom = 4;
-    this.latitude = 39.8282;
-    this.longitude = -98.5795;
+    this.latitude = 45.5919;
+    this.longitude = -95.9189;
 
     //create search FormControl
     this.searchControl = new FormControl();
