@@ -1,6 +1,7 @@
 import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from "@angular/forms";
 import { MapsAPILoader } from '@agm/core';
+import {} from 'googlemaps';
 
 declare var google;
 
@@ -25,7 +26,7 @@ export class MapsSearchComponent {
 
   ngOnInit() {
     //set google maps defaults
-    this.zoom = 4;
+    this.zoom = 14;
     this.latitude = 45.5919;
     this.longitude = -95.9189;
 
@@ -38,7 +39,7 @@ export class MapsSearchComponent {
     //load Places Autocomplete
     this.mapsAPILoader.load().then(() => {
       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["address"]
+        types: []
       });
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
