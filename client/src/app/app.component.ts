@@ -19,7 +19,7 @@ export class AppComponent {
     location.reload();
   }
 
-  constructor(private titleService: Title) {
+  constructor(public titleService: Title) {
     titleService.setTitle("MoRide");
 
       if(localStorage.getItem('user')){
