@@ -28,6 +28,7 @@ import {AuthService} from "./auth/auth.service";
 import {AuthGuardService} from "./auth/auth-guard.service";
 import {MatChipsModule} from '@angular/material/chips';
 import {RideComponent} from "./rides/ride.component";
+import {FilterComponent} from "./filter/filter.component";
 
 @NgModule({
   imports: [
@@ -51,6 +52,7 @@ import {RideComponent} from "./rides/ride.component";
     RideComponent,
     LoginComponent,
     SignupComponent,
+    FilterComponent
 
   ],
   providers: [
@@ -60,7 +62,8 @@ import {RideComponent} from "./rides/ride.component";
   entryComponents: [
     AddRideComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    FilterComponent
   ],
   bootstrap: [AppComponent]
 })
