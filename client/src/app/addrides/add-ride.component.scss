@@ -1,0 +1,50 @@
+#main {
+  text-align: center;
+  margin: 0px;
+}
+
+.steps {
+  margin: 2px;
+  padding: 2px;
+}
+
+#container {
+
+
+}
+#steppercontainer {
+  margin: 0px;
+  padding-right: 20px;
+  background-color: transparent;
+}
+
+input {
+  margin-top: 5px;
+  border-radius: 7px;
+  text-align: center;
+  height: 30px;
+
+}
+.nextButton {
+  float:right;
+  display: flex;
+}
+.previousButton {
+  float: left;
+  display: flex;
+
+}
+button {
+  padding: 0px;
+
+}
+#inputpart {
+  position: relative;
+}
+
+#map {
+  position: absolute;
+}
+mat-datepicker-toggle {
+  color: #421914;
+}
