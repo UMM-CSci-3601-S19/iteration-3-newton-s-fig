@@ -6,7 +6,7 @@ import {CovalentLayoutModule, CovalentStepsModule, CovalentCommonModule /*, any 
 import {
   MatListModule, MatButtonModule, MatCardModule, MatIconModule,
   MatInputModule, MatMenuModule, MatSidenavModule, MatToolbarModule,
-  MatExpansionModule, MatTooltipModule, MatDialogModule, MAT_DATE_LOCALE,
+  MatExpansionModule, MatTooltipModule, MatDialogModule, MAT_DATE_LOCALE,MatStepperModule
 } from '@angular/material';
 
 //michael test 3/11/19 from angular-material's datepicker doc
@@ -43,7 +43,8 @@ const MATERIAL_MODULES: any[] = [
   MatTooltipModule,
   MatDialogModule,
   MatNativeDateModule,
-  MatDatepickerModule
+  MatDatepickerModule,
+  MatStepperModule
 ];
 
 const COVALENT_MODULES: any[] = [
