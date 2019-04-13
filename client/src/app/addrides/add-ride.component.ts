@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Ride} from '../rides/ride';
-import {FormControl, Validators, FormGroup, FormBuilder} from "@angular/forms";
+import {FormControl, Validators, FormGroup, FormBuilder, AbstractControl} from "@angular/forms";
 import {RideListComponent} from "../rides/ride-list.component";
 import {RideListService} from "../rides/ride-list.service";
 import {Observable} from "rxjs/Observable";
@@ -10,7 +10,7 @@ import {Title} from "@angular/platform-browser";
   selector: 'add-ride.component',
   templateUrl: 'add-ride.component.html',
   styleUrls: ['./add-ride.component.scss'],
-  providers: [ RideListComponent],
+  providers: [RideListComponent],
 })
 
 export class AddRideComponent implements OnInit {
@@ -67,7 +67,8 @@ export class AddRideComponent implements OnInit {
   }
 
   addRide(): void {
-    const newRide: Ride = {_id: '',
+    const newRide: Ride = {
+      _id: '',
       driver: this.rideDriver,
       notes: this.rideNotes,
       seatsAvailable: Number(this.rideSeats),
@@ -105,35 +106,59 @@ export class AddRideComponent implements OnInit {
     }
   };
 
+  steps =[
+    {label: 'Confrim your name', content: 'Name'},
+    {label: 'Confrim your seats', content: '0'},
+    {label: 'Confrim your starting point', content: 'Your location'},
+    {label: 'Confrim your destination', content: 'Going place'},
+    {label: 'Confrim your departure', content: '1/1/1'},
+    {label: 'Confrim your time', content: '1:1AM'},
+    {label: 'Confrim your note', content: ''},
+
+  ]
+
+  get formArray(): AbstractControl | null { return this.addRideForm.get('formArray'); }
   createForm() {
     this.addRideForm = this.fb.group({
-      driver: new FormControl('driver', Validators.compose([
-        Validators.required,
-        Validators.minLength(2),
-        Validators.pattern('^[A-Za-z0-9\\s]+[A-Za-z0-9\\s]+$(\\.0-9+)?')
-      ])),
+      formArray: this.fb.array([
+        this.fb.group({
+          driver: ['driver', Validators.compose([
+            Validators.required,
+            Validators.minLength(2),
+            Validators.pattern('^[A-Za-z0-9\\s]+[A-Za-z0-9\\s]+$(\\.0-9+)?')
+          ])]
+        }),
 
-      seatsAvailable: new FormControl('seatsAvailable', Validators.compose([
-        Validators.required,
-        Validators.min(1),
-        Validators.max(12)
-      ])),
+        this.fb.group({
+          seatsAvailable: ['seatsAvailable', Validators.compose([
+            Validators.required,
+            Validators.min(1),
+            Validators.max(12)
+          ])]
+        }),
 
-      origin: new FormControl('origin', Validators.compose([
-        Validators.required
-      ])),
-
-      destination: new FormControl('destination', Validators.compose([
-        Validators.required
-      ])),
-
-      departureDate: new FormControl('departureDate', Validators.compose([
-        Validators.required
-      ])),
-
-      departureTime: new FormControl('departureTime'),
-
-      notes: new FormControl('notes')
+        this.fb.group({
+          origin: ['origin', Validators.compose([
+            Validators.required
+          ])]
+        }),
+        this.fb.group({
+          destination: ['destination', Validators.compose([
+            Validators.required
+          ])]
+        }),
+        this.fb.group({
+          departureDate: ['departureDate', Validators.compose([
+            Validators.required
+          ])]
+        }),
+        this.fb.group({
+          departureTime: ['departureTime']
+        }),
+        this.fb.group({
+          notes: ['notes']
+        })
+      ])
     })
   }
 
