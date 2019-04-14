@@ -61,7 +61,7 @@ import {AgmCoreModule, MapsAPILoader} from "@agm/core";
     RideComponent,
     LoginComponent,
     SignupComponent,
-    MapsComponent
+    MapsComponent,
 
     ChatComponent,
     MessageComponent,
