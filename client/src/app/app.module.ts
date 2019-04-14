@@ -21,6 +21,11 @@ import {AddRideComponent} from './addrides/add-ride.component';
 
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+
+import { ChatComponent } from './chat/chat.component';
+import { MessageComponent } from './message/message.component';
+import { ChatService } from './chat/chat-service';
+
 import {LoginComponent} from "./login/login.component";
 import {SignupComponent} from "./signup/signup.component";
 
@@ -56,12 +61,16 @@ import {AgmCoreModule, MapsAPILoader} from "@agm/core";
     RideComponent,
     LoginComponent,
     SignupComponent,
-    MapsComponent
+    MapsComponent,
+
+    ChatComponent,
+    MessageComponent,
 
   ],
   providers: [
     UserListService,
     RideListService,
+    ChatService,
     AuthGuardService,
     AuthService,
     {provide: APP_BASE_HREF, useValue: '/'},
@@ -69,7 +78,8 @@ import {AgmCoreModule, MapsAPILoader} from "@agm/core";
   entryComponents: [
     AddRideComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ChatComponent
   ],
   bootstrap: [AppComponent]
 })
