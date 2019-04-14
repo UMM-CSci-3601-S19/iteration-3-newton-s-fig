@@ -1,8 +1,8 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Ride} from './ride';
+import {Ride} from '../rides/ride';
 import {FormControl, Validators, FormGroup, FormBuilder} from "@angular/forms";
-import {RideListComponent} from "./ride-list.component";
-import {RideListService} from "./ride-list.service";
+import {RideListComponent} from "../rides/ride-list.component";
+import {RideListService} from "../rides/ride-list.service";
 import {Observable} from "rxjs/Observable";
 import {Title} from "@angular/platform-browser";
 
@@ -100,7 +100,7 @@ export class AddRideComponent implements OnInit {
       this.refreshRides();
       this.refreshRides();
       this.refreshRides();
-    //This is the only solution to a refresh-on-addride
+      //This is the only solution to a refresh-on-addride
       // we were having that worked consistently, it's hacky but seems to work well.
     }
   };
@@ -159,5 +159,5 @@ export class AddRideComponent implements OnInit {
     this.createForm();
   }
 
-  }
+}
 
