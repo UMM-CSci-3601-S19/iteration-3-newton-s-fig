@@ -10,6 +10,7 @@
         <small>{{ride.seatsAvailable}} SEATS LEFT</small>
       </div>
     </mat-card-title>
+    <button mat-button id="open-chat-button" (click)="openChat(ride._id.$oid)"><mat-icon>chat</mat-icon></button>
   </mat-card-header>
 
   <mat-card-content>

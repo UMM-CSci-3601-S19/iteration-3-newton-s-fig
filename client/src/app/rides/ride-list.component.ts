@@ -31,20 +31,11 @@ export class RideListComponent implements OnInit {
   public utcDate: Date;
   // Inject the RideListService into this component.
   constructor(public rideListService: RideListService,
-              public dialog: MatDialog,
               public chatService: ChatService,
               private titleService: Title) {
  //   rideListService.addListener(this);
     titleService.setTitle("Upcoming Rides");
     chatService.connectStream();
-  }
-
-  openChat(rideId: string): void {
-    const dialogRef = this.dialog.open(ChatComponent, {
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-    });
-    dialogRef.componentInstance.feedId = rideId;
   }
 
   /**
