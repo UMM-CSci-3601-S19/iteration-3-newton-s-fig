@@ -6,6 +6,7 @@ import {ChatComponent} from "../chat/chat.component";
 import {MatDialog} from '@angular/material';
 import {ChatService} from "../chat/chat-service";
 
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'ride-list-component',
@@ -21,6 +22,7 @@ export class RideListComponent implements OnInit {
   public array:Ride[];
   public time: Date;
   public timeString: string;
+  public nowDate = new Date;
 
   // Variables used for filtering
   public rideDateObject: string;
@@ -30,7 +32,10 @@ export class RideListComponent implements OnInit {
   // Inject the RideListService into this component.
   constructor(public rideListService: RideListService,
               public dialog: MatDialog,
-              public chatService: ChatService) {
+              public chatService: ChatService,
+              private titleService: Title) {
+ //   rideListService.addListener(this);
+    titleService.setTitle("Upcoming Rides");
     chatService.connectStream();
   }
 
@@ -59,8 +64,10 @@ export class RideListComponent implements OnInit {
     this.filteredRides = this.rides;
     this.unfilteredRides = <Ride[]>{};
     this.date = new Date(searchDate);
-    console.log(this.date);
-    console.log(this.date.getHours());
+    // console.log(+new Date(searchDate) - +new Date());
+    // console.log("Subtracted " + Math.abs(+new Date(searchDate) - +new Date()));
+    // console.log(this.date);
+    // console.log(this.date.getHours());
     var nowDate = new Date();
     nowDate.setHours(nowDate.getHours() - 8);
     // this.utcDate = new Date(Date.UTC(this.date.getUTCFullYear(), this.date.getUTCMonth(), this.date.getUTCDate(),
@@ -88,7 +95,8 @@ export class RideListComponent implements OnInit {
         return (new Date(ride.dateObject).getTime() >= nowDate.getTime());
       });
 
-      this.unfilteredRides = this.unfilteredRides.sort(function(a,b) {return +new Date(a.dateObject) - +new Date(b.dateObject)
+      this.unfilteredRides = this.unfilteredRides.sort(function(a,b) {
+        return Math.abs((+new Date(a.dateObject) - +new Date(searchDate))) - Math.abs((+new Date(b.dateObject) - +new Date(searchDate)));
       });
       console.log(this.unfilteredRides);
     }
@@ -109,6 +117,11 @@ export class RideListComponent implements OnInit {
     }
     return ridesText;
 }
+
+  todaysDate(): Date {
+    this.nowDate = new Date();
+    return this.nowDate;
+  }
 
 
   refreshRides(): Observable<Ride[]> {

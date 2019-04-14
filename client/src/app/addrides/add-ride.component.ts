@@ -1,9 +1,10 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {Ride} from './ride';
+import {Ride} from '../rides/ride';
 import {FormControl, Validators, FormGroup, FormBuilder} from "@angular/forms";
-import {RideListComponent} from "./ride-list.component";
-import {RideListService} from "./ride-list.service";
+import {RideListComponent} from "../rides/ride-list.component";
+import {RideListService} from "../rides/ride-list.service";
 import {Observable} from "rxjs/Observable";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'add-ride.component',
@@ -28,10 +29,13 @@ export class AddRideComponent implements OnInit {
   public rideDepartureDate: string;
   public rideDepartureTime: string;
   public rideDateObject: string;
+  public nowDate: Date;
 
   // Inject the RideListService into this component.
-  constructor(public rideListService: RideListService, private fb: FormBuilder) {
-
+  constructor(public rideListService: RideListService,
+              private fb: FormBuilder,
+              private titleService: Title) {
+    titleService.setTitle("Offer Ride");
   }
 
   add_ride_validation_messages = {
@@ -55,6 +59,12 @@ export class AddRideComponent implements OnInit {
       {type: 'required', message: 'Destination is required'}
     ]
   };
+
+
+  todaysDate(): Date {
+    this.nowDate = new Date();
+    return this.nowDate;
+  }
 
   addRide(): void {
     const newRide: Ride = {_id: '',
@@ -90,7 +100,7 @@ export class AddRideComponent implements OnInit {
       this.refreshRides();
       this.refreshRides();
       this.refreshRides();
-    //This is the only solution to a refresh-on-addride
+      //This is the only solution to a refresh-on-addride
       // we were having that worked consistently, it's hacky but seems to work well.
     }
   };
@@ -149,5 +159,5 @@ export class AddRideComponent implements OnInit {
     this.createForm();
   }
 
-  }
+}
 

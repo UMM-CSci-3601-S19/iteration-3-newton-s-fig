@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserListService} from './user-list.service';
 import {User} from './user';
 import {Observable} from 'rxjs/Observable';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'user-list-component',
@@ -36,7 +37,9 @@ export class UserListComponent implements OnInit {
   private user: User;
 
   // Inject the UserListService into this component.
-  constructor(public userListService: UserListService) {
+  constructor(public userListService: UserListService,
+              private titleService: Title) {
+    titleService.setTitle("Profile");
 
     this.exampleUser = 'Albert Einstein';
     this.exampleEmail = 'Albert.Einstein@nointernet.yet';

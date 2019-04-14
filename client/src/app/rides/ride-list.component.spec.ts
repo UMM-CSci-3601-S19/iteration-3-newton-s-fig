@@ -8,6 +8,7 @@ import {CustomModule} from '../custom.module';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
+import {RideComponent} from "./ride.component";
 import {ChatService} from "../chat/chat-service";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {HttpClient} from "@angular/common/http";
@@ -63,7 +64,7 @@ describe('Ride list', () => {
 
     TestBed.configureTestingModule({
       imports: [CustomModule, HttpClientTestingModule],
-      declarations: [RideListComponent],
+      declarations: [RideListComponent, RideComponent],
       providers: [
         {provide: RideListService, useValue: rideListServiceStub},
         ChatService
@@ -176,7 +177,7 @@ describe('Misbehaving Ride List', () => {
 
     TestBed.configureTestingModule({
       imports: [FormsModule, CustomModule, HttpClientTestingModule],
-      declarations: [RideListComponent],
+      declarations: [RideListComponent, RideComponent],
       providers: [
         {provide: RideListService, useValue: rideListServiceStub},
         ChatService

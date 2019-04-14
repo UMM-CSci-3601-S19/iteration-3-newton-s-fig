@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-root',
@@ -6,7 +7,7 @@ import {Component} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Mongo-Angular-Spark lab';
+  title = 'MoRide';
 
 
   public text: string;
@@ -18,7 +19,8 @@ export class AppComponent {
     location.reload();
   }
 
-  constructor() {
+  constructor(public titleService: Title) {
+    titleService.setTitle("MoRide");
 
       if(localStorage.getItem('user')){
         if(localStorage.getItem('user')=="null"){
@@ -32,13 +34,5 @@ export class AppComponent {
       else{
         this.text = "Not logged in.";
       }
-
-
   }
-
-
-
-
-
-
 }

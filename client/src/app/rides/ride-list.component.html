@@ -1,21 +1,19 @@
-<title>MoRide - Upcoming Rides</title>
-
-<button mat-fab id="filterButton" class="filter-fab" matTooltip="Filter by Date!" matTooltipPosition="left"
-        (click)="picker.open()">
-  <mat-icon class="md-24" aria-label="Filter">assignment</mat-icon>
-</button>
-<button mat-fab
-        id="add-ride-button"
-        routerLink="/addride"
-        matTooltip="Add a Ride!"
-        matTooltipPosition="left"
-        color="primary"
-        type="button">
-  <mat-icon class="plus-icon" aria-label="Add Ride">add_circle_outline</mat-icon>
-</button>
+<!--<button mat-fab id="filterButton" class="filter-fab" matTooltip="Filter by Date!" matTooltipPosition="left"-->
+        <!--(click)="picker.open()">-->
+  <!--<mat-icon class="md-24" aria-label="Filter">assignment</mat-icon>-->
+<!--</button>-->
+<!--<button mat-fab-->
+        <!--id="add-ride-button"-->
+        <!--routerLink="/addride"-->
+        <!--matTooltip="Add a Ride!"-->
+        <!--matTooltipPosition="left"-->
+        <!--color="primary"-->
+        <!--type="button">-->
+  <!--<mat-icon class="plus-icon" aria-label="Add Ride">add_circle_outline</mat-icon>-->
+<!--</button>-->
 
 <mat-form-field style="display: none">
-  <input id="datePickerField" matInput [matDatepicker]="picker" (ngModelChange)="refreshRides()"
+  <input id="datePickerField" [min]="todaysDate()" matInput [matDatepicker]="picker" (ngModelChange)="refreshRides()"
          placeholder="Filter by Departure Date" [(ngModel)]="rideDateObject">
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker ></mat-datepicker>
@@ -23,83 +21,17 @@
 
 
 <div id="ridesWrapper" layout-gt-sm="row">
-  <div flex-gt-sm="50" flex-offset-gt-sm="25">
-    <h1 id="ride-list-title">Rides</h1>
+  <div flex-gt-sm="40" flex-offset-gt-sm="30">
     <h2 id="filteredEmpty">{{noRidesFound()}}</h2>
     <div *ngIf="filteredRides; else ridesError">
-      <mat-card #elem class="rides" [id]="ride.driver" *ngFor="let ride of this.filteredRides">
-        <mat-card-header class="ride-title">
-          <mat-card-title>
-            <div class="departure-time">
-              <span *ngIf="ride.departureDate">{{ride.departureDate}}</span>
-              <span *ngIf="ride.departureDate && ride.departureTime"> at </span>
-              <span *ngIf="ride.departureTime">{{ride.departureTime}}</span>
-            </div>
-            <div class="seats-left">
-              <small>{{ride.seatsAvailable}} SEATS LEFT</small>
-            </div>
-          </mat-card-title>
-          <button mat-button id="open-chat-button" (click)="openChat(ride._id.$oid)"><mat-icon>chat</mat-icon></button>
-        </mat-card-header>
-
-        <mat-card-content>
-          <div class="route">
-            <div class="ride-info origin">{{ride.origin}}</div>
-            <mat-icon>play_arrow</mat-icon>
-            <div class="ride-info destination">{{ride.destination}}</div>
-          </div>
-
-          <div id="ride-info-driver-id" class="ride-info driver">
-            {{ride.driver}} is offering this ride
-          </div>
-
-          <mat-divider [inset]="true" *ngIf="ride.notes"></mat-divider>
-
-          <div *ngIf="ride.notes" class="ride-info notes">
-            <small>DRIVER NOTES:</small>
-            <div>{{ride.notes}}</div>
-          </div>
-        </mat-card-content>
-      </mat-card>
+        <app-ride *ngFor="let r of filteredRides" [ride]="r"></app-ride>
     </div>
     <br/><br/><br/>
 
     <div class="wrapper">
       <div *ngIf="array;">
         <h2>Here are some rides close to the date you entered:</h2>
-        <mat-card #elem class="unfilteredRides" [id]="ride.driver" *ngFor="let ride of this.unfilteredRides">
-          <mat-card-header class="ride-title">
-            <mat-card-title>
-              <div class="departure-time">
-                <span *ngIf="ride.departureDate">{{ride.departureDate}}</span>
-                <span *ngIf="ride.departureDate && ride.departureTime"> at </span>
-                <span *ngIf="ride.departureTime">{{ride.departureTime}}</span>
-              </div>
-              <div class="seats-left">
-                <small>{{ride.seatsAvailable}} SEATS LEFT</small>
-              </div>
-            </mat-card-title>
-          </mat-card-header>
-
-          <mat-card-content>
-            <div class="route">
-              <div class="ride-info origin">{{ride.origin}}</div>
-              <mat-icon>play_arrow</mat-icon>
-              <div class="ride-info destination">{{ride.destination}}</div>
-            </div>
-
-            <div id="ride-info-driver-id2" class="ride-info driver">
-              {{ride.driver}} is offering this ride
-            </div>
-
-            <mat-divider [inset]="true" *ngIf="ride.notes"></mat-divider>
-
-            <div *ngIf="ride.notes" class="ride-info notes">
-              <small>DRIVER NOTES:</small>
-              <div>{{ride.notes}}</div>
-            </div>
-          </mat-card-content>
-        </mat-card>
+        <app-ride #elem class="unfilteredRides" *ngFor="let r of unfilteredRides" [ride]="r"></app-ride>
       </div>
     </div>
 

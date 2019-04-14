@@ -17,7 +17,7 @@ import {APP_BASE_HREF} from '@angular/common';
 
 import {CustomModule} from './custom.module';
 
-import {AddRideComponent} from './rides/add-ride.component';
+import {AddRideComponent} from './addrides/add-ride.component';
 
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
@@ -32,6 +32,7 @@ import {SignupComponent} from "./signup/signup.component";
 import {AuthService} from "./auth/auth.service";
 import {AuthGuardService} from "./auth/auth-guard.service";
 import {MatChipsModule} from '@angular/material/chips';
+import {RideComponent} from "./rides/ride.component";
 
 @NgModule({
   imports: [
@@ -52,6 +53,7 @@ import {MatChipsModule} from '@angular/material/chips';
     UserComponent,
 
     AddRideComponent,
+    RideComponent,
     LoginComponent,
     SignupComponent,
 

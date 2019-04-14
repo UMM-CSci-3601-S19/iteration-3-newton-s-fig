@@ -1,10 +1,7 @@
-<title>MoRide - Add Rides</title>
 <div layout-gt-sm="row">
   <div flex-gt-sm="40" flex-offset-gt-sm="30">
     <form [formGroup]="addRideForm">
       <mat-card class="addARide">
-
-        <mat-card-title id="ride-add-title" class="rideAddTitle">Add a Ride</mat-card-title>
         <mat-card-content class="addARideContent">
 
           <mat-form-field>
@@ -60,10 +57,10 @@
           <br/>
 
           <mat-form-field>
-            <input class="inputRideInfo" id="departureDateField" matInput [matDatepicker]="picker"
+            <input class="inputRideInfo" id="departureDateField" matInput [min]="todaysDate()" [matDatepicker]="picker"
                    placeholder="Choose Departure Date" [(ngModel)]="rideDepartureDate" formControlName="departureDate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-datepicker id="calendar" #picker></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field>
