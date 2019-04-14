@@ -64,17 +64,25 @@ describe('Ride list', () => {
     TestBed.configureTestingModule({
       imports: [CustomModule, HttpClientTestingModule],
       declarations: [RideListComponent],
-      providers: [{provide: RideListService, useValue: rideListServiceStub}]
+      providers: [
+        {provide: RideListService, useValue: rideListServiceStub},
+        ChatService
+      ]
     });
   });
 
   beforeEach(async(() => {
+    const testUser = {
+      _id: "",
+      name: "Test User",
+      phone: "000-000-0000",
+      email: "test@example.com",
+    };
+    localStorage.setItem("user", JSON.stringify(testUser));
+
     TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(RideListComponent);
       rideList = fixture.componentInstance;
-
-      rideList.chatService = new ChatService(TestBed.get(HttpClient));
-
       fixture.detectChanges();
     });
   }));
@@ -169,7 +177,10 @@ describe('Misbehaving Ride List', () => {
     TestBed.configureTestingModule({
       imports: [FormsModule, CustomModule, HttpClientTestingModule],
       declarations: [RideListComponent],
-      providers: [{provide: RideListService, useValue: rideListServiceStub}]
+      providers: [
+        {provide: RideListService, useValue: rideListServiceStub},
+        ChatService
+      ]
     });
   });
 
@@ -177,9 +188,6 @@ describe('Misbehaving Ride List', () => {
     TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(RideListComponent);
       rideList = fixture.componentInstance;
-
-      rideList.chatService = new ChatService(TestBed.get(HttpClient));
-
       fixture.detectChanges();
     });
   }));
