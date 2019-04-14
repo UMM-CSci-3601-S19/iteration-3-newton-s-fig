@@ -27,7 +27,9 @@ import {SignupComponent} from "./signup/signup.component";
 import {AuthService} from "./auth/auth.service";
 import {AuthGuardService} from "./auth/auth-guard.service";
 import {MatChipsModule} from '@angular/material/chips';
+import { MapsComponent } from './maps/maps.component';
 import {RideComponent} from "./rides/ride.component";
+import {AgmCoreModule, MapsAPILoader} from "@agm/core";
 
 @NgModule({
   imports: [
@@ -37,7 +39,10 @@ import {RideComponent} from "./rides/ride.component";
     CustomModule,
     MatCardModule,
     MatDatepickerModule,
-    MatChipsModule
+    MatChipsModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyCSlf2Tw0r3e_oud87Phtzc_afZfFphM6Q"
+    })
   ],
   declarations: [
     AppComponent,
@@ -51,10 +56,14 @@ import {RideComponent} from "./rides/ride.component";
     RideComponent,
     LoginComponent,
     SignupComponent,
+    MapsComponent
 
   ],
   providers: [
-    UserListService,RideListService,AuthGuardService,AuthService,
+    UserListService,
+    RideListService,
+    AuthGuardService,
+    AuthService,
     {provide: APP_BASE_HREF, useValue: '/'},
   ],
   entryComponents: [
