@@ -5,6 +5,7 @@ import {MessageComponent} from "../message/message.component";
 import {CustomModule} from "../custom.module";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {ChatService} from "./chat-service";
+import {MockChatService} from "./mock-chat-service";
 
 describe('ChatComponent', () => {
   let component: ChatComponent;
@@ -14,15 +15,12 @@ describe('ChatComponent', () => {
     TestBed.configureTestingModule({
       imports: [ CustomModule, HttpClientTestingModule ],
       declarations: [ ChatComponent, MessageComponent ],
-      providers: [ ChatService ]
+      providers: [ {provide: ChatService, useClass: MockChatService} ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChatComponent);
-    component = fixture.componentInstance;
-
     const testUser = {
       _id: "",
       name: "Test User",
@@ -31,10 +29,8 @@ describe('ChatComponent', () => {
     };
     localStorage.setItem("user", JSON.stringify(testUser));
 
-    component.chatService.client = {
-      feed: () => {},
-    };
-
+    fixture = TestBed.createComponent(ChatComponent);
+    component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
