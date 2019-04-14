@@ -14,9 +14,6 @@ describe('MessageComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MessageComponent);
-    component = fixture.componentInstance;
-
     const testUser = {
       _id: "",
       name: "Test User",
@@ -24,6 +21,9 @@ describe('MessageComponent', () => {
       email: "test@example.com",
     };
     localStorage.setItem("user", JSON.stringify(testUser));
+
+    fixture = TestBed.createComponent(MessageComponent);
+    component = fixture.componentInstance;
 
     component.message = {
       from: testUser,
