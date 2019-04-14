@@ -186,6 +186,14 @@ describe('Misbehaving Ride List', () => {
   });
 
   beforeEach(async(() => {
+    const testUser = {
+      _id: "",
+      name: "Test User",
+      phone: "000-000-0000",
+      email: "test@example.com",
+    };
+    localStorage.setItem("user", JSON.stringify(testUser));
+
     TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(RideListComponent);
       rideList = fixture.componentInstance;
