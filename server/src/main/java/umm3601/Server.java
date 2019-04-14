@@ -6,6 +6,8 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 import spark.utils.IOUtils;
+import umm3601.chat.ChatController;
+import umm3601.chat.ChatRequestHandler;
 import umm3601.user.UserController;
 import umm3601.user.UserRequestHandler;
 import umm3601.ride.RideController;
@@ -30,6 +32,8 @@ public class Server {
     UserRequestHandler userRequestHandler = new UserRequestHandler(userController);
     RideController rideController = new RideController(database);
     RideRequestHandler rideRequestHandler = new RideRequestHandler(rideController);
+    ChatController chatController = new ChatController(database);
+    ChatRequestHandler chatRequestHandler = new ChatRequestHandler(chatController);
 
     //Configure Spark
     port(serverPort);
@@ -78,6 +82,10 @@ public class Server {
     get("api/rides", rideRequestHandler::getRides);
     get("api/rides/:id", rideRequestHandler::getRideJSON);
     post("api/rides/new", rideRequestHandler::addNewRide);
+
+    // CHAT ENDPOINTS
+    get("api/chat/:id", chatRequestHandler::getChatJSON);
+    post("api/chat/authenticate", chatRequestHandler::authenticateDevUser);
 
     // An example of throwing an unhandled exception so you can see how the
     // Java Spark debugger displays errors like this.
