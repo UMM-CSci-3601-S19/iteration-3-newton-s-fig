@@ -1,10 +1,17 @@
 <div class="container">
   <h1>Search for Rides!</h1>
   <div class="form-group">
-    <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
-           #search [formControl]="searchControl">
+    <mat-form-field style="width:100%">
+      <input matInput placeholder="search for location"
+             autocorrect="off"
+             autocapitalize="off"
+             spellcheck="off"
+             type="text"
+             #search
+             [formControl]="searchControl"
+             [(ngModel)]="mapsSearchInput"
+             (click)="clearInput()">
+    </mat-form-field>
   </div>
-  <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="true" [zoom]="zoom">
-    <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-  </agm-map>
+  <app-maps [lat]="latitude" [lng]="longitude" [mapHeightVH]="40" [markers]="markers"></app-maps>
 </div>
