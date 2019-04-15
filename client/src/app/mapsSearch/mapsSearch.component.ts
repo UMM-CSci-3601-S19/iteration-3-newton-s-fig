@@ -1,7 +1,8 @@
-import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core';
+import {Component, ElementRef, Input, NgZone, OnInit, ViewChild} from '@angular/core';
 import { FormControl } from "@angular/forms";
 import { MapsAPILoader } from '@agm/core';
 import {} from 'googlemaps';
+import {Marker} from "../maps/marker";
 
 declare var google;
 
@@ -10,11 +11,13 @@ declare var google;
   templateUrl: './mapsSearch.component.html',
   styleUrls: ['./mapsSearch.component.css']
 })
-export class MapsSearchComponent {
-  public latitude: number;
-  public longitude: number;
-  public searchControl: FormControl;
-  public zoom: number;
+export class MapsSearchComponent implements OnInit{
+  @Input() latitude: number;
+  @Input() longitude: number;
+  @Input() searchControl: FormControl;
+  @Input() zoom: number;
+  public markers: Marker[];
+  mapsSearchInput: string;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -55,6 +58,13 @@ export class MapsSearchComponent {
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
           this.zoom = 12;
+          let m: Marker = {
+            latitude: this.latitude,
+            longitude: this.longitude,
+            label: ""
+          };
+          this.markers = [];
+          this.markers.push(m);
         });
       });
     });
@@ -68,5 +78,9 @@ export class MapsSearchComponent {
         this.zoom = 12;
       });
     }
+  }
+
+  clearInput() {
+    this.mapsSearchInput = "";
   }
 }
