@@ -21,13 +21,20 @@ import {AddRideComponent} from './addrides/add-ride.component';
 
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+
+import { ChatComponent } from './chat/chat.component';
+import { MessageComponent } from './message/message.component';
+import { ChatService } from './chat/chat-service';
+
 import {LoginComponent} from "./login/login.component";
 import {SignupComponent} from "./signup/signup.component";
 
 import {AuthService} from "./auth/auth.service";
 import {AuthGuardService} from "./auth/auth-guard.service";
 import {MatChipsModule} from '@angular/material/chips';
+import { MapsComponent } from './maps/maps.component';
 import {RideComponent} from "./rides/ride.component";
+import {AgmCoreModule, MapsAPILoader} from "@agm/core";
 
 @NgModule({
   imports: [
@@ -37,7 +44,10 @@ import {RideComponent} from "./rides/ride.component";
     CustomModule,
     MatCardModule,
     MatDatepickerModule,
-    MatChipsModule
+    MatChipsModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyCSlf2Tw0r3e_oud87Phtzc_afZfFphM6Q"
+    })
   ],
   declarations: [
     AppComponent,
@@ -51,16 +61,25 @@ import {RideComponent} from "./rides/ride.component";
     RideComponent,
     LoginComponent,
     SignupComponent,
+    MapsComponent,
+
+    ChatComponent,
+    MessageComponent,
 
   ],
   providers: [
-    UserListService,RideListService,AuthGuardService,AuthService,
+    UserListService,
+    RideListService,
+    ChatService,
+    AuthGuardService,
+    AuthService,
     {provide: APP_BASE_HREF, useValue: '/'},
   ],
   entryComponents: [
     AddRideComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ChatComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -9,6 +9,9 @@ import {CustomModule} from '../custom.module';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
 import {RideComponent} from "./ride.component";
+import {ChatService} from "../chat/chat-service";
+import {HttpClientTestingModule} from "@angular/common/http/testing";
+import {HttpClient} from "@angular/common/http";
 
 describe('Ride list', () => {
 
@@ -60,13 +63,24 @@ describe('Ride list', () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [CustomModule],
-      declarations: [RideListComponent,RideComponent],
-      providers: [{provide: RideListService, useValue: rideListServiceStub}]
+      imports: [CustomModule, HttpClientTestingModule],
+      declarations: [RideListComponent, RideComponent],
+      providers: [
+        {provide: RideListService, useValue: rideListServiceStub},
+        ChatService
+      ]
     });
   });
 
   beforeEach(async(() => {
+    const testUser = {
+      _id: "",
+      name: "Test User",
+      phone: "000-000-0000",
+      email: "test@example.com",
+    };
+    localStorage.setItem("user", JSON.stringify(testUser));
+
     TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(RideListComponent);
       rideList = fixture.componentInstance;
@@ -162,13 +176,24 @@ describe('Misbehaving Ride List', () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [FormsModule, CustomModule],
+      imports: [FormsModule, CustomModule, HttpClientTestingModule],
       declarations: [RideListComponent, RideComponent],
-      providers: [{provide: RideListService, useValue: rideListServiceStub}]
+      providers: [
+        {provide: RideListService, useValue: rideListServiceStub},
+        ChatService
+      ]
     });
   });
 
   beforeEach(async(() => {
+    const testUser = {
+      _id: "",
+      name: "Test User",
+      phone: "000-000-0000",
+      email: "test@example.com",
+    };
+    localStorage.setItem("user", JSON.stringify(testUser));
+
     TestBed.compileComponents().then(() => {
       fixture = TestBed.createComponent(RideListComponent);
       rideList = fixture.componentInstance;
