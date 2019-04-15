@@ -1,28 +1,30 @@
 <mat-expansion-panel #elem class="rides" [id]="ride.driver" hideToggle="true">
   <mat-expansion-panel-header class="ride-title" [collapsedHeight]="'auto'" [expandedHeight]="'auto'">
 
-    <!--<div class="departure-time">-->
-    <!--<span *ngIf="ride.departureDate">{{ride.departureDate}}</span>-->
-    <!--<span *ngIf="ride.departureDate && ride.departureTime"> at </span>-->
-    <!--<span *ngIf="ride.departureTime">{{ride.departureTime}}</span>-->
-    <!--</div>-->
+    <div></div>
+
+
+    <div class="time-date">
+      <span>{{ride.departureDate}}</span>
+      <br>
+      <span>{{ride.departureTime}}</span>
+    </div>
 
     <div class="route">
       <div class="origin">
-      <mat-icon class="origin_circle">panorama_fish_eye</mat-icon>
+      <mat-icon class="origin_icon">panorama_fish_eye</mat-icon>
       <div class="origin_text">
         <div id="origin">{{ride.origin}}</div>
       </div>
       </div>
+      <mat-divider id="divider"></mat-divider>
         <div class="destination">
-      <mat-icon class="destination_circle">panorama_fish_eye</mat-icon>
+      <mat-icon class="destination_icon">navigate_next</mat-icon>
       <div class="destination_text">
         <div id="destination">{{ride.destination}}</div>
       </div>
       </div>
     </div>
-
-
     <!--<button mat-button id="open-chat-button" (click)="openChat(ride._id)"><mat-icon>chat</mat-icon></button>-->
   </mat-expansion-panel-header>
 

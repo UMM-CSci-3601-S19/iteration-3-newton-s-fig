@@ -4,12 +4,17 @@
   border-radius: 6px;
 }
 
-.mat-expansion-panel-header.mat-expanded {
-  background: whitesmoke;
+.mat-expansion-panel-header.mat-expanded:hover {
+  background-color: whitesmoke;
 }
 
+.mat-expansion-panel-header.mat-expanded {
+  background-color: whitesmoke;
+}
+
+
 .mat-expansion-panel:not(.mat-expanded) .mat-expansion-panel-header:not([aria-disabled='true']):hover {
-  background: whitesmoke;
+   background-color: whitesmoke;
 }
 
 #open-chat-button {
@@ -22,7 +27,6 @@
 
  /*Ride card title */
 .ride-title {
-  background: #93CDDB;
   color: black;
   border-radius: 6px;
   white-space: nowrap;
@@ -32,6 +36,7 @@
   position: relative;
   display: block;
   width: 100%;
+  background-color: whitesmoke;
 }
 
 .origin {
@@ -44,41 +49,62 @@
   width: 100%;
 }
 
-.departure-time {
-  color: #fff;
-}
-
-.origin_circle {
+.origin_icon {
   color: black;
 }
 
-.destination_circle {
+.destination_icon {
   color: black;
 }
 
 @media only screen and (max-width: 374px) {
-  .ride-title {
+  .route {
+    border-radius: 0px 6px 6px 0px;
+    text-align: center;
   }
-
-  .rides {
+  .origin {
+    display: flex;
+    flex: 1;
+    left: 10%;
   }
 
   .destination {
+    display: flex;
+    flex: 1;
     left: 10%;
   }
 
-  .origin {
-    left: 10%;
-  }
-
-  .destination_circle, .origin_circle {
+  .destination_icon, .origin_icon {
     transform: scale(0.3);
     left: 10%;
     margin-top: -3px;
   }
 
+  .destination_icon {
+    transform: scale(0.5) !important;
+    margin-top: -2px !important;
+  }
+
   .destination_text, .origin_text {
     font-size: 3vw;
+  }
+
+  .time-date {
+    vertical-align: middle;
+    padding: 8px 8px 4px 8px;
+    display: flex;
+    flex-direction: column;
+    float: left;
+    text-align: center;
+    font-size: 4vw;
+    background-color: #7cb518;
+    color: #ffffff;
+    border-radius: 6px 0px 0px 6px;
+    font-weight: bold;
+  }
+  #divider {
+
+    margin: 0px 10px 0px 10px;
 
   }
 }
@@ -97,3 +123,4 @@
     float: left;
   }
 }
+
