@@ -1,4 +1,4 @@
-<mat-expansion-panel #elem class="rides" [id]="ride.driver">
+<mat-expansion-panel #elem class="rides" [id]="ride.driver" hideToggle="true">
   <mat-expansion-panel-header class="ride-title" [collapsedHeight]="'auto'" [expandedHeight]="'auto'">
 
     <!--<div class="departure-time">-->
@@ -14,7 +14,6 @@
         <div id="origin">{{ride.origin}}</div>
       </div>
       </div>
-      <div class="three_circles"><img src="https://img.icons8.com/ios/50/000000/menu-2-filled.png"></div>
         <div class="destination">
       <mat-icon class="destination_circle">panorama_fish_eye</mat-icon>
       <div class="destination_text">
