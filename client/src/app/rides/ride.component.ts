@@ -6,7 +6,7 @@ import {ChatComponent} from "../chat/chat.component";
 @Component({
   selector: 'app-ride',
   templateUrl: './ride.component.html',
-  styleUrls: ['./ride.component.css']
+  styleUrls: ['./ride.component.scss']
 })
 export class RideComponent implements OnInit {
 

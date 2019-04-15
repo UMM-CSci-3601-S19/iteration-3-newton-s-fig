@@ -1,34 +1,48 @@
-<mat-card #elem class="rides" [id]="ride.driver">
-  <mat-card-header class="ride-title">
-    <mat-card-title>
-      <div class="departure-time">
-        <span *ngIf="ride.departureDate">{{ride.departureDate}}</span>
-        <span *ngIf="ride.departureDate && ride.departureTime"> at </span>
-        <span *ngIf="ride.departureTime">{{ride.departureTime}}</span>
-      </div>
-      <div class="seats-left">
-        <small>{{ride.seatsAvailable}} SEATS LEFT</small>
-      </div>
-    </mat-card-title>
-    <button mat-button id="open-chat-button" (click)="openChat(ride._id)"><mat-icon>chat</mat-icon></button>
-  </mat-card-header>
+<mat-expansion-panel #elem class="rides" [id]="ride.driver">
+  <mat-expansion-panel-header class="ride-title" [collapsedHeight]="'auto'" [expandedHeight]="'auto'">
 
-  <mat-card-content>
+    <!--<div class="departure-time">-->
+    <!--<span *ngIf="ride.departureDate">{{ride.departureDate}}</span>-->
+    <!--<span *ngIf="ride.departureDate && ride.departureTime"> at </span>-->
+    <!--<span *ngIf="ride.departureTime">{{ride.departureTime}}</span>-->
+    <!--</div>-->
+
     <div class="route">
-      <div class="ride-info origin">{{ride.origin}}</div>
-      <mat-icon>play_arrow</mat-icon>
-      <div class="ride-info destination">{{ride.destination}}</div>
+      <div class="origin">
+      <mat-icon class="origin_circle">panorama_fish_eye</mat-icon>
+      <div class="origin_text">
+        <div id="origin">{{ride.origin}}</div>
+      </div>
+      </div>
+      <div class="three_circles"><img src="https://img.icons8.com/ios/50/000000/menu-2-filled.png"></div>
+        <div class="destination">
+      <mat-icon class="destination_circle">panorama_fish_eye</mat-icon>
+      <div class="destination_text">
+        <div id="destination">{{ride.destination}}</div>
+      </div>
+      </div>
     </div>
 
-    <div id="ride-info-driver-id" class="ride-info driver">
-      {{ride.driver}} is offering this ride
-    </div>
 
-    <mat-divider [inset]="true" *ngIf="ride.notes"></mat-divider>
+    <!--<button mat-button id="open-chat-button" (click)="openChat(ride._id)"><mat-icon>chat</mat-icon></button>-->
+  </mat-expansion-panel-header>
 
-    <div *ngIf="ride.notes" class="ride-info notes">
-      <small>DRIVER NOTES:</small>
-      <div>{{ride.notes}}</div>
-    </div>
-  </mat-card-content>
-</mat-card>
+  <!--<mat-card-content>-->
+  <!--<div class="route">-->
+  <!--<div class="ride-info origin">{{ride.origin}}</div>-->
+  <!--<mat-icon>play_arrow</mat-icon>-->
+  <!--<div class="ride-info destination">{{ride.destination}}</div>-->
+  <!--</div>-->
+
+  <!--<div id="ride-info-driver-id" class="ride-info driver">-->
+  <!--{{ride.driver}} is offering this ride-->
+  <!--</div>-->
+
+  <!--<mat-divider [inset]="true" *ngIf="ride.notes"></mat-divider>-->
+
+  <!--<div *ngIf="ride.notes" class="ride-info notes">-->
+  <!--<small>DRIVER NOTES:</small>-->
+  <!--<div>{{ride.notes}}</div>-->
+  <!--</div>-->
+  <!--</mat-card-content>-->
+</mat-expansion-panel>
