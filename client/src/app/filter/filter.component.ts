@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'filter-component',
@@ -10,6 +10,7 @@ export class FilterComponent {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  public departureDate: string;
 
   constructor(private _formBuilder: FormBuilder) { }
 
@@ -19,7 +20,7 @@ export class FilterComponent {
 
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
-      dateCtrl: ['date']
+      departureDate: new FormControl('departureDate')
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]

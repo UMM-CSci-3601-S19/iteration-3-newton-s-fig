@@ -62,7 +62,7 @@ import {AgmCoreModule, MapsAPILoader} from "@agm/core";
     RideComponent,
     LoginComponent,
     SignupComponent,
-    FilterComponent
+    FilterComponent,
     MapsComponent,
 
     ChatComponent,
@@ -81,7 +81,7 @@ import {AgmCoreModule, MapsAPILoader} from "@agm/core";
     AddRideComponent,
     LoginComponent,
     SignupComponent,
-    FilterComponent
+    FilterComponent,
     SignupComponent,
     ChatComponent
   ],
