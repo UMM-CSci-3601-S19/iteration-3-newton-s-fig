@@ -17,6 +17,9 @@ dependencies {
   compile 'com.google.code.gson:gson:2.8.5'
   compile 'org.mongodb:mongodb-driver:3.10.1'
 
+  compile 'io.getstream.client:stream-java:3.1.5'
+  implementation 'com.auth0:java-jwt:3.8.0'
+
   testCompile 'junit:junit:4.12'
 }
 
