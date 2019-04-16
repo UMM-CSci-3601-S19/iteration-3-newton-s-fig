@@ -14,10 +14,6 @@ declare var google;
 export class MapsSearchComponent implements OnInit{
   @Input() latitude: number;
   @Input() longitude: number;
-  @Input() searchControl: FormControl;
-  @Input() zoom: number;
-  public markers: Marker[];
-  mapsSearchInput: string;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -29,12 +25,8 @@ export class MapsSearchComponent implements OnInit{
 
   ngOnInit() {
     //set google maps defaults
-    this.zoom = 14;
     this.latitude = 45.5919;
     this.longitude = -95.9189;
-
-    //create search FormControl
-    this.searchControl = new FormControl();
 
     //set current position
     this.setCurrentPosition();
@@ -54,17 +46,9 @@ export class MapsSearchComponent implements OnInit{
             return;
           }
 
-          //set latitude, longitude and zoom
+          //set latitude, longitude
           this.latitude = place.geometry.location.lat();
           this.longitude = place.geometry.location.lng();
-          this.zoom = 12;
-          let m: Marker = {
-            latitude: this.latitude,
-            longitude: this.longitude,
-            label: ""
-          };
-          this.markers = [];
-          this.markers.push(m);
         });
       });
     });
@@ -75,12 +59,7 @@ export class MapsSearchComponent implements OnInit{
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
-        this.zoom = 12;
       });
     }
-  }
-
-  clearInput() {
-    this.mapsSearchInput = "";
   }
 }
