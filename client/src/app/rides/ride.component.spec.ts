@@ -20,7 +20,7 @@ describe('RideComponent', () => {
     component = fixture.componentInstance;
 
     component.ride = {
-      _id: '',
+      _id: { $oid: '' },
       driver: '',
       notes: '',
       seatsAvailable: 0,
