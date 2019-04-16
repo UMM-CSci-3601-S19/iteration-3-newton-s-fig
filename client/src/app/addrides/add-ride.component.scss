@@ -1,50 +1,35 @@
-#main {
-  text-align: center;
-  margin: 0px;
+::ng-deep .mat-horizontal-stepper-header-container {
+  display: none !important;
 }
 
 .steps {
-  margin: 2px;
-  padding: 2px;
+  margin: auto;
+  width: 100%;
 }
 
-#container {
-
-
-}
 #steppercontainer {
-  margin: 0px;
-  padding-right: 20px;
   background-color: transparent;
 }
 
-input {
-  margin-top: 5px;
-  border-radius: 7px;
-  text-align: center;
-  height: 30px;
+//input {
+//  margin-top: 5px;
+//  border-radius: 7px;
+//  text-align: center;
+//  height: 30px;
+//
+//}
 
-}
-.nextButton {
-  float:right;
+.action-container {
   display: flex;
 }
-.previousButton {
-  float: left;
-  display: flex;
 
-}
-button {
-  padding: 0px;
-
-}
 #inputpart {
-  position: relative;
+  position: fixed;
+  top: 10vh;
+  width: 100%;
+
 }
 
-#map {
-  position: absolute;
-}
 mat-datepicker-toggle {
   color: #421914;
 }
