@@ -6,6 +6,12 @@
 
 .mat-expansion-panel-header.mat-expanded:hover {
   background-color: whitesmoke;
+  .time-date {
+    border-radius: 6px 0px 0px 0px;
+  }
+  .route {
+    border-radius: 0px 6px 0px 0px;
+  }
 }
 
 .mat-expansion-panel-header.mat-expanded {
@@ -17,11 +23,12 @@
    background-color: whitesmoke;
 }
 
+
 #open-chat-button {
-  float: right;
   background-color: #2C484F;
-  border-radius: 1%;
-  width: 20%;
+  border-radius: 6px;
+  height: auto;
+  padding: 0px;
 }
 
 
@@ -91,17 +98,35 @@
 
   .time-date {
     vertical-align: middle;
-    padding: 8px 8px 4px 8px;
+    padding: 6px 8px 4px 8px;
     display: flex;
     flex-direction: column;
     float: left;
     text-align: center;
-    font-size: 4vw;
+    font-size: 4.5vw;
     background-color: #7cb518;
     color: #ffffff;
     border-radius: 6px 0px 0px 6px;
     font-weight: bold;
+
+    #departuretime {
+      font-size: 3.5vw !important;
+      margin-top: 2px;
+    }
+
+    .action-row {
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    #open-chat-button {
+      text-align: center !important;
+    }
+
   }
+
   #divider {
 
     margin: 0px 10px 0px 10px;

@@ -5,9 +5,9 @@
 
 
     <div class="time-date">
-      <span>{{ride.departureDate}}</span>
-      <br>
-      <span>{{ride.departureTime}}</span>
+      <span>{{dateMonth(ride.departureDate)}}</span>
+      <span>{{dateDay(ride.departureDate)}}</span>
+      <span id="departuretime">{{ride.departureTime}}</span>
     </div>
 
     <div class="route">
@@ -28,22 +28,17 @@
     <!--<button mat-button id="open-chat-button" (click)="openChat(ride._id)"><mat-icon>chat</mat-icon></button>-->
   </mat-expansion-panel-header>
 
-  <!--<mat-card-content>-->
-  <!--<div class="route">-->
-  <!--<div class="ride-info origin">{{ride.origin}}</div>-->
-  <!--<mat-icon>play_arrow</mat-icon>-->
-  <!--<div class="ride-info destination">{{ride.destination}}</div>-->
-  <!--</div>-->
 
-  <!--<div id="ride-info-driver-id" class="ride-info driver">-->
-  <!--{{ride.driver}} is offering this ride-->
-  <!--</div>-->
 
-  <!--<mat-divider [inset]="true" *ngIf="ride.notes"></mat-divider>-->
-
-  <!--<div *ngIf="ride.notes" class="ride-info notes">-->
-  <!--<small>DRIVER NOTES:</small>-->
-  <!--<div>{{ride.notes}}</div>-->
-  <!--</div>-->
-  <!--</mat-card-content>-->
+  <div id="ride-info-driver-id" class="ride-info driver">
+  {{ride.driver}} is offering this ride
+  </div>
+  <mat-divider></mat-divider>
+  <div *ngIf="ride.notes" class="ride-info notes">
+  <small>DRIVER NOTES:</small>
+  <div>{{ride.notes}}</div>
+  </div>
+  <mat-action-row class="action-row">
+  <button mat-button id="open-chat-button" (click)="openChat(ride._id)"><mat-icon>chat</mat-icon></button>
+  </mat-action-row>
 </mat-expansion-panel>

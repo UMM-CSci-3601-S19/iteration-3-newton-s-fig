@@ -9,7 +9,6 @@ import {ChatComponent} from "../chat/chat.component";
   styleUrls: ['./ride.component.scss']
 })
 export class RideComponent implements OnInit {
-
   @Input() ride: Ride;
 
   constructor(public dialog: MatDialog) { }
@@ -20,6 +19,18 @@ export class RideComponent implements OnInit {
       maxHeight: '100vh',
     });
     dialogRef.componentInstance.feedId = rideId;
+  }
+
+  dateMonth(string: string): string {
+    var pre = string;
+    var post = pre.split(" ");
+    return post[0].substring(0,3);
+  }
+
+  dateDay(string: string): string {
+    var pre = string;
+    var post = pre.split(" ");
+    return post[1];
   }
 
   ngOnInit() {
