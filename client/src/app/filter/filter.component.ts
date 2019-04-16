@@ -10,7 +10,11 @@ export class FilterComponent {
   isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
   public departureDate: string;
+  public rideDestination: string;
+  public rideOrigin: string;
+
 
   constructor(private _formBuilder: FormBuilder) { }
 
@@ -18,12 +22,24 @@ export class FilterComponent {
     return new Date();
   }
 
+  submit(){
+
+  }
+  reset(){
+  this.departureDate='';
+  this.rideDestination='';
+  this.rideOrigin='';
+  }
+
   ngOnInit() {
     this.firstFormGroup = this._formBuilder.group({
       departureDate: new FormControl('departureDate')
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      origin: new FormControl('origin')
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      destination: new FormControl('destination')
     });
   }
 }

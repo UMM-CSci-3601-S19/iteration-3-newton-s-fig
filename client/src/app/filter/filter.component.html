@@ -1,7 +1,7 @@
-<mat-horizontal-stepper [linear]="true" #stepper="matHorizontalStepper">
+<mat-horizontal-stepper [linear]="false" #stepper="matHorizontalStepper">
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Pick a date</ng-template>
+      <ng-template matStepLabel>Date</ng-template>
       <mat-form-field>
         <input class="inputRideInfo" id="departureDateField" matInput [min]="todaysDate()" [matDatepicker]="picker"
                placeholder="Filter by Departure Date" [(ngModel)]="departureDate" formControlName="departureDate">
@@ -15,9 +15,23 @@
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Fill out your address</ng-template>
+      <ng-template matStepLabel>Origin</ng-template>
       <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+        <input class="inputRideInfo" matInput #input id="originField" placeholder="Filter by Origin"
+               [(ngModel)]="rideOrigin" formControlName="origin">
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="thirdFormGroup">
+    <form [formGroup]="thirdFormGroup">
+      <ng-template matStepLabel>Destination</ng-template>
+      <mat-form-field>
+        <input class="inputRideInfo" matInput #input id="destinationField" placeholder="Filter by Destination"
+               [(ngModel)]="rideDestination" formControlName="destination">
       </mat-form-field>
       <div>
         <button mat-button matStepperPrevious>Back</button>
@@ -30,7 +44,8 @@
     You are now done.
     <div>
       <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button (click)="submit()">Submit</button>
+      <button mat-button (click)="stepper.reset();reset();">Reset</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>
