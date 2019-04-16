@@ -9,7 +9,7 @@ describe('Ride list service: ', () => {
   // A small collection of test rides
   const testRides: Ride[] = [
     {
-      _id: 'chris_id',
+      _id: { $oid: 'chris_id' },
       driver: 'Chris',
       notes: 'These are Chris\'s ride notes',
       seatsAvailable: 3,
@@ -20,7 +20,7 @@ describe('Ride list service: ', () => {
       dateObject: "2019-04-04T04:00:00.000Z"
     },
     {
-      _id: 'dennis_id',
+      _id: { $oid: 'dennis_id' },
       driver: 'Dennis',
       notes: 'These are Dennis\'s ride notes',
       seatsAvailable: 3,
@@ -31,7 +31,7 @@ describe('Ride list service: ', () => {
       dateObject: "2019-08-15T23:30:00.000Z"
     },
     {
-      _id: 'agatha_id',
+      _id: { $oid: 'agatha_id' },
       driver: 'Agatha',
       notes: 'These are Agatha\'s ride notes',
       seatsAvailable: 6,
@@ -76,7 +76,7 @@ describe('Ride list service: ', () => {
     // This happens when we call req.flush(testRides) a few lines
     // down.
     rideListService.getRides().subscribe(
-      rides => expect(rides).toBe(testRides)
+      rides => expect(rides).toEqual(testRides)
     );
 
     // Specify that (exactly) one request will be made to the specified URL.
@@ -92,7 +92,7 @@ describe('Ride list service: ', () => {
   it('successfully adds a ride while leaving optional fields empty', () => {
     const ride_id = 'ride_id';
     const newRide: Ride = {
-      _id: 'ride_id',
+      _id: { $oid: 'ride_id' },
       driver: 'Jesse',
       seatsAvailable: 72,
       origin: 'UMM',
@@ -105,7 +105,7 @@ describe('Ride list service: ', () => {
 
     rideListService.addNewRide(newRide).subscribe(
       id => {
-        expect(id).toBe(ride_id);
+        expect(JSON.parse(id).$oid).toBe(ride_id);
       },
       err => {
         expect(err).toBeNull();
