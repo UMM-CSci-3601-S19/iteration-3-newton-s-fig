@@ -20,6 +20,11 @@
         <mat-icon>account_box</mat-icon>
         Add Rides
       </a>
+      <a mat-list-item [routerLink]="['/filter']" (click)="sidenav.toggle()" routerLinkActive="nav-active">
+        <mat-icon>account_box</mat-icon>
+        Filter Rides
+      </a>
+
     </mat-nav-list>
     <mat-chip-list>
       <mat-chip class="loginChip">{{ this.text }}</mat-chip>
