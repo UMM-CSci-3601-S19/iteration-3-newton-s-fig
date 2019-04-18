@@ -1,5 +1,11 @@
-<input autocorrect="off"
-         autocapitalize="off"
-         spellcheck="off"
-         type="text"
-         #search>
+<mat-form-field>
+  <input matInput autocorrect="off"
+           autocapitalize="off"
+           spellcheck="off"
+           type="text"
+           #search
+           [formControl]="searchControl"
+           [(ngModel)] = "mapsSearchInput"
+           [placeholder]="searchPlaceholder"
+  >
+</mat-form-field>

@@ -16,29 +16,32 @@
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Origin</ng-template>
-      <mat-form-field>
-        <input class="inputRideInfo" matInput #input id="originField" placeholder="Filter by Origin"
-               [(ngModel)]="rideOrigin" formControlName="origin">
-      </mat-form-field>
+
+        <app-mapsSearch class="inputRideInfo" #input id="originField"
+               [(mapsSearchInput)]="rideOrigin" [searchControl]="origin"
+                        searchPlaceholder="Enter starting location">
+        </app-mapsSearch>
+
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="thirdFormGroup">
-    <form [formGroup]="thirdFormGroup">
-      <ng-template matStepLabel>Destination</ng-template>
-      <mat-form-field>
-        <input class="inputRideInfo" matInput #input id="destinationField" placeholder="Filter by Destination"
-               [(ngModel)]="rideDestination" formControlName="destination">
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
+
+  <!--<mat-step [stepControl]="thirdFormGroup">-->
+    <!--<form [formGroup]="thirdFormGroup">-->
+      <!--<ng-template matStepLabel>Destination</ng-template>-->
+      <!--<mat-form-field>-->
+        <!--<app-mapsSearch class="inputRideInfo"  #input id="destinationField" placeholder="Filter by Destination"-->
+               <!--[(ngModel)]="rideDestination"></app-mapsSearch>-->
+      <!--</mat-form-field>-->
+      <!--<div>-->
+        <!--<button mat-button matStepperPrevious>Back</button>-->
+        <!--<button mat-button matStepperNext>Next</button>-->
+      <!--</div>-->
+    <!--</form>-->
+  <!--</mat-step>-->
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
     You are now done.
