@@ -1,90 +1,149 @@
-<div layout-gt-sm="row">
-  <div flex-gt-sm="40" flex-offset-gt-sm="30">
-    <form [formGroup]="addRideForm">
-      <mat-card class="addARide">
-        <mat-card-content class="addARideContent">
 
+<app-maps [mapHeightVH]="100"></app-maps>
+
+<div id="inputpart">
+    <mat-horizontal-stepper id="steppercontainer"  linear>
+      <mat-step class="steps"  [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+        <mat-card>
+          <mat-card-content>
+            <mat-form-field>
+              <input name="driverField" matInput #input id="driverID" placeholder="Input your name"
+                     required [(ngModel)]="rideDriver" formControlName="driver">
+            </mat-form-field>
+
+            <div class="action-container">
+              <div class="nextButton">
+                <button mat-button matStepperNext type="button">Next</button>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        </form>
+      </mat-step>
+
+      <mat-step class="steps" [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+        <mat-card>
+        <mat-card-content>
           <mat-form-field>
-            <input name="driverField" matInput #input id="driverID" placeholder="Driver"
-                   required [(ngModel)]="rideDriver" formControlName="driver">
-            <mat-error *ngFor="let validation of add_ride_validation_messages.driver">
-              <mat-error class="error-message"
-                         *ngIf="addRideForm.get('driver').hasError(validation.type) &&
-                       (addRideForm.get('driver').dirty || addRideForm.get('driver').touched)">
-                {{validation.message}}
-              </mat-error>
-            </mat-error>
+          <input type="number" class="inputRideInfo" matInput #input id="seatsAvailableField" placeholder="Seats Available"
+               required [(ngModel)]="rideSeats" formControlName="seatsAvailable">
           </mat-form-field>
-
-          <mat-form-field>
-            <input type="number" class="inputRideInfo" matInput #input id="seatsAvailableField" placeholder="Seats Available"
-                   required [(ngModel)]="rideSeats" formControlName="seatsAvailable">
-            <mat-error *ngFor="let validation of add_ride_validation_messages.seatsAvailable">
-              <mat-error class="error-message"
-                         *ngIf="addRideForm.get('seatsAvailable').hasError(validation.type) &&
-                       (addRideForm.get('seatsAvailable').dirty || addRideForm.get('seatsAvailable').touched)">
-                {{validation.message}}
-              </mat-error>
-            </mat-error>
-          </mat-form-field>
-
-          <br/>
-
-          <mat-form-field>
-            <input class="inputRideInfo" matInput #input id="originField" placeholder="Origin"
-                   required [(ngModel)]="rideOrigin" formControlName="origin">
-            <mat-error *ngFor="let validation of add_ride_validation_messages.origin">
-              <mat-error class="error-message"
-                         *ngIf="addRideForm.get('origin').hasError(validation.type) &&
-                       (addRideForm.get('origin').dirty || addRideForm.get('origin').touched)">
-                {{validation.message}}
-              </mat-error>
-            </mat-error>
-          </mat-form-field>
-
-          <mat-form-field>
-            <input class="inputRideInfo" matInput #input id="destinationField" placeholder="Destination"
-                   required [(ngModel)]="rideDestination" formControlName="destination">
-            <mat-error *ngFor="let validation of add_ride_validation_messages.destination">
-              <mat-error class="error-message"
-                         *ngIf="addRideForm.get('destination').hasError(validation.type) &&
-                       (addRideForm.get('destination').dirty || addRideForm.get('destination').touched)">
-                {{validation.message}}
-              </mat-error>
-            </mat-error>
-          </mat-form-field>
-
-          <br/>
-
-          <mat-form-field>
-            <input class="inputRideInfo" id="departureDateField" matInput [min]="todaysDate()" [matDatepicker]="picker"
-                   placeholder="Choose Departure Date" [(ngModel)]="rideDepartureDate" formControlName="departureDate">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker id="calendar" #picker></mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field>
-            <input type="time" class="inputRideInfo" matInput #input id="departureTimeField" placeholder="Departure Time"
-                   [(ngModel)]="rideDepartureTime" formControlName="departureTime">
-          </mat-form-field>
-
-          <br/>
-
-          <mat-form-field>
-            <textarea class="inputRideInfo" matInput #input id="notesField" placeholder="Notes"
-                      [(ngModel)]="rideNotes" formControlName="notes"></textarea>
-          </mat-form-field>
-
+        <div class="action-container">
+          <div class="previousButton">
+            <button mat-button matStepperPrevious type="button">Back</button>
+          </div>
+          <div class="nextButton">
+            <button mat-button matStepperNext type="button">Next</button>
+          </div>
+        </div>
         </mat-card-content>
+          </mat-card>
+        </form>
+      </mat-step>
 
-        <mat-card-actions layout="row">
-          <button class="addRideButton" mat-raised-button id="confirmAddRideButton"  type="button" color="primary"
-                  (click)="addRide()" routerLink="/rides" [disabled]="!addRideForm.valid">Add Ride
-          </button>
-          <button class="cancelRideButton" mat-button id="exitWithoutAddingButton" routerLink="/rides"  type="button">Cancel</button>
-        </mat-card-actions>
+      <mat-step class="steps" [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+        <mat-card>
+          <mat-card-content>
+        <app-mapsSearch class="inputRideInfo" #input id="originField"
+                        [(mapsSearchInput)]="rideOrigin" [searchControl]="origin"
+                        searchPlaceholder="Enter starting location">
+        </app-mapsSearch>
 
-      </mat-card>
-    </form>
-  </div>
+        <div class="action-container">
+          <div class="previousButton">
+            <button mat-button matStepperPrevious type="button">Back</button>
+          </div>
+          <div class="nextButton">
+            <button mat-button matStepperNext type="button">Next</button>
+          </div>
+        </div>
+          </mat-card-content>
+        </mat-card>
+        </form>
+      </mat-step>
+
+      <mat-step class="steps"  [stepControl]="forthFormGroup">
+        <form [formGroup]="forthFormGroup">
+        <mat-card>
+         <mat-card-content>
+        <app-mapsSearch class="inputRideInfo" #input id="destinationField"
+                        [(mapsSearchInput)]="rideOrigin" [searchControl]="origin"
+                        searchPlaceholder="Enter starting location">
+        </app-mapsSearch>
+
+        <div class="action-container">
+          <div class="previousButton">
+            <button mat-button matStepperPrevious type="button">Back</button>
+          </div>
+          <div class="nextButton">
+            <button mat-button matStepperNext type="button">Next</button>
+          </div>
+        </div>
+         </mat-card-content>
+       </mat-card>
+        </form>
+      </mat-step>
+
+      <mat-step class="steps"  [stepControl]="fifthFormGroup">
+        <form [formGroup]="fifthFormGroup">
+        <input class="inputRideInfo" id="departureDateField" matInput [min]="todaysDate()" [matDatepicker]="picker"
+               placeholder="Choose Departure Date" [(ngModel)]="rideDepartureDate" formControlName="departureDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
+        <mat-datepicker id="calendar" #picker></mat-datepicker>
+
+        <div class="action-container">
+          <div class="previousButton">
+            <button mat-button matStepperPrevious type="button">Back</button>
+          </div>
+          <div class="nextButton">
+            <button mat-button matStepperNext type="button">Next</button>
+          </div>
+        </div>
+        </form>
+      </mat-step>
+
+      <mat-step class="steps"  [stepControl]="sixthFormGroup">
+        <form [formGroup]="sixthFormGroup">
+        <mat-card>
+          <mat-card-content>
+          <input type="time" class="inputRideInfo" matInput #input id="departureTimeField" placeholder="Departure Time"
+               [(ngModel)]="rideDepartureTime" formControlName="departureTime">
+
+        <div class="action-container">
+          <div class="previousButton">
+            <button mat-button matStepperPrevious type="button">Back</button>
+          </div>
+          <div class="nextButton">
+            <button mat-button matStepperNext type="button">Next</button>
+          </div>
+        </div>
+          </mat-card-content>
+        </mat-card>
+        </form>
+      </mat-step>
+
+      <mat-step class="steps"  [stepControl]="seventhFormGroup">
+        <form [formGroup]="seventhFormGroup">
+        <mat-card>
+          <mat-card-content>
+         <textarea class="inputRideInfo" matInput #input id="notesField" placeholder="Notes"
+                   [(ngModel)]="rideNotes" formControlName="notes"></textarea>
+
+        <div class="action-container">
+          <div class="previousButton">
+            <button mat-button matStepperPrevious type="button">Back</button>
+          </div>
+          <div class="nextButton">
+            <button mat-button matStepperNext type="button">Next</button>
+          </div>
+        </div>
+          </mat-card-content>
+        </mat-card>
+        </form>
+      </mat-step>
+
+    </mat-horizontal-stepper>
 </div>

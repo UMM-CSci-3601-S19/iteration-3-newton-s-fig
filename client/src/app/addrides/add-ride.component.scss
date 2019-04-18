@@ -1,0 +1,38 @@
+::ng-deep .mat-horizontal-stepper-header-container {
+  display: none !important;
+}
+
+.steps {
+  margin: auto;
+  width: 100%;
+}
+
+#steppercontainer {
+  background-color: transparent;
+}
+
+//input {
+//  margin-top: 5px;
+//  border-radius: 7px;
+//  text-align: center;
+//  height: 30px;
+//
+//}
+
+.action-container {
+  display: flex;
+}
+
+#inputpart {
+  position: fixed;
+  top: 10vh;
+  width: 100%;
+
+}
+
+mat-datepicker-toggle {
+  color: #421914;
+}
+mat-card {
+  background-color: #ffffff55;
+}
