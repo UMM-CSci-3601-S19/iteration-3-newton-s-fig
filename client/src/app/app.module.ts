@@ -35,6 +35,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { MapsComponent } from './maps/maps.component';
 import {MapsSearchComponent} from './mapsSearch/mapsSearch.component';
 import {RideComponent} from "./rides/ride.component";
+import {FilterComponent} from "./filter/filter.component";
 import {AgmCoreModule, MapsAPILoader} from "@agm/core";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -66,6 +67,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RideComponent,
     LoginComponent,
     SignupComponent,
+    FilterComponent,
     MapsComponent,
     MapsSearchComponent,
     ChatComponent,
@@ -83,6 +85,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   entryComponents: [
     AddRideComponent,
     LoginComponent,
+    SignupComponent,
+    FilterComponent,
     SignupComponent,
     ChatComponent
   ],

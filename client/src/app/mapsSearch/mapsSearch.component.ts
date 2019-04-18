@@ -14,6 +14,9 @@ declare var google;
 export class MapsSearchComponent implements OnInit{
   @Input() latitude: number;
   @Input() longitude: number;
+  @Input() searchControl: FormControl;
+  @Input() mapsSearchInput: string;
+  @Input() searchPlaceholder: string;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -27,6 +30,9 @@ export class MapsSearchComponent implements OnInit{
     //set google maps defaults
     this.latitude = 45.5919;
     this.longitude = -95.9189;
+
+    //create search FormControl
+    this.searchControl = new FormControl();
 
     //set current position
     this.setCurrentPosition();
