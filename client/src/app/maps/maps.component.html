@@ -1,8 +1,9 @@
 <agm-map
-  id="map"
+  [ngStyle]="setHeight()"
   [latitude]="lat"
   [longitude]="lng"
   [zoom]="zoom"
   [disableDefaultUI]="true"
-  [zoomControl]="false">
+  [zoomControl]="false"
+  [streetViewControl]="false" >
 </agm-map>

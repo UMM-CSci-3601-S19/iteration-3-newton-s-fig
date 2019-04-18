@@ -28,17 +28,22 @@
     <!--<button mat-button id="open-chat-button" (click)="openChat(ride._id)"><mat-icon>chat</mat-icon></button>-->
   </mat-expansion-panel-header>
 
+  <app-maps class="card-map"></app-maps>
 
+  <div id="body-wrapper">
+    <div id="ride-info-driver-id" class="ride-info-driver">
+      {{ride.driver}} is offering this ride
+    </div>
+    <mat-divider></mat-divider>
+    <div *ngIf="ride.notes" class="ride-info notes">
+      <small>DRIVER NOTES:</small>
+      <div>{{ride.notes}}</div>
+    </div>
+    <mat-action-row class="action-row">
+      <button mat-button id="open-chat-button" (click)="openChat(ride._id)">
+        <mat-icon>chat</mat-icon>
+      </button>
+    </mat-action-row>
+  </div>
 
-  <div id="ride-info-driver-id" class="ride-info driver">
-  {{ride.driver}} is offering this ride
-  </div>
-  <mat-divider></mat-divider>
-  <div *ngIf="ride.notes" class="ride-info notes">
-  <small>DRIVER NOTES:</small>
-  <div>{{ride.notes}}</div>
-  </div>
-  <mat-action-row class="action-row">
-  <button mat-button id="open-chat-button" (click)="openChat(ride._id)"><mat-icon>chat</mat-icon></button>
-  </mat-action-row>
 </mat-expansion-panel>
