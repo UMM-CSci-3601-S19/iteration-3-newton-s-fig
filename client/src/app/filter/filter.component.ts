@@ -3,7 +3,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'filter-component',
-  templateUrl: 'filter.component.html'
+  templateUrl: 'filter.component.html',
+  styleUrls: ['./filter.component.scss']
 })
 
 export class FilterComponent {

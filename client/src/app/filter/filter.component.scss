@@ -1,0 +1,68 @@
+::ng-deep {
+  .mat-horizontal-stepper-header-container {
+    display: none !important;
+  }
+
+  .mat-horizontal-content-container {
+    padding: 0px !important;
+  }
+
+  .mat-input-wrapper mat-form-field-wrapper{
+    padding: 0px !important;
+  }
+}
+  .fsteps {
+    margin: auto;
+    width: 100%;
+  }
+
+  #fsteppercontainer {
+    background-color: transparent;
+  }
+
+  //input {
+  //  margin-top: 5px;
+  //  border-radius: 7px;
+  //  text-align: center;
+  //  height: 30px;
+  //
+  //}
+
+  .nextButton {
+    display: flex;
+    float: right;
+    width: 20px;
+    min-width: 10px;
+    padding: 10px 10px 0 10px;
+  }
+  .previousButton {
+    display: flex;
+    float: left;
+    min-width: 10px;
+    padding: 10px 13px 10px 10px ;
+
+
+  }
+
+  #finputpart {
+    position: fixed;
+    top: 10vh;
+    width: 100%;
+
+
+  }
+
+  mat-datepicker-toggle {
+    color: #421914;
+  }
+
+  mat-card {
+  display: flex;
+    border-radius: 5px;
+  }
+  mat-card-content {
+    padding: 0 10px 0 10px !important;
+  }
+  input {
+    display: flex;
+  }

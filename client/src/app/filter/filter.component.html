@@ -1,55 +1,70 @@
-<mat-horizontal-stepper [linear]="false" #stepper="matHorizontalStepper">
-  <mat-step [stepControl]="firstFormGroup">
+<app-maps [mapHeightVH]="100"></app-maps>
+
+<div id="finputpart">
+<mat-horizontal-stepper [linear]="false" id="fsteppercontainer">
+  <mat-step [stepControl]="firstFormGroup" class="fsteps">
     <form [formGroup]="firstFormGroup">
-      <ng-template matStepLabel>Date</ng-template>
+      <mat-card>
+        <mat-card-content>
       <mat-form-field>
         <input class="inputRideInfo" id="departureDateField" matInput [min]="todaysDate()" [matDatepicker]="picker"
                placeholder="Filter by Departure Date" [(ngModel)]="departureDate" formControlName="departureDate">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker id="calendar" #picker></mat-datepicker>
       </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
+
+            <button class="nextButton" mat-button matStepperNext type="button">Next</button>
+      </mat-card-content>
+      </mat-card>
     </form>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
+  <mat-step [stepControl]="secondFormGroup" class="fsteps">
     <form [formGroup]="secondFormGroup">
-      <ng-template matStepLabel>Origin</ng-template>
-
+      <mat-card>
+        <mat-card-content>
         <app-mapsSearch class="inputRideInfo" #input id="originField"
                [(mapsSearchInput)]="rideOrigin" [searchControl]="origin"
                         searchPlaceholder="Enter starting location">
         </app-mapsSearch>
 
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
+              <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
+              <button class="nextButton" mat-button matStepperNext type="button">Next</button>
+
+        </mat-card-content>
+      </mat-card>
     </form>
   </mat-step>
 
-  <!--<mat-step [stepControl]="thirdFormGroup">-->
-    <!--<form [formGroup]="thirdFormGroup">-->
-      <!--<ng-template matStepLabel>Destination</ng-template>-->
-      <!--<mat-form-field>-->
-        <!--<app-mapsSearch class="inputRideInfo"  #input id="destinationField" placeholder="Filter by Destination"-->
-               <!--[(ngModel)]="rideDestination"></app-mapsSearch>-->
-      <!--</mat-form-field>-->
-      <!--<div>-->
-        <!--<button mat-button matStepperPrevious>Back</button>-->
-        <!--<button mat-button matStepperNext>Next</button>-->
-      <!--</div>-->
-    <!--</form>-->
-  <!--</mat-step>-->
-  <mat-step>
-    <ng-template matStepLabel>Done</ng-template>
+  <mat-step [stepControl]="thirdFormGroup" class="fsteps">
+    <form [formGroup]="thirdFormGroup">
+      <mat-card>
+        <mat-card-content>
+      <ng-template matStepLabel>Destination</ng-template>
+
+          <app-mapsSearch class="inputRideInfo" #input id="destinationField"
+                          [(mapsSearchInput)]="rideDestination" [searchControl]="destination"
+                          searchPlaceholder="Enter ending location">
+          </app-mapsSearch>
+          
+        <button class="previousButton" mat-button matStepperPrevious>Back</button>
+        <button class="nextButton"  mat-button matStepperNext>Next</button>
+
+        </mat-card-content>
+      </mat-card>
+    </form>
+  </mat-step>
+  <mat-step class="fsteps">
+    <mat-card>
+    <mat-card-content>
     You are now done.
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="submit()">Submit</button>
       <button mat-button (click)="stepper.reset();reset();">Reset</button>
     </div>
+    </mat-card-content>
+    </mat-card>
   </mat-step>
 </mat-horizontal-stepper>
-<app-maps mapHeightVH="75"></app-maps>
+</div>
+
