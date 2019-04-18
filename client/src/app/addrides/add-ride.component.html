@@ -12,11 +12,8 @@
                      required [(ngModel)]="rideDriver" formControlName="driver">
             </mat-form-field>
 
-            <div class="action-container">
-              <div class="nextButton">
-                <button mat-button matStepperNext type="button">Next</button>
-              </div>
-            </div>
+                <button class="nextButton" mat-button matStepperNext type="button">Next</button>
+
           </mat-card-content>
         </mat-card>
         </form>
@@ -30,14 +27,10 @@
           <input type="number" class="inputRideInfo" matInput #input id="seatsAvailableField" placeholder="Seats Available"
                required [(ngModel)]="rideSeats" formControlName="seatsAvailable">
           </mat-form-field>
-        <div class="action-container">
-          <div class="previousButton">
-            <button mat-button matStepperPrevious type="button">Back</button>
-          </div>
-          <div class="nextButton">
-            <button mat-button matStepperNext type="button">Next</button>
-          </div>
-        </div>
+
+            <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
+            <button  class="nextButton" mat-button matStepperNext type="button">Next</button>
+
         </mat-card-content>
           </mat-card>
         </form>
@@ -52,14 +45,9 @@
                         searchPlaceholder="Enter starting location">
         </app-mapsSearch>
 
-        <div class="action-container">
-          <div class="previousButton">
-            <button mat-button matStepperPrevious type="button">Back</button>
-          </div>
-          <div class="nextButton">
-            <button mat-button matStepperNext type="button">Next</button>
-          </div>
-        </div>
+            <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
+            <button class="nextButton" mat-button matStepperNext type="button">Next</button>
+
           </mat-card-content>
         </mat-card>
         </form>
@@ -70,38 +58,32 @@
         <mat-card>
          <mat-card-content>
         <app-mapsSearch class="inputRideInfo" #input id="destinationField"
-                        [(mapsSearchInput)]="rideOrigin" [searchControl]="origin"
-                        searchPlaceholder="Enter starting location">
+                        [(mapsSearchInput)]="rideDestination" [searchControl]="destination"
+                        searchPlaceholder="Enter ending location">
         </app-mapsSearch>
 
-        <div class="action-container">
-          <div class="previousButton">
-            <button mat-button matStepperPrevious type="button">Back</button>
-          </div>
-          <div class="nextButton">
-            <button mat-button matStepperNext type="button">Next</button>
-          </div>
-        </div>
+            <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
+            <button class="nextButton" mat-button matStepperNext type="button">Next</button>
+
          </mat-card-content>
        </mat-card>
         </form>
       </mat-step>
 
       <mat-step class="steps"  [stepControl]="fifthFormGroup">
+
         <form [formGroup]="fifthFormGroup">
+          <mat-card>
+            <mat-card-content>
         <input class="inputRideInfo" id="departureDateField" matInput [min]="todaysDate()" [matDatepicker]="picker"
                placeholder="Choose Departure Date" [(ngModel)]="rideDepartureDate" formControlName="departureDate">
         <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
         <mat-datepicker id="calendar" #picker></mat-datepicker>
 
-        <div class="action-container">
-          <div class="previousButton">
-            <button mat-button matStepperPrevious type="button">Back</button>
-          </div>
-          <div class="nextButton">
-            <button mat-button matStepperNext type="button">Next</button>
-          </div>
-        </div>
+            <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
+            <button class="nextButton" mat-button matStepperNext type="button">Next</button>
+            </mat-card-content>
+          </mat-card>
         </form>
       </mat-step>
 
@@ -112,14 +94,9 @@
           <input type="time" class="inputRideInfo" matInput #input id="departureTimeField" placeholder="Departure Time"
                [(ngModel)]="rideDepartureTime" formControlName="departureTime">
 
-        <div class="action-container">
-          <div class="previousButton">
-            <button mat-button matStepperPrevious type="button">Back</button>
-          </div>
-          <div class="nextButton">
-            <button mat-button matStepperNext type="button">Next</button>
-          </div>
-        </div>
+            <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
+            <button class="nextButton" mat-button matStepperNext type="button">Next</button>
+
           </mat-card-content>
         </mat-card>
         </form>
@@ -132,14 +109,9 @@
          <textarea class="inputRideInfo" matInput #input id="notesField" placeholder="Notes"
                    [(ngModel)]="rideNotes" formControlName="notes"></textarea>
 
-        <div class="action-container">
-          <div class="previousButton">
-            <button mat-button matStepperPrevious type="button">Back</button>
-          </div>
-          <div class="nextButton">
-            <button mat-button matStepperNext type="button">Next</button>
-          </div>
-        </div>
+            <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
+            <button class="nextButton" mat-button matStepperNext type="button">Next</button>
+
           </mat-card-content>
         </mat-card>
         </form>
