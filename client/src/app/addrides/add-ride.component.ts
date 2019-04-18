@@ -14,7 +14,13 @@ import {Title} from "@angular/platform-browser";
 })
 
 export class AddRideComponent implements OnInit {
-
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+  forthFormGroup: FormGroup;
+  fifthFormGroup: FormGroup;
+  sixthFormGroup: FormGroup;
+  seventhFormGroup: FormGroup;
   public rides: Ride[];
 
   private highlightedID: string = '';
@@ -68,7 +74,7 @@ export class AddRideComponent implements OnInit {
 
   addRide(): void {
     const newRide: Ride = {
-      _id: '',
+      _id: {$oid:''},
       driver: this.rideDriver,
       notes: this.rideNotes,
       seatsAvailable: Number(this.rideSeats),
@@ -117,51 +123,6 @@ export class AddRideComponent implements OnInit {
 
   ]
 
-  get formArray(): AbstractControl | null { return this.addRideForm.get('formArray'); }
-  createForm() {
-    this.addRideForm = this.fb.group({
-      formArray: this.fb.array([
-        this.fb.group({
-          driver: ['driver', Validators.compose([
-            Validators.required,
-            Validators.minLength(2),
-            Validators.pattern('^[A-Za-z0-9\\s]+[A-Za-z0-9\\s]+$(\\.0-9+)?')
-          ])]
-        }),
-
-        this.fb.group({
-          seatsAvailable: ['seatsAvailable', Validators.compose([
-            Validators.required,
-            Validators.min(1),
-            Validators.max(12)
-          ])]
-        }),
-
-        this.fb.group({
-          origin: ['origin', Validators.compose([
-            Validators.required
-          ])]
-        }),
-        this.fb.group({
-          destination: ['destination', Validators.compose([
-            Validators.required
-          ])]
-        }),
-        this.fb.group({
-          departureDate: ['departureDate', Validators.compose([
-            Validators.required
-          ])]
-        }),
-        this.fb.group({
-          departureTime: ['departureTime']
-        }),
-        this.fb.group({
-          notes: ['notes']
-        })
-      ])
-    })
-  }
-
   refreshRides(): Observable<Ride[]> {
     // Get Rides returns an Observable, basically a "promise" that
     // we will get the data from the server.
@@ -181,7 +142,43 @@ export class AddRideComponent implements OnInit {
 
 
   ngOnInit() {
-    this.createForm();
+    this.firstFormGroup = this.fb.group({
+      driver: ['driver', Validators.compose([
+        Validators.required,
+        Validators.minLength(2),
+        Validators.pattern('^[A-Za-z0-9\\s]+[A-Za-z0-9\\s]+$(\\.0-9+)?')
+      ])]
+    });
+    this.secondFormGroup = this.fb.group({
+      seatsAvailable: ['seatsAvailable', Validators.compose([
+        Validators.required,
+        Validators.min(1),
+        Validators.max(12)
+      ])]
+    });
+    this.thirdFormGroup = this.fb.group({
+      origin: ['origin', Validators.compose([
+        Validators.required
+      ])]
+    });
+    this.forthFormGroup = this.fb.group({
+      destination: ['destination', Validators.compose([
+        Validators.required
+      ])]
+    });
+    this.fifthFormGroup = this.fb.group({
+      departureDate: ['departureDate', Validators.compose([
+        Validators.required
+      ])]
+    });
+    this.sixthFormGroup = this.fb.group({
+      departureTime: ['departureTime']
+    });
+    this.seventhFormGroup = this.fb.group({
+      notes: ['notes']
+    });
+
+
   }
 
 }

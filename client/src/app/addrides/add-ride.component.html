@@ -2,9 +2,9 @@
 <app-maps [mapHeightVH]="100"></app-maps>
 
 <div id="inputpart">
-  <form [formGroup]="addRideForm">
-    <mat-horizontal-stepper id="steppercontainer" formArrayName="formArray" linear>
-      <mat-step class="steps" formGroupName="0" [stepControl]="formArray?.get([0])">
+    <mat-horizontal-stepper id="steppercontainer"  linear>
+      <mat-step class="steps"  [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
         <mat-card>
           <mat-card-content>
             <mat-form-field>
@@ -19,11 +19,38 @@
             </div>
           </mat-card-content>
         </mat-card>
+        </form>
       </mat-step>
 
-      <mat-step class="steps" formGroupName="1" [stepControl]="formArray.get([1])">
-        <input type="number" class="inputRideInfo" matInput #input id="seatsAvailableField" placeholder="Seats Available"
+      <mat-step class="steps" [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+        <mat-card>
+        <mat-card-content>
+          <mat-form-field>
+          <input type="number" class="inputRideInfo" matInput #input id="seatsAvailableField" placeholder="Seats Available"
                required [(ngModel)]="rideSeats" formControlName="seatsAvailable">
+          </mat-form-field>
+        <div class="action-container">
+          <div class="previousButton">
+            <button mat-button matStepperPrevious type="button">Back</button>
+          </div>
+          <div class="nextButton">
+            <button mat-button matStepperNext type="button">Next</button>
+          </div>
+        </div>
+        </mat-card-content>
+          </mat-card>
+        </form>
+      </mat-step>
+
+      <mat-step class="steps" [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+        <mat-card>
+          <mat-card-content>
+        <app-mapsSearch class="inputRideInfo" #input id="originField"
+                        [(mapsSearchInput)]="rideOrigin" [searchControl]="origin"
+                        searchPlaceholder="Enter starting location">
+        </app-mapsSearch>
 
         <div class="action-container">
           <div class="previousButton">
@@ -33,11 +60,19 @@
             <button mat-button matStepperNext type="button">Next</button>
           </div>
         </div>
+          </mat-card-content>
+        </mat-card>
+        </form>
       </mat-step>
 
-      <mat-step class="steps" formGroupName="2" [stepControl]="formArray.get([2])">
-        <input class="inputRideInfo" matInput #input id="originField" placeholder="Origin"
-               required [(ngModel)]="rideOrigin" formControlName="origin">
+      <mat-step class="steps"  [stepControl]="forthFormGroup">
+        <form [formGroup]="forthFormGroup">
+        <mat-card>
+         <mat-card-content>
+        <app-mapsSearch class="inputRideInfo" #input id="destinationField"
+                        [(mapsSearchInput)]="rideOrigin" [searchControl]="origin"
+                        searchPlaceholder="Enter starting location">
+        </app-mapsSearch>
 
         <div class="action-container">
           <div class="previousButton">
@@ -47,23 +82,13 @@
             <button mat-button matStepperNext type="button">Next</button>
           </div>
         </div>
+         </mat-card-content>
+       </mat-card>
+        </form>
       </mat-step>
 
-      <mat-step class="steps" formGroupName="3" [stepControl]="formArray.get([3])">
-        <input class="inputRideInfo" matInput #input id="destinationField" placeholder="Destination"
-               required [(ngModel)]="rideDestination" formControlName="destination">
-
-        <div class="action-container">
-          <div class="previousButton">
-            <button mat-button matStepperPrevious type="button">Back</button>
-          </div>
-          <div class="nextButton">
-            <button mat-button matStepperNext type="button">Next</button>
-          </div>
-        </div>
-      </mat-step>
-
-      <mat-step class="steps" formGroupName="4" [stepControl]="formArray.get([4])">
+      <mat-step class="steps"  [stepControl]="fifthFormGroup">
+        <form [formGroup]="fifthFormGroup">
         <input class="inputRideInfo" id="departureDateField" matInput [min]="todaysDate()" [matDatepicker]="picker"
                placeholder="Choose Departure Date" [(ngModel)]="rideDepartureDate" formControlName="departureDate">
         <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
@@ -77,10 +102,14 @@
             <button mat-button matStepperNext type="button">Next</button>
           </div>
         </div>
+        </form>
       </mat-step>
 
-      <mat-step class="steps" formGroupName="5" [stepControl]="formArray.get([5])">
-        <input type="time" class="inputRideInfo" matInput #input id="departureTimeField" placeholder="Departure Time"
+      <mat-step class="steps"  [stepControl]="sixthFormGroup">
+        <form [formGroup]="sixthFormGroup">
+        <mat-card>
+          <mat-card-content>
+          <input type="time" class="inputRideInfo" matInput #input id="departureTimeField" placeholder="Departure Time"
                [(ngModel)]="rideDepartureTime" formControlName="departureTime">
 
         <div class="action-container">
@@ -91,9 +120,15 @@
             <button mat-button matStepperNext type="button">Next</button>
           </div>
         </div>
+          </mat-card-content>
+        </mat-card>
+        </form>
       </mat-step>
 
-      <mat-step class="steps" formGroupName="6" [stepControl]="formArray.get([6])">
+      <mat-step class="steps"  [stepControl]="seventhFormGroup">
+        <form [formGroup]="seventhFormGroup">
+        <mat-card>
+          <mat-card-content>
          <textarea class="inputRideInfo" matInput #input id="notesField" placeholder="Notes"
                    [(ngModel)]="rideNotes" formControlName="notes"></textarea>
 
@@ -105,8 +140,10 @@
             <button mat-button matStepperNext type="button">Next</button>
           </div>
         </div>
+          </mat-card-content>
+        </mat-card>
+        </form>
       </mat-step>
 
     </mat-horizontal-stepper>
-  </form>
 </div>
