@@ -44,7 +44,8 @@ const MATERIAL_MODULES: any[] = [
   MatTooltipModule,
   MatDialogModule,
   MatNativeDateModule,
-  MatDatepickerModule
+  MatDatepickerModule,
+  MatStepperModule
 ];
 
 const COVALENT_MODULES: any[] = [
