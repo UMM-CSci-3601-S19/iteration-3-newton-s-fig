@@ -2,7 +2,7 @@
 <app-maps [mapHeightVH]="100"></app-maps>
 
 <div id="inputpart">
-    <mat-horizontal-stepper id="steppercontainer"  linear>
+    <mat-horizontal-stepper id="steppercontainer"  linear #stepper>
       <mat-step class="steps"  [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
         <mat-card>

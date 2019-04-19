@@ -43,7 +43,17 @@ export class AddRideComponent implements OnInit {
               private titleService: Title) {
     titleService.setTitle("Offer Ride");
   }
+reset(){
+this.rideDriver= null;
+this.rideNotes= null;
+this.rideSeats= null;
+this.rideOrigin= null;
+this.rideDestination= null;
+this.rideDepartureDate= null;
+this.rideDepartureTime= null;
+this.rideDateObject= null;
 
+}
   add_ride_validation_messages = {
     'driver': [
       {type: 'required', message: 'Please enter your name'},
@@ -70,6 +80,9 @@ export class AddRideComponent implements OnInit {
   todaysDate(): Date {
     this.nowDate = new Date();
     return this.nowDate;
+  }
+  submit(): void {
+    this.addRide();
   }
 
   addRide(): void {
