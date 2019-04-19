@@ -75,11 +75,12 @@
         <form [formGroup]="fifthFormGroup">
           <mat-card>
             <mat-card-content>
+              <mat-form-field>
         <input class="inputRideInfo" id="departureDateField" matInput [min]="todaysDate()" [matDatepicker]="picker"
                placeholder="Choose Departure Date" [(ngModel)]="rideDepartureDate" formControlName="departureDate">
         <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
         <mat-datepicker id="calendar" #picker></mat-datepicker>
-
+              </mat-form-field>
             <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
             <button class="nextButton" mat-button matStepperNext type="button">Next</button>
             </mat-card-content>
@@ -91,9 +92,10 @@
         <form [formGroup]="sixthFormGroup">
         <mat-card>
           <mat-card-content>
+            <mat-form-field>
           <input type="time" class="inputRideInfo" matInput #input id="departureTimeField" placeholder="Departure Time"
                [(ngModel)]="rideDepartureTime" formControlName="departureTime">
-
+            </mat-form-field>
             <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
             <button class="nextButton" mat-button matStepperNext type="button">Next</button>
 
@@ -106,9 +108,10 @@
         <form [formGroup]="seventhFormGroup">
         <mat-card>
           <mat-card-content>
+            <mat-form-field>
          <textarea class="inputRideInfo" matInput #input id="notesField" placeholder="Notes"
                    [(ngModel)]="rideNotes" formControlName="notes"></textarea>
-
+            </mat-form-field>
             <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
             <button class="nextButton" mat-button matStepperNext type="button">Next</button>
 
@@ -116,6 +119,17 @@
         </mat-card>
         </form>
       </mat-step>
-
+      <mat-step class="steps">
+        <mat-card>
+          <mat-card-content>
+            Click submit to confirm your ride.
+            <div>
+              <button mat-button matStepperPrevious>Back</button>
+              <button mat-button (click)="submit()">Submit</button>
+              <button mat-button (click)="stepper.reset();reset();">Reset</button>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </mat-step>
     </mat-horizontal-stepper>
 </div>
