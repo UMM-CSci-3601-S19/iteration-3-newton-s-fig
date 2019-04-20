@@ -109,7 +109,7 @@ this.rideDateObject= null;
         err => {
           // This should probably be turned into some sort of meaningful response.
           console.log('There was an error adding the ride.');
-          console.log('The newRide or dialogResult was ' + newRide);
+          console.log('The newRide or dialogResult was ' + JSON.stringify(newRide));
           console.log('The error was ' + JSON.stringify(err));
         });
       this.refreshRides();
@@ -118,6 +118,7 @@ this.rideDateObject= null;
       this.refreshRides();
       this.refreshRides();
       this.refreshRides();
+
       this.refreshRides();
       this.refreshRides();
       //This is the only solution to a refresh-on-addride
@@ -134,7 +135,7 @@ this.rideDateObject= null;
     {label: 'Confrim your time', content: '1:1AM'},
     {label: 'Confrim your note', content: ''},
 
-  ]
+  ];
 
   refreshRides(): Observable<Ride[]> {
     // Get Rides returns an Observable, basically a "promise" that

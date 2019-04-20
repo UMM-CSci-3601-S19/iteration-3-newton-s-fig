@@ -1,5 +1,5 @@
 import {Component, ElementRef, Input, NgZone, OnInit, ViewChild} from '@angular/core';
-import { FormControl } from "@angular/forms";
+import {FormControl, FormGroup} from "@angular/forms";
 import { MapsAPILoader } from '@agm/core';
 import {} from 'googlemaps';
 import {Marker} from "../maps/marker";
@@ -17,6 +17,8 @@ export class MapsSearchComponent implements OnInit{
   @Input() searchControl: FormControl;
   @Input() mapsSearchInput: string;
   @Input() searchPlaceholder: string;
+  @Input() group: FormGroup;
+  formgroup: FormGroup;
 
   @ViewChild("search")
   public searchElementRef: ElementRef;
@@ -27,6 +29,7 @@ export class MapsSearchComponent implements OnInit{
   ) {}
 
   ngOnInit() {
+    this.formgroup=this.group;
     //set google maps defaults
     this.latitude = 45.5919;
     this.longitude = -95.9189;
