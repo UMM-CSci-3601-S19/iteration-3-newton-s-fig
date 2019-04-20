@@ -15,67 +15,69 @@
     background-color: inherit;
   }
 }
-  .steps {
-    margin: auto;
-    width: 100%;
-  }
 
-  #steppercontainer {
-    background-color: transparent;
-  }
+.steps {
+  margin: auto;
+  width: 100%;
+}
 
-  //input {
-  //  margin-top: 5px;
-  //  border-radius: 7px;
-  //  text-align: center;
-  //  height: 30px;
-  //
-  //}
+#steppercontainer {
+  background-color: transparent;
+}
 
-  .nextButton {
-    display: flex;
-    float: right;
-    min-width: 10px;
-    padding: 10px 10px 10px 10px;
-  }
-  .previousButton {
-    display: flex;
-    float: left;
-    min-width: 10px;
-    padding: 10px 13px 10px 10px ;
+//input {
+//  margin-top: 5px;
+//  border-radius: 7px;
+//  text-align: center;
+//  height: 30px;
+//
+//}
 
-
-  }
-
-  #inputpart {
-    position: fixed;
-    top: 10vh;
-    width: 100%;
-
-
-  }
-
-  mat-datepicker-toggle {
-    color: #421914;
-  }
-
-  mat-card {
+.nextButton {
   display: flex;
-    border-radius: 5px;
-    text-align: center;
-    max-width: 400px;
+  float: right;
+  min-width: 10px;
+  padding: 10px 10px 10px 10px;
+}
 
-  }
-  mat-card-content {
-    padding: 0 10px 0 10px !important;
-    width: 100%;
-  }
-  input {
-    display: flex;
-  }
+.previousButton {
+  display: flex;
+  float: left;
+  min-width: 10px;
+  padding: 10px 13px 10px 10px ;
+}
+
+#inputpart {
+  position: fixed;
+  top: 10vh;
+  width: 100%;
+}
+
+mat-datepicker-toggle {
+  color: #421914;
+}
+
+mat-card {
+  display: flex;
+  border-radius: 5px;
+  text-align: center;
+  max-width: 400px;
+
+}
+
+mat-card-content {
+  padding: 0 10px 0 10px !important;
+  width: 100%;
+}
+
+input {
+  display: flex;
+}
+
 form {
   text-align: center !important;
 }
+
 @media only screen and (min-width: 700px) {
   mat-card {
     margin: 2px 31% 2px 26%;
