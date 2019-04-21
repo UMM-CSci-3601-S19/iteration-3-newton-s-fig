@@ -23,9 +23,14 @@ mat-datepicker-toggle {
   color: #421914;
 }
 
-mat-card-content {
-  padding: 16px;
+.mat-card-slim {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
   margin: 0;
+  padding: 8px;
+  font-size: 0.8rem;
 }
 
 mat-card-actions {
