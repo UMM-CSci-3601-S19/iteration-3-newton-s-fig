@@ -1,17 +1,11 @@
-
-
-
-<mat-form-field [formGroup]="formgroup">
+<mat-form-field [formGroup]="formGroup">
   <input matInput autocorrect="off"
            autocapitalize="off"
            spellcheck="off"
            type="text"
            #search
-           [(formControlName)]="searchControl"
-           [(ngModel)] = "mapsSearchInput"
-           [placeholder]="searchPlaceholder"
-  >
-
+           formControlName="search"
+           [placeholder]="searchPlaceholder">
 </mat-form-field>
 
 

@@ -23,7 +23,7 @@
       <mat-card>
         <mat-card-content>
         <app-mapsSearch class="inputRideInfo" #input id="originField"
-               [(mapsSearchInput)]="rideOrigin" [searchControl]="origin"
+
                         searchPlaceholder="Enter starting location">
         </app-mapsSearch>
 
@@ -42,7 +42,7 @@
       <ng-template matStepLabel>Destination</ng-template>
 
           <app-mapsSearch class="inputRideInfo" #input id="destinationField"
-                          [(mapsSearchInput)]="rideDestination" [searchControl]="destination"
+
                           searchPlaceholder="Enter ending location">
           </app-mapsSearch>
 
@@ -67,4 +67,3 @@
   </mat-step>
 </mat-horizontal-stepper>
 </div>
-

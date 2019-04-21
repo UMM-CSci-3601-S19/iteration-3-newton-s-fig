@@ -87,10 +87,11 @@ public class RideRequestHandler {
    */
   public String addNewRide(Request req, Response res) {
     res.type("application/json");
+    System.out.println("processing request");
 
     Document newRide = Document.parse(req.body());
 
-    System.out.println(newRide);
+    System.out.println("New ride: " +  newRide);
 
     String driver = newRide.getString("driver");
     String notes = newRide.getString("notes");

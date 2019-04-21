@@ -45,9 +45,8 @@
 
         <app-mapsSearch
                         class="inputRideInfo" #input id="originField"
-                        [(mapsSearchInput)]="rideOrigin" [(searchControl)]="origin"
+                        [placeResult]="rideOrigin" location="origin"
                         searchPlaceholder="Enter starting location"
-                        [(group)]="thirdFormGroup"
         >
         </app-mapsSearch>
 
@@ -65,9 +64,10 @@
         <mat-card>
          <mat-card-content>
         <app-mapsSearch class="inputRideInfo" #input id="destinationField"
-                        [(mapsSearchInput)]="rideDestination" [(searchControl)]="destination"
+                        [placeResult]="rideDestination" location="destination"
                         searchPlaceholder="Enter ending location">
         </app-mapsSearch>
+
 
             <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
             <button class="nextButton" mat-button matStepperNext type="button">Next</button>

@@ -5,6 +5,7 @@ import {RideListComponent} from "../rides/ride-list.component";
 import {RideListService} from "../rides/ride-list.service";
 import {Observable} from "rxjs/Observable";
 import {Title} from "@angular/platform-browser";
+import {DataService} from "../service/data.service";
 
 @Component({
   selector: 'add-ride.component',
@@ -30,8 +31,8 @@ export class AddRideComponent implements OnInit {
   public rideDriver: string;
   public rideNotes: string;
   public rideSeats: number;
-  public rideOrigin: string;
-  public rideDestination: string;
+  public rideOrigin: google.maps.places.PlaceResult; //string;
+  public rideDestination: google.maps.places.PlaceResult; //string;
   public rideDepartureDate: string;
   public rideDepartureTime: string;
   public rideDateObject: string;
@@ -40,7 +41,9 @@ export class AddRideComponent implements OnInit {
   // Inject the RideListService into this component.
   constructor(public rideListService: RideListService,
               private fb: FormBuilder,
-              private titleService: Title) {
+              private titleService: Title,
+              //private data: DataService
+  ) {
     titleService.setTitle("Offer Ride");
   }
 reset(){
@@ -82,6 +85,9 @@ this.rideDateObject= null;
     return this.nowDate;
   }
   submit(): void {
+    console.log(this.rideDestination);
+    this.rideDestination = JSON.parse(localStorage.getItem('destination'));
+    this.rideOrigin = JSON.parse(localStorage.getItem('origin'));
     this.addRide();
   }
 
@@ -91,8 +97,8 @@ this.rideDateObject= null;
       driver: this.rideDriver,
       notes: this.rideNotes,
       seatsAvailable: Number(this.rideSeats),
-      origin: this.rideOrigin,
-      destination: this.rideDestination,
+      origin: this.rideOrigin.name,
+      destination: this.rideDestination.name,
       departureDate: this.rideDepartureDate,
       departureTime: this.rideDepartureTime,
       dateObject: this.rideDateObject
@@ -192,8 +198,12 @@ this.rideDateObject= null;
       notes: ['notes']
     });
 
+    //this.data.currentMessage.subscribe(message => )
+
+
 
   }
+
 
 }
 
