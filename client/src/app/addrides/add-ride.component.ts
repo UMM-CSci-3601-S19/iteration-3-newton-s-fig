@@ -97,8 +97,8 @@ this.rideDateObject= null;
       driver: this.rideDriver,
       notes: this.rideNotes,
       seatsAvailable: Number(this.rideSeats),
-      origin: this.rideOrigin.name,
-      destination: this.rideDestination.name,
+      origin: this.rideOrigin,
+      destination: this.rideDestination,
       departureDate: this.rideDepartureDate,
       departureTime: this.rideDepartureTime,
       dateObject: this.rideDateObject

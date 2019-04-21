@@ -15,11 +15,11 @@
 
   <mat-card-content>
     <div class="route">
-      <div class="ride-info origin">{{ride.origin}}</div>
+      <div class="ride-info origin">{{ride.origin.name}}</div>
       <mat-icon>play_arrow</mat-icon>
-      <div class="ride-info destination">{{ride.destination}}</div>
+      <div class="ride-info destination">{{ride.destination.name}}</div>
     </div>
-
+    
     <div id="ride-info-driver-id" class="ride-info driver">
       {{ride.driver}} is offering this ride
     </div>

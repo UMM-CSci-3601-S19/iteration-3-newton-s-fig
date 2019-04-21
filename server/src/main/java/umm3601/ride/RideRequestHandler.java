@@ -96,8 +96,8 @@ public class RideRequestHandler {
     String driver = newRide.getString("driver");
     String notes = newRide.getString("notes");
     int seatsAvailable = newRide.getInteger("seatsAvailable");
-    String origin = newRide.getString("origin");
-    String destination = newRide.getString("destination");
+    Object origin = newRide.get("origin");
+    Object destination = newRide.get("destination");
     date = newRide.getString("departureDate");
     if (newRide.getString("departureTime") != null) {
       time = newRide.getString("departureTime");
