@@ -28,6 +28,11 @@ mat-card-content {
   margin: 0;
 }
 
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
 mat-form-field {
   width: 100%;
 }
