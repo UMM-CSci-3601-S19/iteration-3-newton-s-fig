@@ -33,7 +33,7 @@ export class MapsSearchComponent implements OnInit{
 
     //create search FormControl
     this.formGroup = this.fb.group({
-      search: ['search']
+      search: ['']
     });
 
     //set current position

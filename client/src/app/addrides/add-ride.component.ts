@@ -93,7 +93,7 @@ this.rideDateObject= null;
 
   addRide(): void {
     const newRide: Ride = {
-      _id: {$oid:''},
+      _id: {$oid:'585024d558bef808ed84fc3e'},
       driver: this.rideDriver,
       notes: this.rideNotes,
       seatsAvailable: Number(this.rideSeats),
