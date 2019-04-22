@@ -14,8 +14,8 @@ export class FilterComponent {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   public departureDate: string;
-  public rideDestination: string;
-  public rideOrigin: string;
+  public rideDestination: google.maps.places.PlaceResult;
+  public rideOrigin: google.maps.places.PlaceResult;
   public originRadius: number;
   public destinationRadius: number;
 
@@ -29,20 +29,27 @@ export class FilterComponent {
     return new Date();
   }
 
-  submit(){
+  submit() {
     localStorage.setItem("filterDate", this.departureDate);
     localStorage.setItem("originRadius", this.originRadius.toString());
     localStorage.setItem("destinationRadius", this.destinationRadius.toString());
-    location.assign("http://"+location.host+"/rides");
   }
 
   reset(){
     localStorage.removeItem("filterDate");
     localStorage.removeItem("filterOrigin");
     localStorage.removeItem("filterDestination");
-  this.departureDate= null;
-  this.rideDestination= null;
-  this.rideOrigin= null;
+    this.departureDate= null;
+    this.rideDestination= null;
+    this.rideOrigin= null;
+  }
+
+  setRideOrigin(placeResult: google.maps.places.PlaceResult) {
+    this.rideOrigin = placeResult;
+  }
+
+  setRideDestination(placeResult: google.maps.places.PlaceResult) {
+    this.rideDestination = placeResult;
   }
 
   ngOnInit() {

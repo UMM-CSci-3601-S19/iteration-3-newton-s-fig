@@ -36,8 +36,9 @@
             <button class="previousButton" mat-icon-button matStepperPrevious type="button">
               <mat-icon>navigate_before</mat-icon>
             </button>
-            <app-mapsSearch class="inputRideInfo" #input id="originField"
-                   [placeResult]="rideOrigin" location="origin"
+            <app-mapsSearch class="inputRideInfo"
+                            id="originField"
+                            (placeResult)="setRideOrigin($event)"
                             searchPlaceholder="Where are you starting?">
             </app-mapsSearch>
             <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
@@ -55,12 +56,15 @@
               <mat-icon>navigate_before</mat-icon>
             </button>
             <ng-template matStepLabel>Destination</ng-template>
-            <app-mapsSearch class="inputRideInfo" #input id="destinationField"
-                            [placeResult]="rideDestination" location="destination"
+            <app-mapsSearch class="inputRideInfo"
+                            id="destinationField"
+                            (placeResult)="setRideDestination($event)"
                             searchPlaceholder="Where are you going?">
             </app-mapsSearch>
+            
             <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent"
-            (click)="submit()">
+            (click)="submit()" routerLink="/rides">
+
               <mat-icon>search</mat-icon>
             </button>
           </div>
