@@ -7,6 +7,8 @@ import {Observable} from "rxjs/Observable";
 import {Title} from "@angular/platform-browser";
 import {DataService} from "../service/data.service";
 
+declare var google;
+
 @Component({
   selector: 'add-ride.component',
   templateUrl: 'add-ride.component.html',
@@ -89,6 +91,7 @@ this.rideDateObject= null;
     this.rideDestination = JSON.parse(localStorage.getItem('destination'));
     this.rideOrigin = JSON.parse(localStorage.getItem('origin'));
     this.addRide();
+    location.assign("http://"+location.host+"/rides");
   }
 
   addRide(): void {
