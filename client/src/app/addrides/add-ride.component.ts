@@ -5,6 +5,7 @@ import {RideListComponent} from "../rides/ride-list.component";
 import {RideListService} from "../rides/ride-list.service";
 import {Observable} from "rxjs/Observable";
 import {Title} from "@angular/platform-browser";
+import {DataService} from "../service/data.service";
 
 @Component({
   selector: 'add-ride.component',
@@ -30,8 +31,8 @@ export class AddRideComponent implements OnInit {
   public rideDriver: string;
   public rideNotes: string;
   public rideSeats: number;
-  public rideOrigin: string;
-  public rideDestination: string;
+  public rideOrigin: google.maps.places.PlaceResult; //string;
+  public rideDestination: google.maps.places.PlaceResult; //string;
   public rideDepartureDate: string;
   public rideDepartureTime: string;
   public rideDateObject: string;
@@ -40,10 +41,22 @@ export class AddRideComponent implements OnInit {
   // Inject the RideListService into this component.
   constructor(public rideListService: RideListService,
               private fb: FormBuilder,
-              private titleService: Title) {
+              private titleService: Title,
+              //private data: DataService
+  ) {
     titleService.setTitle("Offer Ride");
   }
+reset(){
+this.rideDriver= null;
+this.rideNotes= null;
+this.rideSeats= null;
+this.rideOrigin= null;
+this.rideDestination= null;
+this.rideDepartureDate= null;
+this.rideDepartureTime= null;
+this.rideDateObject= null;
 
+}
   add_ride_validation_messages = {
     'driver': [
       {type: 'required', message: 'Please enter your name'},
@@ -71,10 +84,16 @@ export class AddRideComponent implements OnInit {
     this.nowDate = new Date();
     return this.nowDate;
   }
+  submit(): void {
+    console.log(this.rideDestination);
+    this.rideDestination = JSON.parse(localStorage.getItem('destination'));
+    this.rideOrigin = JSON.parse(localStorage.getItem('origin'));
+    this.addRide();
+  }
 
   addRide(): void {
     const newRide: Ride = {
-      _id: {$oid:''},
+      _id: {$oid:'585024d558bef808ed84fc3e'},
       driver: this.rideDriver,
       notes: this.rideNotes,
       seatsAvailable: Number(this.rideSeats),
@@ -96,7 +115,7 @@ export class AddRideComponent implements OnInit {
         err => {
           // This should probably be turned into some sort of meaningful response.
           console.log('There was an error adding the ride.');
-          console.log('The newRide or dialogResult was ' + newRide);
+          console.log('The newRide or dialogResult was ' + JSON.stringify(newRide));
           console.log('The error was ' + JSON.stringify(err));
         });
       this.refreshRides();
@@ -105,6 +124,7 @@ export class AddRideComponent implements OnInit {
       this.refreshRides();
       this.refreshRides();
       this.refreshRides();
+
       this.refreshRides();
       this.refreshRides();
       //This is the only solution to a refresh-on-addride
@@ -129,7 +149,7 @@ export class AddRideComponent implements OnInit {
     {label: 'Confrim your time', content: '1:1AM'},
     {label: 'Confrim your note', content: ''},
 
-  ]
+  ];
 
   refreshRides(): Observable<Ride[]> {
     // Get Rides returns an Observable, basically a "promise" that
@@ -186,8 +206,12 @@ export class AddRideComponent implements OnInit {
       notes: ['notes']
     });
 
+    //this.data.currentMessage.subscribe(message => )
+
+
 
   }
+
 
 }
 

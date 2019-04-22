@@ -68,8 +68,9 @@ public class RideController {
     return DatabaseHelper.serializeIterable(matchingRides);
   }
 
-  public String addNewRide(String driver, String notes, int seatsAvailable, String origin, String destination,
+  public String addNewRide(String driver, String notes, int seatsAvailable, Object origin, Object destination,
                            String departureTime, String departureDate, String dateObject) {
+    System.out.println("adding a ride");
 
     Document newRide = new Document();
     newRide.append("driver", driver);

@@ -87,16 +87,17 @@ public class RideRequestHandler {
    */
   public String addNewRide(Request req, Response res) {
     res.type("application/json");
+    System.out.println("processing request");
 
     Document newRide = Document.parse(req.body());
 
-    System.out.println(newRide);
+    System.out.println("New ride: " +  newRide);
 
     String driver = newRide.getString("driver");
     String notes = newRide.getString("notes");
     int seatsAvailable = newRide.getInteger("seatsAvailable");
-    String origin = newRide.getString("origin");
-    String destination = newRide.getString("destination");
+    Object origin = newRide.get("origin");
+    Object destination = newRide.get("destination");
     date = newRide.getString("departureDate");
     if (newRide.getString("departureTime") != null) {
       time = newRide.getString("departureTime");

@@ -31,9 +31,9 @@ export class FilterComponent {
 
   }
   reset(){
-  this.departureDate='';
-  this.rideDestination='';
-  this.rideOrigin='';
+  this.departureDate= null;
+  this.rideDestination= null;
+  this.rideOrigin= null;
   }
 
   ngOnInit() {

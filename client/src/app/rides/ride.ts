@@ -5,8 +5,8 @@ export interface Ride {
   driver: string;
   notes: string;
   seatsAvailable: number;
-  origin: string;
-  destination: string;
+  origin: Object;
+  destination: Object;
   departureDate: string;
   departureTime: string;
   dateObject: string;
