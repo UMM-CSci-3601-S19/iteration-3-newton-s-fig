@@ -1,4 +1,4 @@
-<app-maps [mapHeightVH]="100"></app-maps>
+<app-maps [mapHeightVH]="100" [(markers)]="markers"></app-maps>
 
 <div id="inputpart">
   <mat-horizontal-stepper id="steppercontainer"  [linear]="false" #stepper>
@@ -47,9 +47,10 @@
             <button class="previousButton" mat-icon-button matStepperPrevious type="button">
               <mat-icon>navigate_before</mat-icon>
             </button>
-            <app-mapsSearch class="inputRideInfo" #input id="originField"
-                            [placeResult]="rideOrigin" location="origin"
-                            searchPlaceholder="Enter starting location">
+            <app-mapsSearch class="inputRideInfo"
+                            id="originField"
+                            searchPlaceholder="Enter starting location"
+                            (placeResult)="setRideOrigin($event)">
             </app-mapsSearch>
             <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
               <mat-icon>navigate_next</mat-icon>
@@ -66,8 +67,9 @@
             <button class="previousButton" mat-icon-button matStepperPrevious type="button">
               <mat-icon>navigate_before</mat-icon>
             </button>
-            <app-mapsSearch class="inputRideInfo" #input id="destinationField"
-                            [placeResult]="rideDestination" location="destination"
+            <app-mapsSearch class="inputRideInfo"
+                            id="destinationField"
+                            (placeResult)="setRideDestination($event)"
                             searchPlaceholder="Enter ending location">
             </app-mapsSearch>
             <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">

@@ -5,7 +5,7 @@ import {RideListComponent} from "../rides/ride-list.component";
 import {RideListService} from "../rides/ride-list.service";
 import {Observable} from "rxjs/Observable";
 import {Title} from "@angular/platform-browser";
-import {DataService} from "../service/data.service";
+import {Marker} from "../maps/marker";
 
 declare var google;
 
@@ -33,19 +33,19 @@ export class AddRideComponent implements OnInit {
   public rideDriver: string;
   public rideNotes: string;
   public rideSeats: number;
-  public rideOrigin: google.maps.places.PlaceResult; //string;
-  public rideDestination: google.maps.places.PlaceResult; //string;
+  public rideOrigin: google.maps.places.PlaceResult;
+  public rideDestination: google.maps.places.PlaceResult;
   public rideDepartureDate: string;
   public rideDepartureTime: string;
   public rideDateObject: string;
   public nowDate: Date;
 
+  public markers: Marker[];
+
   // Inject the RideListService into this component.
   constructor(public rideListService: RideListService,
               private fb: FormBuilder,
-              private titleService: Title,
-              //private data: DataService
-  ) {
+              private titleService: Title) {
     titleService.setTitle("Offer Ride");
   }
 
@@ -89,9 +89,6 @@ export class AddRideComponent implements OnInit {
   }
 
   submit(): void {
-    console.log(this.rideDestination);
-    this.rideDestination = JSON.parse(localStorage.getItem('destination'));
-    this.rideOrigin = JSON.parse(localStorage.getItem('origin'));
     this.addRide();
     location.assign("http://"+location.host+"/rides");
   }
@@ -108,7 +105,6 @@ export class AddRideComponent implements OnInit {
       departureTime: this.rideDepartureTime,
       dateObject: this.rideDateObject
     };
-
 
     console.log(newRide);
     if (newRide != null) {
@@ -129,7 +125,6 @@ export class AddRideComponent implements OnInit {
       this.refreshRides();
       this.refreshRides();
       this.refreshRides();
-
       this.refreshRides();
       this.refreshRides();
       //This is the only solution to a refresh-on-addride
@@ -165,6 +160,13 @@ export class AddRideComponent implements OnInit {
     return rides;
   }
 
+  setRideOrigin(placeResult: google.maps.places.PlaceResult) {
+    this.rideOrigin = placeResult;
+  }
+
+  setRideDestination(placeResult: google.maps.places.PlaceResult) {
+    this.rideDestination = placeResult;
+  }
 
   ngOnInit() {
     this.firstFormGroup = this.fb.group({
@@ -202,8 +204,6 @@ export class AddRideComponent implements OnInit {
     this.seventhFormGroup = this.fb.group({
       notes: ['notes']
     });
-
-    //this.data.currentMessage.subscribe(message => )
   }
 }
 
