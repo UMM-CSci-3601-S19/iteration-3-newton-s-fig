@@ -1,69 +1,72 @@
 <app-maps [mapHeightVH]="100"></app-maps>
 
 <div id="inputpart">
-<mat-horizontal-stepper #stepper [linear]="false" id="steppercontainer">
-  <mat-step [stepControl]="firstFormGroup" class="steps">
-    <form [formGroup]="firstFormGroup">
-      <mat-card>
-        <div class="mat-card-slim">
-          <mat-form-field>
-            <input class="inputRideInfo"
-                   id="departureDateField"
-                   matInput
-                   [min]="todaysDate()"
-                   [matDatepicker]="picker"
-                   placeholder="When are you leaving?"
-                   [(ngModel)]="departureDate"
-                   formControlName="departureDate"
-                   (click)="picker.open()">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker id="calendar" #picker></mat-datepicker>
-          </mat-form-field>
-          <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
-            <mat-icon>navigate_next</mat-icon>
-          </button>
-        </div>
-      </mat-card>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="secondFormGroup" class="steps">
-    <form [formGroup]="secondFormGroup">
-      <mat-card>
-        <div class="mat-card-slim">
-          <button class="previousButton" mat-icon-button matStepperPrevious type="button">
-            <mat-icon>navigate_before</mat-icon>
-          </button>
-          <app-mapsSearch class="inputRideInfo" #input id="originField"
-                 [(mapsSearchInput)]="rideOrigin" [searchControl]="origin"
-                          searchPlaceholder="Where are you starting?">
-          </app-mapsSearch>
-          <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
-            <mat-icon>navigate_next</mat-icon>
-          </button>
-        </div>
-      </mat-card>
-    </form>
-  </mat-step>
+  <mat-horizontal-stepper #stepper [linear]="false" id="steppercontainer">
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup" class="steps">
+        <mat-card>
+          <div class="mat-card-slim">
+            <button class="previousButton" mat-icon-button type="button" color="accent" disabled="disabled">
+              <mat-icon>navigate_before</mat-icon>
+            </button>
+            <mat-form-field>
+              <input class="inputRideInfo"
+                     id="departureDateField"
+                     matInput
+                     [min]="todaysDate()"
+                     [matDatepicker]="picker"
+                     placeholder="When are you leaving?"
+                     [(ngModel)]="departureDate"
+                     formControlName="departureDate"
+                     (click)="picker.open()">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker id="calendar" #picker></mat-datepicker>
+            </mat-form-field>
+            <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
+              <mat-icon>navigate_next</mat-icon>
+            </button>
+          </div>
+        </mat-card>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup" class="steps">
+        <mat-card>
+          <div class="mat-card-slim">
+            <button class="previousButton" mat-icon-button matStepperPrevious type="button">
+              <mat-icon>navigate_before</mat-icon>
+            </button>
+            <app-mapsSearch class="inputRideInfo" #input id="originField"
+                   [(mapsSearchInput)]="rideOrigin" [searchControl]="origin"
+                            searchPlaceholder="Where are you starting?">
+            </app-mapsSearch>
+            <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
+              <mat-icon>navigate_next</mat-icon>
+            </button>
+          </div>
+        </mat-card>
+      </form>
+    </mat-step>
 
-  <mat-step [stepControl]="thirdFormGroup" class="steps">
-    <form [formGroup]="thirdFormGroup">
-      <mat-card>
-        <div class="mat-card-slim">
-          <button class="previousButton" mat-icon-button matStepperPrevious type="button">
-            <mat-icon>navigate_before</mat-icon>
-          </button>
-          <ng-template matStepLabel>Destination</ng-template>
-          <app-mapsSearch class="inputRideInfo" #input id="destinationField"
-                          [(mapsSearchInput)]="rideDestination" [searchControl]="destination"
-                          searchPlaceholder="Where are you going?">
-          </app-mapsSearch>
-          <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
-            <mat-icon>search</mat-icon>
-          </button>
-        </div>
-      </mat-card>
-    </form>
-  </mat-step>
-</mat-horizontal-stepper>
+    <mat-step [stepControl]="thirdFormGroup">
+      <form [formGroup]="thirdFormGroup" class="steps">
+        <mat-card>
+          <div class="mat-card-slim">
+            <button class="previousButton" mat-icon-button matStepperPrevious type="button">
+              <mat-icon>navigate_before</mat-icon>
+            </button>
+            <ng-template matStepLabel>Destination</ng-template>
+            <app-mapsSearch class="inputRideInfo" #input id="destinationField"
+                            [(mapsSearchInput)]="rideDestination" [searchControl]="destination"
+                            searchPlaceholder="Where are you going?">
+            </app-mapsSearch>
+            <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
+              <mat-icon>search</mat-icon>
+            </button>
+          </div>
+        </mat-card>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
 </div>
 

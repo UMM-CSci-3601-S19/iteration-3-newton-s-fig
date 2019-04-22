@@ -2,11 +2,14 @@
   .mat-horizontal-stepper-header-container {
     display: none !important;
   }
+  .mat-form-field-underline {
+    background: #fff;
+  }
 }
 
 .steps {
-  margin: auto;
-  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 
 #steppercontainer {
@@ -31,6 +34,7 @@ mat-datepicker-toggle {
   margin: 0;
   padding: 8px;
   font-size: 0.8rem;
+  width: 400px;
 }
 
 mat-card-actions {
@@ -46,8 +50,18 @@ app-mapsSearch {
   width: 100%;
 }
 
-@media only screen and (min-width: 700px) {
+@media only screen and (max-width: 450px) {
+  ::ng-deep {
+    .mat-horizontal-content-container {
+      padding: 0 !important;
+    }
+  }
+
+  .mat-card-slim {
+    width: auto;
+  }
+
   mat-card {
-    margin: 2px 31% 2px 26%;
+    width: 90%;
   }
 }
