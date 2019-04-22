@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Title} from "@angular/platform-browser";
+import {MapsAPILoader} from "@agm/core";
+import {RideListService} from "../rides/ride-list.service";
+import {Ride} from "../rides/ride";
 
 @Component({
   selector: 'filter-component',
@@ -20,7 +23,11 @@ export class FilterComponent {
   public destinationRadius: number;
 
 
-  constructor(private _formBuilder: FormBuilder,
+
+
+  constructor(private mapsAPILoader: MapsAPILoader,
+              public rideListService: RideListService,
+              private _formBuilder: FormBuilder,
               private titleService: Title) {
     this.titleService.setTitle("Find a Ride");
   }
