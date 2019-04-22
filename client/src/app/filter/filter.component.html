@@ -61,7 +61,10 @@
                             (placeResult)="setRideDestination($event)"
                             searchPlaceholder="Where are you going?">
             </app-mapsSearch>
-            <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent" routerLink="/rides">
+            
+            <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent"
+            (click)="submit()" routerLink="/rides">
+
               <mat-icon>search</mat-icon>
             </button>
           </div>
