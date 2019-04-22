@@ -59,7 +59,8 @@
                             [placeResult]="rideDestination" location="destination"
                             searchPlaceholder="Where are you going?">
             </app-mapsSearch>
-            <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
+            <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent"
+            (click)="submit()">
               <mat-icon>search</mat-icon>
             </button>
           </div>
