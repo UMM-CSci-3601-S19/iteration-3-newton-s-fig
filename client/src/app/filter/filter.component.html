@@ -23,9 +23,13 @@
       <mat-card>
         <mat-card-content>
         <app-mapsSearch class="inputRideInfo" #input id="originField"
-
+                        location="filterOrigin"
                         searchPlaceholder="Enter starting location">
         </app-mapsSearch>
+          <mat-form-field>
+            <input type="number" class="inputRideInfo" matInput #input id="originRadius" placeholder="Radius"
+                   [(ngModel)]="originRadius" formControlName="originRadius">
+          </mat-form-field>
 
               <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
               <button class="nextButton" mat-button matStepperNext type="button">Next</button>
@@ -42,9 +46,14 @@
       <ng-template matStepLabel>Destination</ng-template>
 
           <app-mapsSearch class="inputRideInfo" #input id="destinationField"
-
+                          location="filterDestination"
                           searchPlaceholder="Enter ending location">
           </app-mapsSearch>
+
+          <mat-form-field>
+            <input type="number" class="inputRideInfo" matInput #input id="destinationRadius" placeholder="Radius"
+                   [(ngModel)]="destinationRadius" formControlName="destinationRadius">
+          </mat-form-field>
 
         <button class="previousButton" mat-button matStepperPrevious>Back</button>
         <button class="nextButton"  mat-button matStepperNext>Next</button>

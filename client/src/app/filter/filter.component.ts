@@ -15,6 +15,8 @@ export class FilterComponent {
   public departureDate: string;
   public rideDestination: string;
   public rideOrigin: string;
+  public originRadius: number;
+  public destinationRadius: number;
 
 
   constructor(private _formBuilder: FormBuilder) { }
@@ -24,9 +26,16 @@ export class FilterComponent {
   }
 
   submit(){
-
+    localStorage.setItem("filterDate", this.departureDate);
+    localStorage.setItem("originRadius", this.originRadius.toString());
+    localStorage.setItem("destinationRadius", this.destinationRadius.toString());
+    location.assign("http://"+location.host+"/rides");
   }
+
   reset(){
+    localStorage.removeItem("filterDate");
+    localStorage.removeItem("filterOrigin");
+    localStorage.removeItem("filterDestination");
   this.departureDate= null;
   this.rideDestination= null;
   this.rideOrigin= null;
@@ -37,10 +46,31 @@ export class FilterComponent {
       departureDate: new FormControl('departureDate')
     });
     this.secondFormGroup = this._formBuilder.group({
-      origin: new FormControl('origin')
+      origin: new FormControl('origin'),
+      originRadius: new FormControl('originRadius')
     });
     this.thirdFormGroup = this._formBuilder.group({
-      destination: new FormControl('destination')
+      destination: new FormControl('destination'),
+      destinationRadius: new FormControl('destinationRadius')
     });
+    if (localStorage.getItem("filterOrigin")){
+      this.rideOrigin = localStorage.getItem("filterOrigin");
+    }
+    if (localStorage.getItem("filterDestination")){
+      this.rideDestination = localStorage.getItem("filterDestination");
+    }
+    if (localStorage.getItem("filterDate")){
+      this.departureDate = localStorage.getItem("filterDate");
+    }
+    if (localStorage.getItem("originRadius")){
+      this.originRadius = parseInt(localStorage.getItem("originRadius"));
+    }else {
+      this.originRadius = 20;
+    }
+    if (localStorage.getItem("destinationRadius")){
+      this.destinationRadius = parseInt(localStorage.getItem("destinationRadius"));
+    }else {
+      this.destinationRadius = 20;
+    }
   }
 }
