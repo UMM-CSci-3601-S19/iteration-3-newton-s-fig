@@ -131,7 +131,7 @@
               <textarea class="inputRideInfo" matInput #input id="notesField" placeholder="Notes"
                    [(ngModel)]="rideNotes" formControlName="notes"></textarea>
             </mat-form-field>
-            <button class="nextButton" mat-icon-button type="button" color="accent" (click)="submit()">
+            <button class="nextButton" mat-icon-button type="button" color="accent" (click)="submit()" routerLink="/rides">
               <mat-icon>add</mat-icon>
             </button>
           </div>

@@ -90,7 +90,6 @@ export class AddRideComponent implements OnInit {
 
   submit(): void {
     this.addRide();
-    location.assign("http://"+location.host+"/rides");
   }
 
   addRide(): void {

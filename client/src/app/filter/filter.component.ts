@@ -33,7 +33,6 @@ export class FilterComponent {
     localStorage.setItem("filterDate", this.departureDate);
     localStorage.setItem("originRadius", this.originRadius.toString());
     localStorage.setItem("destinationRadius", this.destinationRadius.toString());
-    location.assign("http://"+location.host+"/rides");
   }
 
   reset(){
