@@ -20,11 +20,13 @@
 
 <div id="ridesWrapper" layout-gt-sm="row">
   <div flex-gt-sm="40" flex-offset-gt-sm="30">
-    <h2 id="filteredEmpty">{{noRidesFound()}}</h2>
+    <h2 id="filteredEmpty">hreh</h2>
     <div *ngIf="filteredRides; else ridesError">
         <app-ride *ngFor="let r of filteredRides" [ride]="r"></app-ride>
     </div>
     <br/><br/><br/>
+
+
 
     <div class="wrapper">
       <div *ngIf="array;">
@@ -42,7 +44,6 @@
 
     <!--This just creates enough space to scroll on mobile-->
     <p></p>
-
   </div>
 </div>
 

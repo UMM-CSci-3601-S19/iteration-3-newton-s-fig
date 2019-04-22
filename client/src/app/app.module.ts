@@ -38,6 +38,7 @@ import {RideComponent} from "./rides/ride.component";
 import {FilterComponent} from "./filter/filter.component";
 import {AgmCoreModule, MapsAPILoader} from "@agm/core";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {FilterService} from "./filter/filter.service";
 
 @NgModule({
   imports: [
@@ -80,6 +81,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ChatService,
     AuthGuardService,
     AuthService,
+    FilterService,
     {provide: APP_BASE_HREF, useValue: '/'},
   ],
   entryComponents: [

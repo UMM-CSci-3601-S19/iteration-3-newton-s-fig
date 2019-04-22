@@ -6,7 +6,7 @@ import {Observable} from "rxjs/Observable";
 import {HttpClient} from "@angular/common/http";
 import {environment} from '../../environments/environment';
 
-@Injectable
+@Injectable()
 export class FilterService {
 
   rideListComponent: RideListComponent;
@@ -22,7 +22,20 @@ export class FilterService {
   public time: Date;
   public timeString: string;
   public nowDate = new Date;
-  public radius: number;
+  public originRad: number;
+  public destRad: number;
+  public origin = {geometry: {
+    location: {},
+    viewport: {
+      south: 45.8082531197085,
+      west: 15.968338249999988,
+      north: 45.8109510802915,
+      east: 15.971738449999975
+    }
+  }};
+
+  public destination;
+  public filDate;
   public service;
 
   public destinationArray: google.maps.Place[];
@@ -41,6 +54,17 @@ export class FilterService {
     this.rideListComponent = rlc;
   }
 
+  updateFilter(origin, destination, originRad, destRad, date){
+    console.log("in update filter");
+    this.origin = origin;
+    this.destination = destination;
+    this.originRad = originRad;
+    this.destRad = destRad;
+    this.filDate = date;
+    this.filterRides();
+  }
+
+
   updateList(rides: Ride[]) {
     if (this.rideListComponent) {
       this.rideListComponent.rides = rides;
@@ -51,11 +75,24 @@ export class FilterService {
     return this.http.get<Ride[]>(this.rideUrl);
   }
 
+  loadService(): void {
+    this.getRides().subscribe(
+      rides => {
+        this.rides = rides;
+        this.filteredRides = this.rides;
+        this.filteredRides = this.filteredRides.sort(function(a,b) {
+          return +new Date(a.dateObject) - +new Date(b.dateObject)
+        })
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
   public filterLocation(radius: number, location, property: string): void {
     console.log("filtering by location");
 
-    this.radius = radius;
-    console.log(this.radius);
     //var service = google.maps.DistanceMatrixService();
     this.service = new google.maps.DistanceMatrixService();
     this.destinationArray = [];
@@ -70,7 +107,7 @@ export class FilterService {
     this.filteredRides = validRides;
 
     console.log(this.destinationArray);
-    console.log(this.radius);
+    console.log(radius);
 
     this.service.getDistanceMatrix({
         origins: [location.geometry.location],
@@ -151,16 +188,18 @@ export class FilterService {
   // }
 
   public filterDestination(): void {
-    var destinationRadius = parseInt(localStorage.getItem("destinationRadius"));
-    var destination = localStorage.getItem("filterDestination");
+    var destinationRadius = this.destRad;
+    var destination = this.destination;
+    console.log(JSON.stringify(this.destination));
     var destinationJSON = JSON.parse(destination);
     this.filterLocation(destinationRadius, destinationJSON, "destination");
   }
 
   public filterOrigin(): void {
-    var originRadius = parseInt(localStorage.getItem("originRadius"));
-    console.log(originRadius);
-    var origin = localStorage.getItem("filterOrigin");
+    var originRadius = this.originRad;
+    var origin = this.origin;
+    console.log(this.origin);
+    console.log(JSON.stringify(this.origin));
     var originJSON = JSON.parse(origin);
     this.filterLocation(originRadius, originJSON, "origin");
   }
@@ -183,22 +222,22 @@ export class FilterService {
         );
       });
       console.log(this.filteredRides);
-      this.unfilteredRides = this.rides.filter(ride => {
-        return !searchDate || !(new Date(ride.dateObject).getUTCFullYear() == this.date.getUTCFullYear() &&
-          new Date(ride.dateObject).getUTCMonth() == this.date.getUTCMonth() &&
-          new Date(ride.dateObject).getUTCDate() == this.date.getUTCDate()
-        );
-      });
-      console.log(this.unfilteredRides);
-      this.unfilteredRides = this.unfilteredRides.filter(ride => {
-        return (new Date(ride.dateObject).getTime() >= nowDate.getTime());
-      });
+      // this.unfilteredRides = this.rides.filter(ride => {
+      //   return !searchDate || !(new Date(ride.dateObject).getUTCFullYear() == this.date.getUTCFullYear() &&
+      //     new Date(ride.dateObject).getUTCMonth() == this.date.getUTCMonth() &&
+      //     new Date(ride.dateObject).getUTCDate() == this.date.getUTCDate()
+      //   );
+      // });
+      // console.log(this.unfilteredRides);
+      // this.unfilteredRides = this.unfilteredRides.filter(ride => {
+      //   return (new Date(ride.dateObject).getTime() >= nowDate.getTime());
+      // });
 
-      this.unfilteredRides = this.unfilteredRides.sort(function(a,b) {
-        return Math.abs((+new Date(a.dateObject) - +new Date(searchDate))) - Math.abs((+new Date(b.dateObject) - +new Date(searchDate)));
-      });
+      // this.unfilteredRides = this.unfilteredRides.sort(function(a,b) {
+      //   return Math.abs((+new Date(a.dateObject) - +new Date(searchDate))) - Math.abs((+new Date(b.dateObject) - +new Date(searchDate)));
+      // });
 
-      console.log(this.unfilteredRides);
+      // console.log(this.unfilteredRides);
     }
 
     this.filteredRides = this.filteredRides.filter(ride => {
@@ -211,24 +250,26 @@ export class FilterService {
     console.log(this.filteredRides);
   }
 
-
   public filterRides(): void {
+    console.log("in filterRides");
+    this.loadService();
 
-    this.filteredRides = this.rides;
     this.unfilteredRides = <Ride[]>{};
 
-    if (localStorage.getItem("filterDate")) {
+    if (this.filDate) {
       this.filterDate();
     }
     this.mapsAPILoader.load().then(() => {
 
-      if (localStorage.getItem("filterOrigin")) {
+      if (this.origin) {
         this.filterOrigin();
       }
-      if (localStorage.getItem("filterDestination")) {
+      if (this.destination) {
         this.filterDestination();
       }
     });
 
   }
 }
+
+

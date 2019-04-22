@@ -33,13 +33,13 @@ export class RideListComponent implements OnInit {
     chatService.connectStream();
   }
 
-  public noRidesFound(): string {
-    var ridesText = "Sorry, we didn't find any rides on that day!";
-    if (this.rides.length > 0) {
-      ridesText = null;
-    }
-    return ridesText;
-  }
+  // public noRidesFound(): string {
+  //   var ridesText = "Sorry, we didn't find any rides on that day!";
+  //   if (this.rides.length > 0) {
+  //     ridesText = null;
+  //   }
+  //   return ridesText;
+  // }
 
   ngOnInit(): void {
   }
