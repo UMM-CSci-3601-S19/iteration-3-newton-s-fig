@@ -1,142 +1,140 @@
-
 <app-maps [mapHeightVH]="100"></app-maps>
 
 <div id="inputpart">
-    <mat-horizontal-stepper id="steppercontainer"  linear #stepper>
-      <mat-step class="steps"  [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup">
+  <mat-horizontal-stepper id="steppercontainer"  [linear]="false" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup" class="steps">
         <mat-card>
-          <mat-card-content>
+          <div class="mat-card-slim">
+            <button class="previousButton" mat-icon-button matStepperPrevious type="button" disabled="disabled">
+              <mat-icon>navigate_before</mat-icon>
+            </button>
             <mat-form-field>
               <input name="driverField" matInput #input id="driverID" placeholder="Input your name"
                      required [(ngModel)]="rideDriver" formControlName="driver">
             </mat-form-field>
-
-                <button class="nextButton" mat-button matStepperNext type="button">Next</button>
-
-          </mat-card-content>
+            <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
+              <mat-icon>navigate_next</mat-icon>
+            </button>
+          </div>
         </mat-card>
-        </form>
-      </mat-step>
+      </form>
+    </mat-step>
 
-      <mat-step class="steps" [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup" class="steps">
         <mat-card>
-        <mat-card-content>
-          <mat-form-field>
-          <input type="number" class="inputRideInfo" matInput #input id="seatsAvailableField" placeholder="Seats Available"
-               required [(ngModel)]="rideSeats" formControlName="seatsAvailable">
-          </mat-form-field>
-
-            <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
-            <button  class="nextButton" mat-button matStepperNext type="button">Next</button>
-
-        </mat-card-content>
-          </mat-card>
-        </form>
-      </mat-step>
-
-      <mat-step class="steps" [stepControl]="thirdFormGroup">
-        <form [formGroup]="thirdFormGroup">
-        <mat-card>
-          <mat-card-content>
-
-
-
-        <app-mapsSearch
-                        class="inputRideInfo" #input id="originField"
-                        [placeResult]="rideOrigin" location="origin"
-                        searchPlaceholder="Enter starting location"
-        >
-        </app-mapsSearch>
-
-
-            <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
-            <button class="nextButton" mat-button matStepperNext type="button">Next</button>
-
-          </mat-card-content>
-        </mat-card>
-        </form>
-      </mat-step>
-
-      <mat-step class="steps"  [stepControl]="forthFormGroup">
-        <form [formGroup]="forthFormGroup">
-        <mat-card>
-         <mat-card-content>
-        <app-mapsSearch class="inputRideInfo" #input id="destinationField"
-                        [placeResult]="rideDestination" location="destination"
-                        searchPlaceholder="Enter ending location">
-        </app-mapsSearch>
-
-
-            <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
-            <button class="nextButton" mat-button matStepperNext type="button">Next</button>
-
-         </mat-card-content>
-       </mat-card>
-        </form>
-      </mat-step>
-
-      <mat-step class="steps"  [stepControl]="fifthFormGroup">
-
-        <form [formGroup]="fifthFormGroup">
-          <mat-card>
-            <mat-card-content>
-              <mat-form-field>
-        <input class="inputRideInfo" id="departureDateField" matInput [min]="todaysDate()" [matDatepicker]="picker"
-               placeholder="Choose Departure Date" [(ngModel)]="rideDepartureDate" formControlName="departureDate">
-        <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
-        <mat-datepicker id="calendar" #picker></mat-datepicker>
-              </mat-form-field>
-            <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
-            <button class="nextButton" mat-button matStepperNext type="button">Next</button>
-            </mat-card-content>
-          </mat-card>
-        </form>
-      </mat-step>
-
-      <mat-step class="steps"  [stepControl]="sixthFormGroup">
-        <form [formGroup]="sixthFormGroup">
-        <mat-card>
-          <mat-card-content>
+          <div class="mat-card-slim">
+            <button class="previousButton" mat-icon-button matStepperPrevious type="button">
+              <mat-icon>navigate_before</mat-icon>
+            </button>
             <mat-form-field>
-          <input type="time" class="inputRideInfo" matInput #input id="departureTimeField" placeholder="Departure Time"
-               [(ngModel)]="rideDepartureTime" formControlName="departureTime">
+            <input type="number" class="inputRideInfo" matInput #input id="seatsAvailableField" placeholder="Seats Available"
+                 required [(ngModel)]="rideSeats" formControlName="seatsAvailable">
             </mat-form-field>
-            <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
-            <button class="nextButton" mat-button matStepperNext type="button">Next</button>
-
-          </mat-card-content>
+            <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
+              <mat-icon>navigate_next</mat-icon>
+            </button>
+          </div>
         </mat-card>
-        </form>
-      </mat-step>
+      </form>
+    </mat-step>
 
-      <mat-step class="steps"  [stepControl]="seventhFormGroup">
-        <form [formGroup]="seventhFormGroup">
+    <mat-step [stepControl]="thirdFormGroup">
+      <form [formGroup]="thirdFormGroup" class="steps">
         <mat-card>
-          <mat-card-content>
+          <div class="mat-card-slim">
+            <button class="previousButton" mat-icon-button matStepperPrevious type="button">
+              <mat-icon>navigate_before</mat-icon>
+            </button>
+            <app-mapsSearch class="inputRideInfo" #input id="originField"
+                            [placeResult]="rideOrigin" location="origin"
+                            searchPlaceholder="Enter starting location">
+            </app-mapsSearch>
+            <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
+              <mat-icon>navigate_next</mat-icon>
+            </button>
+          </div>
+        </mat-card>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="forthFormGroup">
+      <form [formGroup]="forthFormGroup" class="steps">
+        <mat-card>
+          <div class="mat-card-slim">
+            <button class="previousButton" mat-icon-button matStepperPrevious type="button">
+              <mat-icon>navigate_before</mat-icon>
+            </button>
+            <app-mapsSearch class="inputRideInfo" #input id="destinationField"
+                            [placeResult]="rideDestination" location="destination"
+                            searchPlaceholder="Enter ending location">
+            </app-mapsSearch>
+            <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
+              <mat-icon>navigate_next</mat-icon>
+            </button>
+         </div>
+        </mat-card>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="fifthFormGroup">
+      <form [formGroup]="fifthFormGroup" class="steps">
+        <mat-card>
+          <div class="mat-card-slim">
+            <button class="previousButton" mat-icon-button matStepperPrevious type="button">
+              <mat-icon>navigate_before</mat-icon>
+            </button>
             <mat-form-field>
-         <textarea class="inputRideInfo" matInput #input id="notesField" placeholder="Notes"
+              <input class="inputRideInfo" id="departureDateField" matInput [min]="todaysDate()" [matDatepicker]="picker"
+                     placeholder="Choose Departure Date" [(ngModel)]="rideDepartureDate" formControlName="departureDate">
+              <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
+              <mat-datepicker id="calendar" touchUi #picker></mat-datepicker>
+            </mat-form-field>
+            <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
+              <mat-icon>navigate_next</mat-icon>
+            </button>
+          </div>
+        </mat-card>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="sixthFormGroup">
+      <form [formGroup]="sixthFormGroup" class="steps">
+        <mat-card>
+          <div class="mat-card-slim">
+            <button class="previousButton" mat-icon-button matStepperPrevious type="button">
+              <mat-icon>navigate_before</mat-icon>
+            </button>
+            <mat-form-field>
+              <input type="time" class="inputRideInfo" matInput #input id="departureTimeField" placeholder="Departure Time"
+                      [(ngModel)]="rideDepartureTime" formControlName="departureTime">
+            </mat-form-field>
+            <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
+              <mat-icon>navigate_next</mat-icon>
+            </button>
+          </div>
+        </mat-card>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="seventhFormGroup">
+      <form [formGroup]="seventhFormGroup" class="steps">
+        <mat-card>
+          <div class="mat-card-slim">
+            <button class="previousButton" mat-icon-button matStepperPrevious type="button">
+              <mat-icon>navigate_before</mat-icon>
+            </button>
+            <mat-form-field>
+              <textarea class="inputRideInfo" matInput #input id="notesField" placeholder="Notes"
                    [(ngModel)]="rideNotes" formControlName="notes"></textarea>
             </mat-form-field>
-            <button class="previousButton" mat-button matStepperPrevious type="button">Back</button>
-            <button class="nextButton" mat-button matStepperNext type="button">Next</button>
-
-          </mat-card-content>
+            <button class="nextButton" mat-icon-button type="button" color="accent" (click)="submit()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
         </mat-card>
-        </form>
-      </mat-step>
-      <mat-step class="steps">
-        <mat-card>
-          <mat-card-content>
-            Click submit to confirm your ride.
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button (click)="submit()">Submit</button>
-              <button mat-button (click)="stepper.reset();reset();">Reset</button>
-            </div>
-          </mat-card-content>
-        </mat-card>
-      </mat-step>
-    </mat-horizontal-stepper>
+      </form>
+    </mat-step>
+  </mat-horizontal-stepper>
 </div>

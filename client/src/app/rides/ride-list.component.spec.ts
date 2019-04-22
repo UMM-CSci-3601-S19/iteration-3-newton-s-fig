@@ -12,6 +12,7 @@ import {RideComponent} from "./ride.component";
 import {ChatService} from "../chat/chat-service";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 import {HttpClient} from "@angular/common/http";
+import {AgmCoreModule, MapsAPILoader} from "@agm/core";
 
 describe('Ride list', () => {
 
@@ -69,7 +70,7 @@ describe('Ride list', () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [CustomModule, HttpClientTestingModule],
+      imports: [CustomModule, HttpClientTestingModule, AgmCoreModule.forRoot()],
       declarations: [RideListComponent, RideComponent],
       providers: [
         {provide: RideListService, useValue: rideListServiceStub},
@@ -182,7 +183,7 @@ describe('Misbehaving Ride List', () => {
     };
 
     TestBed.configureTestingModule({
-      imports: [FormsModule, CustomModule, HttpClientTestingModule],
+      imports: [FormsModule, CustomModule, HttpClientTestingModule, AgmCoreModule.forRoot()],
       declarations: [RideListComponent, RideComponent],
       providers: [
         {provide: RideListService, useValue: rideListServiceStub},

@@ -48,17 +48,18 @@ export class AddRideComponent implements OnInit {
   ) {
     titleService.setTitle("Offer Ride");
   }
-reset(){
-this.rideDriver= null;
-this.rideNotes= null;
-this.rideSeats= null;
-this.rideOrigin= null;
-this.rideDestination= null;
-this.rideDepartureDate= null;
-this.rideDepartureTime= null;
-this.rideDateObject= null;
 
-}
+  reset() {
+    this.rideDriver= null;
+    this.rideNotes= null;
+    this.rideSeats= null;
+    this.rideOrigin= null;
+    this.rideDestination= null;
+    this.rideDepartureDate= null;
+    this.rideDepartureTime= null;
+    this.rideDateObject= null;
+  }
+
   add_ride_validation_messages = {
     'driver': [
       {type: 'required', message: 'Please enter your name'},
@@ -86,6 +87,7 @@ this.rideDateObject= null;
     this.nowDate = new Date();
     return this.nowDate;
   }
+
   submit(): void {
     console.log(this.rideDestination);
     this.rideDestination = JSON.parse(localStorage.getItem('destination'));
@@ -202,11 +204,6 @@ this.rideDateObject= null;
     });
 
     //this.data.currentMessage.subscribe(message => )
-
-
-
   }
-
-
 }
 

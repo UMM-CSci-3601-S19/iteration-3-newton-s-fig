@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'filter-component',
@@ -19,7 +20,10 @@ export class FilterComponent {
   public destinationRadius: number;
 
 
-  constructor(private _formBuilder: FormBuilder) { }
+  constructor(private _formBuilder: FormBuilder,
+              private titleService: Title) {
+    this.titleService.setTitle("Find a Ride");
+  }
 
   todaysDate(): Date {
     return new Date();
