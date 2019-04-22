@@ -6,8 +6,12 @@
     "driver": "Jimmie Brennan",
     "notes": "Eiusmod laboris commodo sint cupidatat pariatur proident qui dolor cillum sit adipisicing veniam. Cupidatat mollit et anim ut labore tempor quis.",
     "seatsAvailable": 4,
-    "origin": "2046 Neptune Court, Wright, IA 64892",
-    "destination": "9782 Henry Street, Hannasville, IA 20609",
+    "origin": {
+      "name": "2046 Neptune Court, Wright, IA 64892"
+    },
+    "destination": {
+      "name": "9782 Henry Street, Hannasville, IA 20609"
+    },
     "departureDate": "April 28th",
     "departureTime": "10:00 AM",
     "dateObject": "2019-04-28T10:00:00.000Z"
@@ -19,8 +23,12 @@
     "driver": "Hollie Garza",
     "notes": "Occaecat reprehenderit do exercitation laborum. Dolore culpa ut veniam ipsum fugiat voluptate excepteur labore laborum ad Lorem sint aute.",
     "seatsAvailable": 4,
-    "origin": "8631 Hudson Avenue, Crayne, IA 98438",
-    "destination": "1660 Judge Street, Winston, SD 44478",
+    "origin": {
+      "name": "8631 Hudson Avenue, Crayne, IA 98438"
+    },
+    "destination": {
+      "name": "1660 Judge Street, Winston, SD 44478"
+    },
     "departureDate": "April 28th",
     "departureTime": "09:00 AM",
     "dateObject": "2019-04-28T09:00:00.000Z"
@@ -32,8 +40,12 @@
     "driver": "Sanford Duffy",
     "notes": "Reprehenderit eiusmod et occaecat labore aute. Consequat exercitation laborum officia labore ipsum non consectetur.",
     "seatsAvailable": 3,
-    "origin": "7073 Rose Street, Watrous, IA 94185",
-    "destination": "9930 Hubbard Street, Haena, ND 21036",
+    "origin": {
+      "name": "7073 Rose Street, Watrous, IA 94185"
+    },
+    "destination": {
+      "name": "9930 Hubbard Street, Haena, ND 21036"
+    },
     "departureDate": "April 28th",
     "departureTime": "08:00 AM",
     "dateObject": "2019-04-28T08:00:00.000Z"
@@ -45,8 +57,12 @@
     "driver": "Shelby Dillard",
     "notes": "Anim irure incididunt est aliquip duis elit. Nulla non aliqua sit ut labore qui id eiusmod laboris adipisicing deserunt aliquip.",
     "seatsAvailable": 1,
-    "origin": "7726 Franklin Street, Stewartville, SD 44780",
-    "destination": "7989 Sheffield Avenue, Frystown, IA 51752",
+    "origin": {
+      "name": "7726 Franklin Street, Stewartville, SD 44780"
+    },
+    "destination": {
+      "name": "7989 Sheffield Avenue, Frystown, IA 51752"
+    },
     "departureDate": "April 27th",
     "departureTime": "07:00 AM",
     "dateObject": "2019-04-27T07:00:00.000Z"
@@ -58,8 +74,12 @@
     "driver": "Stanley Stuart",
     "notes": "Aliqua sint ut dolor sint irure do. Duis labore esse duis ullamco in est irure magna do cillum exercitation eu.",
     "seatsAvailable": 4,
-    "origin": "881 Boardwalk , Waumandee, SD 97192",
-    "destination": "8974 Cyrus Avenue, Joes, SD 96915",
+    "origin": {
+      "name": "881 Boardwalk , Waumandee, SD 97192"
+    },
+    "destination": {
+      "name": "8974 Cyrus Avenue, Joes, SD 96915"
+    },
     "departureDate": "April 28th",
     "departureTime": "06:00 AM",
     "dateObject": "2019-04-28T06:00:00.000Z"
