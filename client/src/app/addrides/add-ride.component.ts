@@ -132,14 +132,6 @@ this.rideDateObject= null;
     }
   };
 
-  submit() {
-
-  }
-
-  reset() {
-
-  }
-
   steps =[
     {label: 'Confrim your name', content: 'Name'},
     {label: 'Confrim your seats', content: '0'},
