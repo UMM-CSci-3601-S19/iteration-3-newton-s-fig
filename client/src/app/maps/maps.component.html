@@ -4,10 +4,11 @@
   [longitude]="lng"
   [zoom]="zoom"
   [disableDefaultUI]="true"
-  [zoomControl]="false">
+  [zoomControl]="false"
+  [gestureHandling]="'greedy'">
   <agm-marker *ngFor="let m of markers"
               [latitude]="m.latitude"
               [longitude]="m.longitude"
-              [label]="m.label">
+              [label]="m.label"> 
   </agm-marker>
 </agm-map>
