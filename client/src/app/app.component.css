@@ -8,10 +8,6 @@
   z-index: 100;
 }
 
-#menu-spacer {
-  height: 48px;
-}
-
 mat-sidenav {
   max-width: 80vw;
 }
