@@ -40,7 +40,7 @@ export class AddRideComponent implements OnInit {
   public rideDateObject: string;
   public nowDate: Date;
 
-  public markers: Marker[];
+  public markers: Marker[] = [];
 
   // Inject the RideListService into this component.
   constructor(public rideListService: RideListService,
@@ -161,10 +161,24 @@ export class AddRideComponent implements OnInit {
 
   setRideOrigin(placeResult: google.maps.places.PlaceResult) {
     this.rideOrigin = placeResult;
+    let m: Marker = {
+      longitude: placeResult.geometry.location.lng(),
+      latitude: placeResult.geometry.location.lat(),
+      label: 'A'
+    };
+    this.markers[0] = m;
+    this.markers = this.markers.slice();
   }
 
   setRideDestination(placeResult: google.maps.places.PlaceResult) {
     this.rideDestination = placeResult;
+    let m: Marker = {
+      longitude: placeResult.geometry.location.lng(),
+      latitude: placeResult.geometry.location.lat(),
+      label: 'B'
+    };
+    this.markers[1] = m;
+    this.markers = this.markers.slice();
   }
 
   ngOnInit() {

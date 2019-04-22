@@ -6,7 +6,7 @@ import {Observable} from "rxjs/Observable";
 import {HttpClient} from "@angular/common/http";
 import {environment} from '../../environments/environment';
 
-@Injectable
+@Injectable()
 export class FilterService {
 
   rideListComponent: RideListComponent;
