@@ -102,22 +102,28 @@ export class RideListComponent implements OnInit {
 
           for (var i = 0; i < origins.length; i++) {
             var results = response.rows[i].elements;
+            console.log(results);
             for (var j = 0; j < results.length; j++) {
               var element = results[j];
-              var distance = element.distance.text;
-              distance = parseInt(distance.split(" ")[0]);
-              console.log(distance);
-              console.log(radius);
-              console.log(distance <= radius);
-              //this.rideDist.push(distance);
-              if (distance <= radius) {
-                console.log(j);
-                console.log(validRides);
-                rides.push(validRides[j]);
+              console.log(element);
+              if(element.status =='OK') {
+                var distance = element.distance.text;
+                console.log(distance);
+                var unit = distance.split(" ")[1];
+                distance = parseInt(distance.split(" ")[0]);
+                console.log(distance);
+                console.log(radius);
+                console.log(distance <= radius || unit =="ft");
+                //this.rideDist.push(distance);
+                if (distance <= radius) {
+                  console.log(j);
+                  console.log(validRides);
+                  rides.push(validRides[j]);
+                }
               }
-              console.log(rides);
 
             }
+            console.log(rides);
           }
           this.filteredRides = rides;
 
