@@ -37,7 +37,7 @@
               <mat-icon>navigate_before</mat-icon>
             </button>
             <app-mapsSearch class="inputRideInfo" #input id="originField"
-                   [(mapsSearchInput)]="rideOrigin" searchControl="origin"
+                   [placeResult]="rideOrigin" location="origin"
                             searchPlaceholder="Where are you starting?">
             </app-mapsSearch>
             <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
@@ -57,7 +57,7 @@
             </button>
             <ng-template matStepLabel>Destination</ng-template>
             <app-mapsSearch class="inputRideInfo" #input id="destinationField"
-                            [(mapsSearchInput)]="rideDestination" searchControl="destination"
+                            [placeResult]="rideDestination" location="destination"
                             searchPlaceholder="Where are you going?">
             </app-mapsSearch>
             <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">

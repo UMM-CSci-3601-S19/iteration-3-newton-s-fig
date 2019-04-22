@@ -48,7 +48,7 @@
               <mat-icon>navigate_before</mat-icon>
             </button>
             <app-mapsSearch class="inputRideInfo" #input id="originField"
-                            [(mapsSearchInput)]="rideOrigin" searchControl="origin"
+                            [placeResult]="rideOrigin" location="origin"
                             searchPlaceholder="Enter starting location">
             </app-mapsSearch>
             <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
@@ -67,7 +67,7 @@
               <mat-icon>navigate_before</mat-icon>
             </button>
             <app-mapsSearch class="inputRideInfo" #input id="destinationField"
-                            [(mapsSearchInput)]="rideDestination" searchControl="destination"
+                            [placeResult]="rideDestination" location="destination"
                             searchPlaceholder="Enter ending location">
             </app-mapsSearch>
             <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
