@@ -68,7 +68,7 @@ export class FilterService {
     console.log("updateList called by " + caller);
     if (this.rideListComponent) {
       console.log("In if, filteredRides=" + this.filteredRides);
-      this.rideListComponent.rides = this.filteredRides;
+      this.rideListComponent.setRides(this.filteredRides);
     }
   }
 
