@@ -21,6 +21,7 @@ import {AddRideComponent} from './addrides/add-ride.component';
 
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatProgressSpinnerModule} from "@angular/material";
 
 import { ChatComponent } from './chat/chat.component';
 import { MessageComponent } from './message/message.component';
@@ -49,6 +50,7 @@ import {FilterService} from "./filter/filter.service";
     MatCardModule,
     MatDatepickerModule,
     MatChipsModule,
+    MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({

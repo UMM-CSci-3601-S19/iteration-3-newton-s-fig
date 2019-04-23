@@ -1,45 +1,23 @@
-<!--<button mat-fab id="filterButton" class="filter-fab" matTooltip="Filter by Date!" matTooltipPosition="left"-->
-        <!--(click)="picker.open()">-->
-  <!--<mat-icon class="md-24" aria-label="Filter">assignment</mat-icon>-->
-<!--</button>-->
-<!--<button mat-fab-->
-        <!--id="add-ride-button"-->
-        <!--routerLink="/addride"-->
-        <!--matTooltip="Add a Ride!"-->
-        <!--matTooltipPosition="left"-->
-        <!--color="primary"-->
-        <!--type="button">-->
-  <!--<mat-icon class="plus-icon" aria-label="Add Ride">add_circle_outline</mat-icon>-->
-<!--</button>-->
 <div class="menu-spacer"></div>
-
-<!--<app-maps [mapHeightVH]="1"></app-maps>-->
-
-
-
 
 <div id="ridesWrapper" layout-gt-sm="row">
   <div flex-gt-sm="40" flex-offset-gt-sm="30">
     <h2 id="filteredEmpty">hreh</h2>
-    <div *ngIf="filteredRides; else ridesError">
-        <app-ride *ngFor="let r of filteredRides" [ride]="r"></app-ride>
+    <div *ngIf="rides; else ridesError">
+        <app-ride *ngFor="let r of rides" [ride]="r"></app-ride>
     </div>
     <br/><br/><br/>
 
 
-
-    <div class="wrapper">
-      <div *ngIf="array;">
-        <h2>Here are some rides close to the date you entered:</h2>
-        <app-ride #elem class="unfilteredRides" *ngFor="let r of unfilteredRides" [ride]="r"></app-ride>
-      </div>
-    </div>
+    <!--<div class="wrapper">-->
+      <!--<div *ngIf="array;">-->
+        <!--<h2>Here are some rides close to the date you entered:</h2>-->
+        <!--<app-ride #elem class="unfilteredRides" *ngFor="let r of unfilteredRides" [ride]="r"></app-ride>-->
+      <!--</div>-->
+    <!--</div>-->
 
     <ng-template #ridesError>
-      <mat-error>
-        There was a problem loading the rides. Possibly the server is down or perhaps there are network
-        issues.
-      </mat-error>
+      <mat-spinner color="warn"></mat-spinner>
     </ng-template>
 
     <!--This just creates enough space to scroll on mobile-->
