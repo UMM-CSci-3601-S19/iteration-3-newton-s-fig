@@ -40,13 +40,6 @@ export class RideListComponent implements OnInit {
     this.changeDetector.detectChanges();
   }
 
-  loadRides() {
-    this.filterService.getRides().subscribe(rides => {
-      this.rides = rides;
-    });
-  }
-
   ngOnInit(): void {
-    this.loadRides();
   }
 }
