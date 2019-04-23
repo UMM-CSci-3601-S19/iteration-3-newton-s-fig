@@ -14,9 +14,9 @@ export class MapsComponent implements OnInit, OnChanges {
   @Input() lat: number = 45.593614;
   @Input() lng: number = -95.890831;
   @Input() markers: Marker[] = [];
-  @Input() zoom: number = 14;
+  @Input() zoom: number = 8;
 
-  @ViewChild('agmMap') agmMap: AgmMap;
+  // @ViewChild('agmMap') agmMap: AgmMap;
 
   constructor() {}
 
@@ -25,15 +25,15 @@ export class MapsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    console.log("map changed");
-    this.agmMap.mapReady.subscribe(map => {
-      const bounds: LatLngBounds = new google.maps.LatLngBounds();
-      console.log("existing markers: " + JSON.stringify(this.markers));
-      for (const m of this.markers) {
-        bounds.extend(new google.maps.LatLng(m.latitude, m.longitude));
-        console.log("bounds changed: " + JSON.stringify(bounds));
-      }
-      map.fitBounds(bounds);
-    });
+    // console.log("map changed");
+    // this.agmMap.mapReady.subscribe(map => {
+    //   const bounds: LatLngBounds = new google.maps.LatLngBounds();
+    //   console.log("existing markers: " + JSON.stringify(this.markers));
+    //   for (const m of this.markers) {
+    //     bounds.extend(new google.maps.LatLng(m.latitude, m.longitude));
+    //     console.log("bounds changed: " + JSON.stringify(bounds));
+    //   }
+    //   map.fitBounds(bounds);
+    // });
   }
 }

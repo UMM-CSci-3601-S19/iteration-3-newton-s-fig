@@ -1,4 +1,4 @@
-<app-maps [mapHeightVH]="100"></app-maps>
+<app-maps [mapHeightVH]="100" [markers]="markers"></app-maps>
 
 <div id="inputpart">
   <mat-horizontal-stepper #stepper [linear]="false" id="steppercontainer">
@@ -61,7 +61,7 @@
                             (placeResult)="setRideDestination($event)"
                             searchPlaceholder="Where are you going?">
             </app-mapsSearch>
-            
+
             <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent"
             (click)="submit()" routerLink="/rides">
 

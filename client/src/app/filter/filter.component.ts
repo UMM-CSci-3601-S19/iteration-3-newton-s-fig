@@ -5,6 +5,7 @@ import {MapsAPILoader} from "@agm/core";
 import {RideListService} from "../rides/ride-list.service";
 import {Ride} from "../rides/ride";
 import {FilterService} from "./filter.service";
+import {Marker} from "../maps/marker";
 
 @Component({
   selector: 'filter-component',
@@ -23,7 +24,7 @@ export class FilterComponent {
   public originRadius: number;
   public destinationRadius: number;
 
-
+  public markers: Marker[] = [];
 
 
   constructor(private mapsAPILoader: MapsAPILoader,
@@ -58,10 +59,24 @@ export class FilterComponent {
 
   setRideOrigin(placeResult: google.maps.places.PlaceResult) {
     this.rideOrigin = placeResult;
+    let m: Marker = {
+      longitude: placeResult.geometry.location.lng(),
+      latitude: placeResult.geometry.location.lat(),
+      label: 'A'
+    };
+    this.markers[0] = m;
+    this.markers = this.markers.slice();
   }
 
   setRideDestination(placeResult: google.maps.places.PlaceResult) {
     this.rideDestination = placeResult;
+    let m: Marker = {
+      longitude: placeResult.geometry.location.lng(),
+      latitude: placeResult.geometry.location.lat(),
+      label: 'B'
+    };
+    this.markers[1] = m;
+    this.markers = this.markers.slice();
   }
 
   ngOnInit() {
