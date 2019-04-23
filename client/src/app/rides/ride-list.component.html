@@ -2,8 +2,7 @@
 
 <div id="ridesWrapper" layout-gt-sm="row">
   <div flex-gt-sm="40" flex-offset-gt-sm="30">
-    <h2 id="filteredEmpty">hreh</h2>
-    <div *ngIf="rides; else ridesError">
+    <div *ngIf="rides && rides.length>0; else ridesError">
         <app-ride *ngFor="let r of rides" [ride]="r"></app-ride>
     </div>
     <br/><br/><br/>
@@ -17,7 +16,10 @@
     <!--</div>-->
 
     <ng-template #ridesError>
-      <mat-spinner color="warn"></mat-spinner>
+      <div class="no-rides-message">
+        <p>No rides matching the filter. Maybe try a nearby location?</p>
+        <button mat-flat-button routerLink="/filter" color="accent">Search Again</button>
+      </div>
     </ng-template>
 
     <!--This just creates enough space to scroll on mobile-->
