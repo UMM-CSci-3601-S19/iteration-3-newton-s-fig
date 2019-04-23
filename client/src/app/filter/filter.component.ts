@@ -4,6 +4,7 @@ import {Title} from "@angular/platform-browser";
 import {MapsAPILoader} from "@agm/core";
 import {RideListService} from "../rides/ride-list.service";
 import {Ride} from "../rides/ride";
+import {FilterService} from "./filter.service";
 
 @Component({
   selector: 'filter-component',
@@ -28,7 +29,8 @@ export class FilterComponent {
   constructor(private mapsAPILoader: MapsAPILoader,
               public rideListService: RideListService,
               private _formBuilder: FormBuilder,
-              private titleService: Title) {
+              private titleService: Title,
+              public  filterService: FilterService) {
     this.titleService.setTitle("Find a Ride");
   }
 
@@ -37,15 +39,18 @@ export class FilterComponent {
   }
 
   submit() {
-    localStorage.setItem("filterDate", this.departureDate);
-    localStorage.setItem("originRadius", this.originRadius.toString());
-    localStorage.setItem("destinationRadius", this.destinationRadius.toString());
+    // localStorage.setItem("filterDate", this.departureDate);
+    // localStorage.setItem("originRadius", this.originRadius.toString());
+    // localStorage.setItem("destinationRadius", this.destinationRadius.toString());
+    console.log(this.rideOrigin, this.rideDestination, this.originRadius, this.destinationRadius,this.departureDate);
+    this.filterService.updateFilter(
+      this.rideOrigin, this.rideDestination, this.originRadius, this.destinationRadius,this.departureDate);
   }
 
   reset(){
-    localStorage.removeItem("filterDate");
-    localStorage.removeItem("filterOrigin");
-    localStorage.removeItem("filterDestination");
+    // localStorage.removeItem("filterDate");
+    // localStorage.removeItem("filterOrigin");
+    // localStorage.removeItem("filterDestination");
     this.departureDate= null;
     this.rideDestination= null;
     this.rideOrigin= null;
@@ -71,24 +76,24 @@ export class FilterComponent {
       destination: new FormControl('destination'),
       destinationRadius: new FormControl('destinationRadius')
     });
-    if (localStorage.getItem("filterOrigin")){
-      this.rideOrigin = localStorage.getItem("filterOrigin");
-    }
-    if (localStorage.getItem("filterDestination")){
-      this.rideDestination = localStorage.getItem("filterDestination");
-    }
-    if (localStorage.getItem("filterDate")){
-      this.departureDate = localStorage.getItem("filterDate");
-    }
-    if (localStorage.getItem("originRadius")){
-      this.originRadius = parseInt(localStorage.getItem("originRadius"));
-    }else {
+    // if (localStorage.getItem("filterOrigin")){
+    //   this.rideOrigin = localStorage.getItem("filterOrigin");
+    // }
+    // if (localStorage.getItem("filterDestination")){
+    //   this.rideDestination = localStorage.getItem("filterDestination");
+    // }
+    // if (localStorage.getItem("filterDate")){
+    //   this.departureDate = localStorage.getItem("filterDate");
+    // }
+    // if (localStorage.getItem("originRadius")){
+    //   this.originRadius = parseInt(localStorage.getItem("originRadius"));
+    // }else {
       this.originRadius = 20;
-    }
-    if (localStorage.getItem("destinationRadius")){
-      this.destinationRadius = parseInt(localStorage.getItem("destinationRadius"));
-    }else {
+    // }
+    // if (localStorage.getItem("destinationRadius")){
+    //   this.destinationRadius = parseInt(localStorage.getItem("destinationRadius"));
+    // }else {
       this.destinationRadius = 20;
-    }
+    // }
   }
 }

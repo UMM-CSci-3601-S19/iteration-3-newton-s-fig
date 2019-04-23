@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, NgZone, OnInit} from '@angular/core';
 import {RideListService} from './ride-list.service';
 import {Ride} from './ride';
 import {Observable} from 'rxjs/Observable';
@@ -10,6 +10,7 @@ import {} from 'googlemaps';
 
 import {Title} from "@angular/platform-browser";
 import {FilterService} from "../filter/filter.service";
+import {HttpClient} from "@angular/common/http";
 
 
 
@@ -27,18 +28,16 @@ export class RideListComponent implements OnInit {
   // Inject the RideListService into this component.
   constructor(public chatService: ChatService,
               private titleService: Title,
-              public filterService: FilterService) {
+              public filterService: FilterService,
+              private changeDetector: ChangeDetectorRef) {
     filterService.addListener(this);
     titleService.setTitle("Upcoming Rides");
     chatService.connectStream();
   }
 
-  public noRidesFound(): string {
-    var ridesText = "Sorry, we didn't find any rides on that day!";
-    if (this.rides.length > 0) {
-      ridesText = null;
-    }
-    return ridesText;
+  setRides(rides: Ride[]) {
+    this.rides = rides;
+    this.changeDetector.detectChanges();
   }
 
   ngOnInit(): void {

@@ -22,10 +22,22 @@ export class FilterService {
   public time: Date;
   public timeString: string;
   public nowDate = new Date;
-  public radius: number;
+  public originRad: number;
+  public destRad: number;
+  public origin = {geometry: {
+    location: {},
+    viewport: {
+      south: 45.8082531197085,
+      west: 15.968338249999988,
+      north: 45.8109510802915,
+      east: 15.971738449999975
+    }
+  }};
+
+  public destination;
+  public filDate;
   public service;
 
-  public destinationArray: google.maps.Place[];
   //public rideDist;
 
   // Variables used for filtering
@@ -41,45 +53,70 @@ export class FilterService {
     this.rideListComponent = rlc;
   }
 
-  updateList(rides: Ride[]) {
+  updateFilter(origin, destination, originRad, destRad, date){
+    console.log("in update filter");
+    this.origin = origin;
+    this.destination = destination;
+    this.originRad = originRad;
+    this.destRad = destRad;
+    this.filDate = date;
+    this.filterRides();
+  }
+
+
+  updateList(caller: string) {
+    console.log("updateList called by " + caller);
     if (this.rideListComponent) {
-      this.rideListComponent.rides = rides;
+      console.log("In if, filteredRides=" + this.filteredRides);
+      this.rideListComponent.setRides(this.filteredRides);
     }
   }
 
-  private getRides(): Observable<Ride[]> {
+  public getRides(): Observable<Ride[]> {
     return this.http.get<Ride[]>(this.rideUrl);
+  }
+
+  loadService(): void {
+    this.getRides().subscribe(
+      rides => {
+        this.rides = rides;
+        this.filteredRides = this.rides;
+        this.filteredRides = this.filteredRides.sort(function(a,b) {
+          return +new Date(a.dateObject) - +new Date(b.dateObject)
+        });
+        console.log(this.filteredRides);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   public filterLocation(radius: number, location, property: string): void {
     console.log("filtering by location");
 
-    this.radius = radius;
-    console.log(this.radius);
     //var service = google.maps.DistanceMatrixService();
     this.service = new google.maps.DistanceMatrixService();
-    this.destinationArray = [];
-    var validRides = [];
+    var destinationArray = [];
 
-    for (let r of this.filteredRides) {
-      if(r[property].geometry) {
-        validRides.push(r);
-        this.destinationArray.push(r[property].geometry.location);
-      }
-    }
-    this.filteredRides = validRides;
+    console.log(this.filteredRides);
 
-    console.log(this.destinationArray);
-    console.log(this.radius);
+    this.filteredRides.forEach(e => {
+      destinationArray.push(e[property].geometry.location);
+    });
+
+    console.log(destinationArray);
+    console.log(radius);
 
     this.service.getDistanceMatrix({
         origins: [location.geometry.location],
-        destinations: this.destinationArray,
+        destinations: destinationArray,
         unitSystem: google.maps.UnitSystem.IMPERIAL,
         travelMode: 'DRIVING'
       },
-      function(response, status){
-        console.log(this.radius);
+      (response, status) => {
+        console.log("filteredRides=" + this.filteredRides);
+        console.log(radius);
         if (status == 'OK') {
           var origins = response.originAddresses;
           var rides = [];
@@ -101,74 +138,41 @@ export class FilterService {
                 console.log(radius);
                 console.log(distance <= radius || unit =="ft");
                 //this.rideDist.push(distance);
-                if (distance <= radius) {
+                if (distance <= radius || unit =="ft") {
                   console.log(j);
-                  console.log(validRides);
-                  rides.push(validRides[j]);
+                  console.log(this.filteredRides);
+                  rides.push(this.filteredRides[j]);
                 }
               }
 
             }
             console.log(rides);
           }
-          this.filteredRides = rides;
-
+          this.filteredRides = this.filteredRides.filter(value => rides.indexOf(value) !== -1);
+          console.log("post-filter filteredRides=" + this.filteredRides);
+          this.updateList(property);
         }
       }
     );
 
   }
 
-  // public callback(response, status, radius): void {
-  //   console.log(this.radius);
-  //   if (status == 'OK') {
-  //     var origins = response.originAddresses;
-  //     var destinations = response.destinationAddresses;
-  //     var rides = [];
-  //
-  //     console.log("filtering rides");
-  //
-  //     for (var i = 0; i < origins.length; i++) {
-  //       var results = response.rows[i].elements;
-  //       for (var j = 0; j < results.length; j++) {
-  //         var element = results[j];
-  //         var distance = element.distance.text;
-  //         distance = parseInt(distance.split(" ")[0]);
-  //         console.log(distance);
-  //         console.log(radius);
-  //         console.log(distance <= radius);
-  //         //this.rideDist.push(distance);
-  //         if (distance <= this.radius) {
-  //           rides.push(this.filteredRides[j]);
-  //         }
-  //         console.log(rides);
-  //
-  //       }
-  //     }
-  //     this.filteredRides = rides;
-  //
-  //   }
-  // }
-
   public filterDestination(): void {
-    var destinationRadius = parseInt(localStorage.getItem("destinationRadius"));
-    var destination = localStorage.getItem("filterDestination");
-    var destinationJSON = JSON.parse(destination);
-    this.filterLocation(destinationRadius, destinationJSON, "destination");
+    var destinationRadius = this.destRad;
+    console.log(JSON.stringify(this.destination));
+    this.filterLocation(destinationRadius, this.destination, "destination");
   }
 
   public filterOrigin(): void {
-    var originRadius = parseInt(localStorage.getItem("originRadius"));
-    console.log(originRadius);
-    var origin = localStorage.getItem("filterOrigin");
-    var originJSON = JSON.parse(origin);
-    this.filterLocation(originRadius, originJSON, "origin");
+    var originRadius = this.originRad;
+    console.log(this.origin);
+    this.filterLocation(originRadius, this.origin, "origin");
   }
 
   public filterDate(): void {
     var nowDate = new Date();
     nowDate.setHours(nowDate.getHours() - 8);
-    var searchDate = localStorage.getItem("filterDate");
+    var searchDate = this.filDate;
     this.date = new Date(searchDate);
     console.log(this.date);
 
@@ -183,22 +187,6 @@ export class FilterService {
         );
       });
       console.log(this.filteredRides);
-      this.unfilteredRides = this.rides.filter(ride => {
-        return !searchDate || !(new Date(ride.dateObject).getUTCFullYear() == this.date.getUTCFullYear() &&
-          new Date(ride.dateObject).getUTCMonth() == this.date.getUTCMonth() &&
-          new Date(ride.dateObject).getUTCDate() == this.date.getUTCDate()
-        );
-      });
-      console.log(this.unfilteredRides);
-      this.unfilteredRides = this.unfilteredRides.filter(ride => {
-        return (new Date(ride.dateObject).getTime() >= nowDate.getTime());
-      });
-
-      this.unfilteredRides = this.unfilteredRides.sort(function(a,b) {
-        return Math.abs((+new Date(a.dateObject) - +new Date(searchDate))) - Math.abs((+new Date(b.dateObject) - +new Date(searchDate)));
-      });
-
-      console.log(this.unfilteredRides);
     }
 
     this.filteredRides = this.filteredRides.filter(ride => {
@@ -209,26 +197,35 @@ export class FilterService {
     this.filteredRides.sort(function(a,b) {return +new Date(a.dateObject) - +new Date(b.dateObject);
     });
     console.log(this.filteredRides);
-  }
 
+    this.updateList("filterDate");
+  }
 
   public filterRides(): void {
+    console.log("in filterRides");
+    this.getRides().subscribe(rides => {
+      this.filteredRides = rides;
+      this.filteredRides = this.filteredRides.sort(function(a,b) {
+        return +new Date(a.dateObject) - +new Date(b.dateObject)
+      });
 
-    this.filteredRides = this.rides;
-    this.unfilteredRides = <Ride[]>{};
+      console.log(this.filteredRides);
 
-    if (localStorage.getItem("filterDate")) {
-      this.filterDate();
-    }
-    this.mapsAPILoader.load().then(() => {
-
-      if (localStorage.getItem("filterOrigin")) {
+      if (this.filDate) {
+        this.filterDate();
+      }
+      if (this.origin) {
         this.filterOrigin();
       }
-      if (localStorage.getItem("filterDestination")) {
+      if (this.destination) {
         this.filterDestination();
       }
+      this.updateList("filterRides");
+    },
+    err => {
+      console.log(err);
     });
-
   }
 }
+
+

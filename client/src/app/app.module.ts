@@ -21,6 +21,7 @@ import {AddRideComponent} from './addrides/add-ride.component';
 
 import {MatCardModule} from '@angular/material/card';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatProgressSpinnerModule} from "@angular/material";
 
 import { ChatComponent } from './chat/chat.component';
 import { MessageComponent } from './message/message.component';
@@ -38,6 +39,7 @@ import {RideComponent} from "./rides/ride.component";
 import {FilterComponent} from "./filter/filter.component";
 import {AgmCoreModule, MapsAPILoader} from "@agm/core";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {FilterService} from "./filter/filter.service";
 
 @NgModule({
   imports: [
@@ -48,6 +50,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatDatepickerModule,
     MatChipsModule,
+    MatProgressSpinnerModule,
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
@@ -80,6 +83,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ChatService,
     AuthGuardService,
     AuthService,
+    FilterService,
     {provide: APP_BASE_HREF, useValue: '/'},
   ],
   entryComponents: [
