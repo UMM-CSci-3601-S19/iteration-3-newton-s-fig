@@ -38,7 +38,6 @@ export class FilterService {
   public filDate;
   public service;
 
-  public destinationArray: google.maps.Place[];
   //public rideDist;
 
   // Variables used for filtering
@@ -65,9 +64,11 @@ export class FilterService {
   }
 
 
-  updateList(rides: Ride[]) {
+  updateList(caller: string) {
+    console.log("updateList called by " + caller);
     if (this.rideListComponent) {
-      this.rideListComponent.rides = rides;
+      console.log("In if, filteredRides=" + this.filteredRides);
+      this.rideListComponent.rides = this.filteredRides;
     }
   }
 
@@ -82,7 +83,8 @@ export class FilterService {
         this.filteredRides = this.rides;
         this.filteredRides = this.filteredRides.sort(function(a,b) {
           return +new Date(a.dateObject) - +new Date(b.dateObject)
-        })
+        });
+        console.log(this.filteredRides);
       },
       err => {
         console.log(err);
@@ -95,28 +97,26 @@ export class FilterService {
 
     //var service = google.maps.DistanceMatrixService();
     this.service = new google.maps.DistanceMatrixService();
-    this.destinationArray = [];
-    var validRides = [];
+    var destinationArray = [];
 
-    for (let r of this.filteredRides) {
-      if(r[property].geometry) {
-        validRides.push(r);
-        this.destinationArray.push(r[property].geometry.location);
-      }
-    }
-    this.filteredRides = validRides;
+    console.log(this.filteredRides);
 
-    console.log(this.destinationArray);
+    this.filteredRides.forEach(e => {
+      destinationArray.push(e[property].geometry.location);
+    });
+
+    console.log(destinationArray);
     console.log(radius);
 
     this.service.getDistanceMatrix({
         origins: [location.geometry.location],
-        destinations: this.destinationArray,
+        destinations: destinationArray,
         unitSystem: google.maps.UnitSystem.IMPERIAL,
         travelMode: 'DRIVING'
       },
-      function(response, status){
-        console.log(this.radius);
+      (response, status) => {
+        console.log("filteredRides=" + this.filteredRides);
+        console.log(radius);
         if (status == 'OK') {
           var origins = response.originAddresses;
           var rides = [];
@@ -138,70 +138,35 @@ export class FilterService {
                 console.log(radius);
                 console.log(distance <= radius || unit =="ft");
                 //this.rideDist.push(distance);
-                if (distance <= radius) {
+                if (distance <= radius || unit =="ft") {
                   console.log(j);
-                  console.log(validRides);
-                  rides.push(validRides[j]);
+                  console.log(this.filteredRides);
+                  rides.push(this.filteredRides[j]);
                 }
               }
 
             }
             console.log(rides);
           }
-          this.filteredRides = rides;
-
+          this.filteredRides = this.filteredRides.filter(value => rides.indexOf(value) !== -1);
+          console.log("post-filter filteredRides=" + this.filteredRides);
+          this.updateList(property);
         }
       }
     );
 
   }
 
-  // public callback(response, status, radius): void {
-  //   console.log(this.radius);
-  //   if (status == 'OK') {
-  //     var origins = response.originAddresses;
-  //     var destinations = response.destinationAddresses;
-  //     var rides = [];
-  //
-  //     console.log("filtering rides");
-  //
-  //     for (var i = 0; i < origins.length; i++) {
-  //       var results = response.rows[i].elements;
-  //       for (var j = 0; j < results.length; j++) {
-  //         var element = results[j];
-  //         var distance = element.distance.text;
-  //         distance = parseInt(distance.split(" ")[0]);
-  //         console.log(distance);
-  //         console.log(radius);
-  //         console.log(distance <= radius);
-  //         //this.rideDist.push(distance);
-  //         if (distance <= this.radius) {
-  //           rides.push(this.filteredRides[j]);
-  //         }
-  //         console.log(rides);
-  //
-  //       }
-  //     }
-  //     this.filteredRides = rides;
-  //
-  //   }
-  // }
-
   public filterDestination(): void {
     var destinationRadius = this.destRad;
-    var destination = this.destination;
     console.log(JSON.stringify(this.destination));
-    var destinationJSON = JSON.parse(destination);
-    this.filterLocation(destinationRadius, destinationJSON, "destination");
+    this.filterLocation(destinationRadius, this.destination, "destination");
   }
 
   public filterOrigin(): void {
     var originRadius = this.originRad;
-    var origin = this.origin;
     console.log(this.origin);
-    console.log(JSON.stringify(this.origin));
-    var originJSON = JSON.parse(origin);
-    this.filterLocation(originRadius, originJSON, "origin");
+    this.filterLocation(originRadius, this.origin, "origin");
   }
 
   public filterDate(): void {
@@ -222,22 +187,6 @@ export class FilterService {
         );
       });
       console.log(this.filteredRides);
-      // this.unfilteredRides = this.rides.filter(ride => {
-      //   return !searchDate || !(new Date(ride.dateObject).getUTCFullYear() == this.date.getUTCFullYear() &&
-      //     new Date(ride.dateObject).getUTCMonth() == this.date.getUTCMonth() &&
-      //     new Date(ride.dateObject).getUTCDate() == this.date.getUTCDate()
-      //   );
-      // });
-      // console.log(this.unfilteredRides);
-      // this.unfilteredRides = this.unfilteredRides.filter(ride => {
-      //   return (new Date(ride.dateObject).getTime() >= nowDate.getTime());
-      // });
-
-      // this.unfilteredRides = this.unfilteredRides.sort(function(a,b) {
-      //   return Math.abs((+new Date(a.dateObject) - +new Date(searchDate))) - Math.abs((+new Date(b.dateObject) - +new Date(searchDate)));
-      // });
-
-      // console.log(this.unfilteredRides);
     }
 
     this.filteredRides = this.filteredRides.filter(ride => {
@@ -248,27 +197,33 @@ export class FilterService {
     this.filteredRides.sort(function(a,b) {return +new Date(a.dateObject) - +new Date(b.dateObject);
     });
     console.log(this.filteredRides);
+
+    this.updateList("filterDate");
   }
 
   public filterRides(): void {
     console.log("in filterRides");
-    this.loadService();
+    this.getRides().subscribe(rides => {
+      this.filteredRides = rides;
+      this.filteredRides = this.filteredRides.sort(function(a,b) {
+        return +new Date(a.dateObject) - +new Date(b.dateObject)
+      });
 
-    this.unfilteredRides = <Ride[]>{};
+      console.log(this.filteredRides);
 
-    if (this.filDate) {
-      this.filterDate();
-    }
-    this.mapsAPILoader.load().then(() => {
-
+      if (this.filDate) {
+        this.filterDate();
+      }
       if (this.origin) {
         this.filterOrigin();
       }
       if (this.destination) {
         this.filterDestination();
       }
+    },
+    err => {
+      console.log(err);
     });
-
   }
 }
 
