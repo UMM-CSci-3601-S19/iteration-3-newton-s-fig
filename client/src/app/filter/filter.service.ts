@@ -172,7 +172,7 @@ export class FilterService {
   public filterDate(): void {
     var nowDate = new Date();
     nowDate.setHours(nowDate.getHours() - 8);
-    var searchDate = localStorage.getItem("filterDate");
+    var searchDate = this.filDate;
     this.date = new Date(searchDate);
     console.log(this.date);
 
@@ -220,6 +220,7 @@ export class FilterService {
       if (this.destination) {
         this.filterDestination();
       }
+      this.updateList("filterRides");
     },
     err => {
       console.log(err);
