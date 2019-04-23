@@ -20,7 +20,7 @@ export class MapsComponent implements OnInit, OnChanges {
 
   constructor() {}
 
-  private filledMarkers(): Marker[] {
+  filledMarkers(): Marker[] {
     return this.markers.filter(x => (x['longitude'] && x['latitude']));
   }
 
