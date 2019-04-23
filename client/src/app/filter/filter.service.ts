@@ -133,7 +133,7 @@ export class FilterService {
                 var distance = element.distance.text;
                 console.log(distance);
                 var unit = distance.split(" ")[1];
-                distance = parseInt(distance.split(" ")[0]);
+                distance = parseInt(distance.split(" ")[0].replace(",",""));
                 console.log(distance);
                 console.log(radius);
                 console.log(distance <= radius || unit =="ft");
