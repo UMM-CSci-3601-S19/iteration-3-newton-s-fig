@@ -20,6 +20,10 @@ export class MapsComponent implements OnInit, OnChanges {
 
   constructor() {}
 
+  private filledMarkers(): Marker[] {
+    return this.markers.filter(x => (x['longitude'] && x['latitude']));
+  }
+
   ngOnInit() {
     document.getElementById("map").style.height = this.mapHeightVH + "vh";
   }

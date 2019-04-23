@@ -7,7 +7,7 @@
   [disableDefaultUI]="true"
   [zoomControl]="false"
   [gestureHandling]="'greedy'">
-  <agm-marker *ngFor="let m of markers"
+  <agm-marker *ngFor="let m of filledMarkers()"
               [latitude]="m.latitude"
               [longitude]="m.longitude"
               [label]="m.label">
