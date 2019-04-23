@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
             this.user = result[0];
             if (this.user) {
               localStorage.user = JSON.stringify(this.user);
-              location.assign("http://"+location.host+"/rides");
+              this.router.navigate(['/filter']);
             } else {
               alert("The entered email is not associated with any user. Did you enter your email correctly?");
             }
