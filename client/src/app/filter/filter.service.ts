@@ -98,11 +98,15 @@ export class FilterService {
     //var service = google.maps.DistanceMatrixService();
     this.service = new google.maps.DistanceMatrixService();
     var destinationArray = [];
+    var validRides = [];
 
     console.log(this.filteredRides);
 
     this.filteredRides.forEach(e => {
-      destinationArray.push(e[property].geometry.location);
+      if(e[property]) {
+        validRides.push(e);
+        destinationArray.push(e[property].geometry.location);
+      }
     });
 
     console.log(destinationArray);
@@ -133,15 +137,15 @@ export class FilterService {
                 var distance = element.distance.text;
                 console.log(distance);
                 var unit = distance.split(" ")[1];
-                distance = parseInt(distance.split(" ")[0]);
+                distance = parseInt(distance.split(" ")[0].replace(",",""));
                 console.log(distance);
                 console.log(radius);
                 console.log(distance <= radius || unit =="ft");
                 //this.rideDist.push(distance);
                 if (distance <= radius || unit =="ft") {
                   console.log(j);
-                  console.log(this.filteredRides);
-                  rides.push(this.filteredRides[j]);
+                  console.log(validRides);
+                  rides.push(validRides[j]);
                 }
               }
 
