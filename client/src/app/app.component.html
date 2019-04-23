@@ -6,19 +6,19 @@
         My Profile
       </a>
       <a mat-list-item (click)="clearStorage();" routerLinkActive="nav-active">
-        <mat-icon>account_box</mat-icon>
+        <mat-icon>input</mat-icon>
         Log Out
       </a>
       <a mat-list-item [routerLink]="['/addrides']" (click)="sidenav.toggle()" routerLinkActive="nav-active">
-        <mat-icon>account_box</mat-icon>
-        Add Rides
+        <mat-icon>add</mat-icon>
+        Offer a Ride
       </a>
       <a mat-list-item [routerLink]="['/filter']" (click)="sidenav.toggle()" routerLinkActive="nav-active">
-        <mat-icon>account_box</mat-icon>
-        Filter Rides
+        <mat-icon>search</mat-icon>
+        Find a Ride
       </a>
-
     </mat-nav-list>
+
     <mat-chip-list>
       <mat-chip class="loginChip">{{ this.text }}</mat-chip>
     </mat-chip-list>
