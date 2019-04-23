@@ -1,0 +1,71 @@
+::ng-deep {
+  .mat-horizontal-stepper-header-container {
+    display: none !important;
+  }
+  .mat-form-field-underline {
+    background: #fff;
+  }
+}
+
+.steps {
+  display: flex;
+  justify-content: space-around;
+}
+
+#steppercontainer {
+  background-color: transparent;
+}
+
+#inputpart {
+  position: fixed;
+  top: 10vh;
+  width: 100%;
+}
+
+mat-datepicker-toggle {
+  color: #421914;
+}
+
+mat-card {
+  border-radius: 4px;
+}
+
+.mat-card-slim {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  margin: 0;
+  padding: 8px;
+  font-size: 0.8rem;
+  width: 400px;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+app-mapsSearch {
+  width: 100%;
+}
+
+@media only screen and (max-width: 450px) {
+  ::ng-deep {
+    .mat-horizontal-content-container {
+      padding: 0 !important;
+    }
+  }
+
+  .mat-card-slim {
+    width: auto;
+  }
+
+  mat-card {
+    width: 90%;
+  }
+}

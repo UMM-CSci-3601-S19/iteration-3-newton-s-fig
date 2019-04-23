@@ -85,7 +85,7 @@ export class SignupComponent implements OnInit {
       this.userListService.addNewUser(newUser).subscribe(
         result => {
           this.highlightedID = result;
-          location.assign("http://"+location.host+"/rides");
+          this.router.navigate([""]);
         },
         err => {
           // This should probably be turned into some sort of meaningful response.

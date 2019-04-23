@@ -1,20 +1,29 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Ride} from '../rides/ride';
-import {FormControl, Validators, FormGroup, FormBuilder} from "@angular/forms";
+import {FormControl, Validators, FormGroup, FormBuilder, AbstractControl} from "@angular/forms";
 import {RideListComponent} from "../rides/ride-list.component";
 import {RideListService} from "../rides/ride-list.service";
 import {Observable} from "rxjs/Observable";
 import {Title} from "@angular/platform-browser";
+import {Marker} from "../maps/marker";
+
+declare var google;
 
 @Component({
   selector: 'add-ride.component',
   templateUrl: 'add-ride.component.html',
   styleUrls: ['./add-ride.component.scss'],
-  providers: [ RideListComponent],
+  providers: [RideListComponent],
 })
 
 export class AddRideComponent implements OnInit {
-
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
+  forthFormGroup: FormGroup;
+  fifthFormGroup: FormGroup;
+  sixthFormGroup: FormGroup;
+  seventhFormGroup: FormGroup;
   public rides: Ride[];
 
   private highlightedID: string = '';
@@ -24,18 +33,31 @@ export class AddRideComponent implements OnInit {
   public rideDriver: string;
   public rideNotes: string;
   public rideSeats: number;
-  public rideOrigin: string;
-  public rideDestination: string;
+  public rideOrigin: google.maps.places.PlaceResult;
+  public rideDestination: google.maps.places.PlaceResult;
   public rideDepartureDate: string;
   public rideDepartureTime: string;
   public rideDateObject: string;
   public nowDate: Date;
+
+  public markers: Marker[] = [];
 
   // Inject the RideListService into this component.
   constructor(public rideListService: RideListService,
               private fb: FormBuilder,
               private titleService: Title) {
     titleService.setTitle("Offer Ride");
+  }
+
+  reset() {
+    this.rideDriver= null;
+    this.rideNotes= null;
+    this.rideSeats= null;
+    this.rideOrigin= null;
+    this.rideDestination= null;
+    this.rideDepartureDate= null;
+    this.rideDepartureTime= null;
+    this.rideDateObject= null;
   }
 
   add_ride_validation_messages = {
@@ -66,9 +88,13 @@ export class AddRideComponent implements OnInit {
     return this.nowDate;
   }
 
+  submit(): void {
+    this.addRide();
+  }
+
   addRide(): void {
     const newRide: Ride = {
-      _id: { $oid: '' },
+      _id: {$oid:'585024d558bef808ed84fc3e'},
       driver: this.rideDriver,
       notes: this.rideNotes,
       seatsAvailable: Number(this.rideSeats),
@@ -78,7 +104,6 @@ export class AddRideComponent implements OnInit {
       departureTime: this.rideDepartureTime,
       dateObject: this.rideDateObject
     };
-
 
     console.log(newRide);
     if (newRide != null) {
@@ -90,7 +115,7 @@ export class AddRideComponent implements OnInit {
         err => {
           // This should probably be turned into some sort of meaningful response.
           console.log('There was an error adding the ride.');
-          console.log('The newRide or dialogResult was ' + newRide);
+          console.log('The newRide or dialogResult was ' + JSON.stringify(newRide));
           console.log('The error was ' + JSON.stringify(err));
         });
       this.refreshRides();
@@ -106,37 +131,16 @@ export class AddRideComponent implements OnInit {
     }
   };
 
-  createForm() {
-    this.addRideForm = this.fb.group({
-      driver: new FormControl('driver', Validators.compose([
-        Validators.required,
-        Validators.minLength(2),
-        Validators.pattern('^[A-Za-z0-9\\s]+[A-Za-z0-9\\s]+$(\\.0-9+)?')
-      ])),
+  steps =[
+    {label: 'Confrim your name', content: 'Name'},
+    {label: 'Confrim your seats', content: '0'},
+    {label: 'Confrim your starting point', content: 'Your location'},
+    {label: 'Confrim your destination', content: 'Going place'},
+    {label: 'Confrim your departure', content: '1/1/1'},
+    {label: 'Confrim your time', content: '1:1AM'},
+    {label: 'Confrim your note', content: ''},
 
-      seatsAvailable: new FormControl('seatsAvailable', Validators.compose([
-        Validators.required,
-        Validators.min(1),
-        Validators.max(12)
-      ])),
-
-      origin: new FormControl('origin', Validators.compose([
-        Validators.required
-      ])),
-
-      destination: new FormControl('destination', Validators.compose([
-        Validators.required
-      ])),
-
-      departureDate: new FormControl('departureDate', Validators.compose([
-        Validators.required
-      ])),
-
-      departureTime: new FormControl('departureTime'),
-
-      notes: new FormControl('notes')
-    })
-  }
+  ];
 
   refreshRides(): Observable<Ride[]> {
     // Get Rides returns an Observable, basically a "promise" that
@@ -155,10 +159,64 @@ export class AddRideComponent implements OnInit {
     return rides;
   }
 
-
-  ngOnInit() {
-    this.createForm();
+  setRideOrigin(placeResult: google.maps.places.PlaceResult) {
+    this.rideOrigin = placeResult;
+    let m: Marker = {
+      longitude: placeResult.geometry.location.lng(),
+      latitude: placeResult.geometry.location.lat(),
+      label: 'A'
+    };
+    this.markers[0] = m;
+    this.markers = this.markers.slice();
   }
 
+  setRideDestination(placeResult: google.maps.places.PlaceResult) {
+    this.rideDestination = placeResult;
+    let m: Marker = {
+      longitude: placeResult.geometry.location.lng(),
+      latitude: placeResult.geometry.location.lat(),
+      label: 'B'
+    };
+    this.markers[1] = m;
+    this.markers = this.markers.slice();
+  }
+
+  ngOnInit() {
+    this.firstFormGroup = this.fb.group({
+      driver: ['driver', Validators.compose([
+        Validators.required,
+        Validators.minLength(2),
+        Validators.pattern('^[A-Za-z0-9\\s]+[A-Za-z0-9\\s]+$(\\.0-9+)?')
+      ])]
+    });
+    this.secondFormGroup = this.fb.group({
+      seatsAvailable: ['seatsAvailable', Validators.compose([
+        Validators.required,
+        Validators.min(1),
+        Validators.max(12)
+      ])]
+    });
+    this.thirdFormGroup = this.fb.group({
+      origin: ['origin', Validators.compose([
+        Validators.required
+      ])]
+    });
+    this.forthFormGroup = this.fb.group({
+      destination: ['destination', Validators.compose([
+        Validators.required
+      ])]
+    });
+    this.fifthFormGroup = this.fb.group({
+      departureDate: ['departureDate', Validators.compose([
+        Validators.required
+      ])]
+    });
+    this.sixthFormGroup = this.fb.group({
+      departureTime: ['departureTime']
+    });
+    this.seventhFormGroup = this.fb.group({
+      notes: ['notes']
+    });
+  }
 }
 

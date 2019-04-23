@@ -1,11 +1,13 @@
 <agm-map
+  #agmMap
   id="map"
   [latitude]="lat"
   [longitude]="lng"
   [zoom]="zoom"
   [disableDefaultUI]="true"
-  [zoomControl]="false">
-  <agm-marker *ngFor="let m of markers"
+  [zoomControl]="false"
+  [gestureHandling]="'greedy'">
+  <agm-marker *ngFor="let m of filledMarkers()"
               [latitude]="m.latitude"
               [longitude]="m.longitude"
               [label]="m.label">

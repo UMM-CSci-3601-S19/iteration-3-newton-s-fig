@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Ride} from "./ride";
-import {MatDialog} from "@angular/material";
+import {MatDialog, MatDialogConfig} from "@angular/material";
 import {ChatComponent} from "../chat/chat.component";
 
 @Component({
@@ -15,7 +15,7 @@ export class RideComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   openChat(rideId: string): void {
-    const dialogRef = this.dialog.open(ChatComponent, {
+    const dialogRef = this.dialog.open(ChatComponent, <MatDialogConfig>{
       maxWidth: '100vw',
       maxHeight: '100vh',
     });

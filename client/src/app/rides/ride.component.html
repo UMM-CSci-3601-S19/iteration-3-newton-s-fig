@@ -14,11 +14,15 @@
   </mat-card-header>
 
   <mat-card-content>
-    <div class="route">
-      <div class="ride-info origin">{{ride.origin}}</div>
+    <div class="route" *ngIf="ride.origin && ride.destination; else errorBlock">
+      <div class="ride-info origin">{{ride.origin.name}}</div>
       <mat-icon>play_arrow</mat-icon>
-      <div class="ride-info destination">{{ride.destination}}</div>
+      <div class="ride-info destination">{{ride.destination.name}}</div>
     </div>
+    <ng-template #errorBlock>
+      There was an error loading this ride.
+    </ng-template>
+
 
     <div id="ride-info-driver-id" class="ride-info driver">
       {{ride.driver}} is offering this ride
