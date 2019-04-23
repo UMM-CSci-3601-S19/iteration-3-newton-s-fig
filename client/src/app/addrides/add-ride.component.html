@@ -1,7 +1,7 @@
 <app-maps [mapHeightVH]="100" [markers]="markers"></app-maps>
 
 <div id="inputpart">
-  <mat-horizontal-stepper id="steppercontainer"  [linear]="false" #stepper>
+  <mat-horizontal-stepper id="steppercontainer"  [linear]="true" #stepper>
     <mat-step [stepControl]="firstFormGroup">
       <form [formGroup]="firstFormGroup" class="steps">
         <mat-card>
@@ -10,7 +10,7 @@
               <mat-icon>navigate_before</mat-icon>
             </button>
             <mat-form-field>
-              <input name="driverField" matInput #input id="driverID" placeholder="Input your name"
+              <input name="driverField" matInput #input id="driverID" placeholder="Enter your name"
                      required [(ngModel)]="rideDriver" formControlName="driver">
             </mat-form-field>
             <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
@@ -29,7 +29,7 @@
               <mat-icon>navigate_before</mat-icon>
             </button>
             <mat-form-field>
-            <input type="number" class="inputRideInfo" matInput #input id="seatsAvailableField" placeholder="Seats Available"
+            <input type="number" class="inputRideInfo" matInput #input id="seatsAvailableField" placeholder="How many seats are you offering?"
                  required [(ngModel)]="rideSeats" formControlName="seatsAvailable">
             </mat-form-field>
             <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
@@ -49,7 +49,7 @@
             </button>
             <app-mapsSearch class="inputRideInfo"
                             id="originField"
-                            searchPlaceholder="Enter starting location"
+                            searchPlaceholder="Where are you starting?"
                             (placeResult)="setRideOrigin($event)">
             </app-mapsSearch>
             <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
@@ -70,7 +70,7 @@
             <app-mapsSearch class="inputRideInfo"
                             id="destinationField"
                             (placeResult)="setRideDestination($event)"
-                            searchPlaceholder="Enter ending location">
+                            searchPlaceholder="Where are you ending?">
             </app-mapsSearch>
             <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
               <mat-icon>navigate_next</mat-icon>
@@ -89,7 +89,7 @@
             </button>
             <mat-form-field>
               <input class="inputRideInfo" id="departureDateField" matInput [min]="todaysDate()" [matDatepicker]="picker"
-                     placeholder="Choose Departure Date" [(ngModel)]="rideDepartureDate" formControlName="departureDate">
+                     placeholder="What day are you leaving?" [(ngModel)]="rideDepartureDate" formControlName="departureDate" (click)="picker.open()">
               <mat-datepicker-toggle matSuffix [for]="picker"> </mat-datepicker-toggle>
               <mat-datepicker id="calendar" touchUi #picker></mat-datepicker>
             </mat-form-field>
@@ -109,7 +109,7 @@
               <mat-icon>navigate_before</mat-icon>
             </button>
             <mat-form-field>
-              <input type="time" class="inputRideInfo" matInput #input id="departureTimeField" placeholder="Departure Time"
+              <input type="time" class="inputRideInfo" matInput #input id="departureTimeField" placeholder="What time are you leaving? (optional)"
                       [(ngModel)]="rideDepartureTime" formControlName="departureTime">
             </mat-form-field>
             <button class="nextButton" mat-icon-button matStepperNext type="button" color="accent">
