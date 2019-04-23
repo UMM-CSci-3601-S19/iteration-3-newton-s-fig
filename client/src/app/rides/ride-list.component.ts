@@ -10,6 +10,7 @@ import {} from 'googlemaps';
 
 import {Title} from "@angular/platform-browser";
 import {FilterService} from "../filter/filter.service";
+import {HttpClient} from "@angular/common/http";
 
 
 
@@ -27,7 +28,7 @@ export class RideListComponent implements OnInit {
   // Inject the RideListService into this component.
   constructor(public chatService: ChatService,
               private titleService: Title,
-              public filterService: FilterService) {
+              public filterService: FilterService,) {
     filterService.addListener(this);
     titleService.setTitle("Upcoming Rides");
     chatService.connectStream();
@@ -41,6 +42,13 @@ export class RideListComponent implements OnInit {
   //   return ridesText;
   // }
 
+  loadRides() {
+    this.filterService.getRides().subscribe(rides => {
+      this.rides = rides;
+    });
+  }
+
   ngOnInit(): void {
+    this.loadRides();
   }
 }

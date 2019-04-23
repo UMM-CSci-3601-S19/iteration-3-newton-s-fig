@@ -72,7 +72,7 @@ export class FilterService {
     }
   }
 
-  private getRides(): Observable<Ride[]> {
+  public getRides(): Observable<Ride[]> {
     return this.http.get<Ride[]>(this.rideUrl);
   }
 
